@@ -8,7 +8,10 @@ const {
   useMultiFileAuthState,
   makeCacheableSignalKeyStore,
   DisconnectReason,
-  fetchLatestBaileysVersion
+  fetchLatestBaileysVersion,
+  isJidBroadcast,
+  isJidGroup,
+  isJidNewsletter
 } = require('@whiskeysockets/baileys');
 const pino = require('pino');
 const path = require('path');
@@ -26,6 +29,25 @@ console.error = function(...args) {
   }
   originalConsoleError.apply(console, args);
 };
+
+// In-memory message store for Signal decryption retries
+const messageStore = new Map();
+
+/**
+ * Auto-Heals Corrupted/Desynchronized Signal Pre-Keys
+ */
+function autoHealCorruptedSession(senderJid) {
+  try {
+    const cleanId = senderJid.replace(/[^a-zA-Z0-9_-]/g, '_');
+    const sessionFiles = fs.readdirSync(AUTH_FOLDER).filter(f => f.includes(cleanId) || f.startsWith(`session-${senderJid}`));
+    for (const f of sessionFiles) {
+      fs.unlinkSync(path.join(AUTH_FOLDER, f));
+      console.log(`🧹 [Auto-Healer] Purgada pre-clave desfasada para ${senderJid}: ${f}`);
+    }
+  } catch (e) {
+    // Ignore if not present
+  }
+}
 
 class WhatsAppSocketManager {
   constructor() {
@@ -50,8 +72,19 @@ class WhatsAppSocketManager {
         keys: makeCacheableSignalKeyStore(state.keys, logger)
       },
       browser: ['ALARICUS Swarm', 'Chrome', '2.0.0'],
-      generateHighQualityLinkPreview: true,
-      syncFullHistory: false
+      generateHighQualityLinkPreview: false,
+      syncFullHistory: false,
+      markOnlineOnConnect: false,
+      shouldIgnoreJid: (jid) => isJidBroadcast(jid) || isJidNewsletter(jid) || isJidGroup(jid),
+      defaultQueryTimeoutMs: 60000,
+      connectTimeoutMs: 60000,
+      keepAliveIntervalMs: 30000,
+      getMessage: async (key) => {
+        if (messageStore.has(key.id)) {
+          return messageStore.get(key.id);
+        }
+        return { conversation: '' };
+      }
     });
 
     this.sock.ev.on('creds.update', saveCreds);
@@ -111,9 +144,16 @@ class WhatsAppSocketManager {
     return this.sock;
   }
 
+  autoHealSession(senderJid) {
+    autoHealCorruptedSession(senderJid);
+  }
+
   getSocket() {
     return this.sock;
   }
 }
 
-module.exports = new WhatsAppSocketManager();
+const socketManager = new WhatsAppSocketManager();
+socketManager.autoHealCorruptedSession = autoHealCorruptedSession;
+
+module.exports = socketManager;

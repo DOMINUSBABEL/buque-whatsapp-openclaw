@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ALARICUS B2B AUTONOMOUS ACQUISITION SWARM (OPENCLAW ENTRYPOINT)
  * Multi-service prospecting harness: Web Directa (Rutas A/B) + VAREGO Social & Ads (Ruta C)
  * Initializes WhatsApp Socket, Live Preview/Dashboard server, and state machines.
@@ -13,13 +13,33 @@ const signalHealer = require('./signal-healer');
 const leadDatabase = require('./lead-database');
 const sessionManager = require('./session-manager');
 
-function extractMessageText(msg) {
-  if (!msg || !msg.message) return '';
-  const m = msg.message;
-  return m.conversation ||
-         m.extendedTextMessage?.text ||
-         m.imageMessage?.caption ||
-         m.videoMessage?.caption ||
+/**
+ * Desempaqueta mensajes anidados (Ephemeral, ViewOnce, DocumentWithCaption, Editados)
+ */
+function getUnpackedMessage(message) {
+  if (!message) return null;
+  if (message.ephemeralMessage?.message) return getUnpackedMessage(message.ephemeralMessage.message);
+  if (message.viewOnceMessage?.message) return getUnpackedMessage(message.viewOnceMessage.message);
+  if (message.viewOnceMessageV2?.message) return getUnpackedMessage(message.viewOnceMessageV2.message);
+  if (message.documentWithCaptionMessage?.message) return getUnpackedMessage(message.documentWithCaptionMessage.message);
+  if (message.editedMessage?.message?.protocolMessage?.editedMessage) return getUnpackedMessage(message.editedMessage.message.protocolMessage.editedMessage);
+  return message;
+}
+
+function extractMessageText(rawMsg) {
+  if (!rawMsg) return '';
+  const message = getUnpackedMessage(rawMsg.message || rawMsg);
+  if (!message) return '';
+  if (typeof message === 'string') return message;
+
+  return message.conversation ||
+         message.extendedTextMessage?.text ||
+         message.imageMessage?.caption ||
+         message.videoMessage?.caption ||
+         message.documentMessage?.caption ||
+         message.buttonsResponseMessage?.selectedButtonId ||
+         message.listResponseMessage?.singleSelectReply?.selectedRowId ||
+         message.templateButtonReplyMessage?.selectedId ||
          '';
 }
 
@@ -27,8 +47,8 @@ async function handleIncomingMessage(sock, msg) {
   if (!msg.key || msg.key.fromMe) return;
 
   const senderJid = msg.key.remoteJid;
-  if (!senderJid || senderJid.endsWith('@g.us') || senderJid.endsWith('@broadcast')) {
-    // Ignore group and broadcast status updates
+  if (!senderJid || senderJid.endsWith('@g.us') || senderJid.endsWith('@broadcast') || senderJid.endsWith('@newsletter')) {
+    // Ignore group, newsletter, and broadcast status updates
     return;
   }
 
@@ -45,7 +65,7 @@ async function handleIncomingMessage(sock, msg) {
     // Channel Protection: Ensure sender is an active prospect in the acquisition pipeline
     const session = sessionManager.getSession(senderJid);
     const isTrackedLead = session.isProspect ||
-      leadDatabase.isDuplicate(+) ||
+      leadDatabase.isDuplicate(`+${senderNumber}`) ||
       leadDatabase.isDuplicate(senderNumber);
 
     if (isTrackedLead) {
