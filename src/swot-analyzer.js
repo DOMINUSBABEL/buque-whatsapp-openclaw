@@ -85,5 +85,3 @@ class SwotAnalyzer {
 }
 
 module.exports = new SwotAnalyzer();
-
-// Step: feat(swot): formulate strengths based on reviews, rating, and registry seniority
