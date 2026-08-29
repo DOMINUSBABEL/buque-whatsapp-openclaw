@@ -141,7 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 🤖 Modos de Despliegue (Dual Execution Modes)
+## 🌍 Registro Universal de Países y Prefijos ITU-T E.164
 
-1. **Modo Automático (`!auto` o `!scan ...`):** Ejecución 100% autónoma con curaduría y despacho automático.
-2. **Modo Asistido / Copiloto (`!asistido` o `!copiloto`):** Diálogo guiado paso a paso con compilación de demos y pre-aprobación requerida (`!aprobar-todos`) antes de cualquier despacho por WhatsApp.
+ALARICUS cuenta con validación estricta para más de 200 países y territorios reconocidos. Al solicitar negocios en cualquier geografía (Alemania `+49`, Guyana `+592`, Francia `+33`, Colombia `+57`, USA `+1`, etc.), el sistema exige coherencia estricta del prefijo telefónico y descarta incongruencias geográficas.
