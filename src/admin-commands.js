@@ -171,6 +171,61 @@ class AdminCommands {
         }
         break;
 
+      case '!subscout':
+      case '!enjambre':
+        if (!args) {
+          await sock.sendMessage(senderJid, {
+            text: '⚠️ *Uso:* `!subscout [nicho] en [barrio/zona/país] [--service SERVICIO]`\n\n' +
+                  'Ejemplos:\n' +
+                  '• `!subscout ferreterias en el barrio La Milagrosa de Medellin`\n' +
+                  '• `!subscout panaderias en Chemnitz Alemania --service VAREGO_SOCIAL_ADS`\n' +
+                  '• `!subscout clinicas en Paris Francia --service AI_AUTOMATION`\n\n' +
+                  'Servicios disponibles: `DIRECT_WEB`, `VAREGO_SOCIAL_ADS`, `AI_AUTOMATION`, `ERP_POS_SOFTWARE`, `LEGAL_TAX_COMPLIANCE`, `LOGISTICS_LAST_MILE`'
+          });
+          return;
+        }
+
+        let targetServiceOffer = 'DIRECT_WEB';
+        let cleanSubscoutQuery = args;
+        if (args.includes('--service')) {
+          const serviceParts = args.split('--service');
+          cleanSubscoutQuery = serviceParts[0].trim();
+          targetServiceOffer = serviceParts[1].trim().toUpperCase();
+        }
+
+        await sock.sendMessage(senderJid, {
+          text: `🧭 *Desplegando Enjambre de Subscouts Especializados*\n` +
+                `🔍 Búsqueda: *${cleanSubscoutQuery}*\n` +
+                `💼 Oferta: *${targetServiceOffer}*\n\n` +
+                `• Mapeando fuentes institucionales fidedignas (RUES, Handelsregister, RCS, etc.)...\n` +
+                `• Evaluando vacancia digital y fricción comercial adaptada...`
+        });
+
+        try {
+          const subscoutCoordinator = require('./subscouts/subscout-coordinator');
+          const swarmResult = await subscoutCoordinator.executeSubscoutSwarm(cleanSubscoutQuery, {
+            serviceOffer: targetServiceOffer,
+            limit: 3
+          });
+
+          let subMsg = `📋 *RESULTADOS DEL ENJAMBRE SUBSCOUT (${swarmResult.total_scouted} negocios)*\n` +
+                       `📍 Territorio: ${swarmResult.territory.neighborhood} (${swarmResult.territory.city}, ${swarmResult.territory.country} ${swarmResult.territory.dialing_code})\n` +
+                       `🎯 Servicio: ${swarmResult.target_service}\n\n`;
+
+          for (const res of swarmResult.results) {
+            subMsg += `🏢 *${res.business_name}* (${res.category})\n` +
+                      `  🏛️ Registro: ${res.institutional_verification?.official_registry_board} (CIIU/Código: ${res.institutional_verification?.economic_activity?.activity_code})\n` +
+                      `  💡 Fricción: ${res.service_diagnostic?.tailored_pain_hook}\n` +
+                      `  🎯 Ajuste Oferta: ${res.service_diagnostic?.service_fit_score}/100\n` +
+                      `  🔗 *Dossier:* ${res.dossier?.dossier_url}\n\n`;
+          }
+
+          await sock.sendMessage(senderJid, { text: subMsg });
+        } catch (subErr) {
+          await sock.sendMessage(senderJid, { text: `❌ Error en enjambre subscout: ${subErr.message}` });
+        }
+        break;
+
       case '!dossier':
       case '!diagnostico':
       case '!swot':

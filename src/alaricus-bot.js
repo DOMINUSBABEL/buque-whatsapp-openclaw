@@ -242,10 +242,47 @@ function setupTerminalRepl() {
         }
         break;
 
+      case 'subscout':
+      case 'enjambre':
+        if (!args) {
+          console.log('⚠️ Uso: subscout <nicho> en <barrio/zona/país> [--service <DIRECT_WEB|VAREGO_SOCIAL_ADS|AI_AUTOMATION>]');
+        } else {
+          let targetServiceOffer = 'DIRECT_WEB';
+          let cleanSubscoutQuery = args;
+          if (args.includes('--service')) {
+            const serviceParts = args.split('--service');
+            cleanSubscoutQuery = serviceParts[0].trim();
+            targetServiceOffer = serviceParts[1].trim().toUpperCase();
+          }
+
+          console.log(`\n🧭 [Terminal] Desplegando Enjambre Subscout para: "${cleanSubscoutQuery}" (Oferta: ${targetServiceOffer})...`);
+          try {
+            const subscoutCoordinator = require('./subscouts/subscout-coordinator');
+            const swarmResult = await subscoutCoordinator.executeSubscoutSwarm(cleanSubscoutQuery, {
+              serviceOffer: targetServiceOffer,
+              limit: 3
+            });
+
+            console.log(`\n📋 RESULTADOS SUBSCOUT (${swarmResult.total_scouted} negocios en ${swarmResult.territory.neighborhood}, ${swarmResult.territory.city}):`);
+            swarmResult.results.forEach((r, idx) => {
+              console.log(`\n[${idx + 1}] ${r.business_name} (${r.category})`);
+              console.log(`    🏛️ Registro Oficial: ${r.institutional_verification?.official_registry_board} (CIIU: ${r.institutional_verification?.economic_activity?.activity_code})`);
+              console.log(`    💡 Diagnóstico Oferta: ${r.service_diagnostic?.tailored_pain_hook}`);
+              console.log(`    🎯 Ajuste Comercial: ${r.service_diagnostic?.service_fit_score}/100`);
+              console.log(`    🔗 Dossier: ${r.dossier?.dossier_url}`);
+            });
+            console.log('');
+          } catch (e) {
+            console.error(`❌ Error en enjambre subscout: ${e.message}`);
+          }
+        }
+        break;
+
       case 'help':
       case 'ayuda':
       default:
         console.log('\n⌨️  COMANDOS DISPONIBLES EN ESTA TERMINAL:');
+        console.log(' • subscout <nicho> en <barrio>    -> Enjambre multi-fuente adaptado a cualquier servicio');
         console.log(' • dossier <nicho> en <barrio>     -> Diagnóstico profundo (SWOT, Cámara de Comercio)');
         console.log(' • scan <nicho> en <ciudad>        -> Iniciar escaneo para Web Directa');
         console.log(' • scan-varego <nicho> en <ciudad> -> Iniciar escaneo para VAREGO ($100/mo)');

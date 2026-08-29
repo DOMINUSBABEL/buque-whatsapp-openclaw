@@ -323,13 +323,45 @@ async function executeTestSuite() {
     assert(bModel.neighborhood_landscape.competitive_density_score > 0);
   });
 
-  console.log('\n🎨 [15/15] Testing Theme Engine Luxury Aesthetics...');
+  console.log('\n🎨 [15/16] Testing Theme Engine Luxury Aesthetics...');
   const themeEngine = require('../src/theme-engine');
   runTest('Assigns Titanium Industrial palette for hardware stores', () => {
     const th = themeEngine.resolveTheme('Ferretería');
     assert.strictEqual(th.name, 'Titanium Industrial & Tools');
     assert.strictEqual(th.accent_primary, '#f59e0b');
     assert(th.hero_image.includes('unsplash.com'));
+  });
+
+  console.log('\n🧭 [16/16] Testing Subscout Specialized Swarm & Multi-Service Adapter...');
+  const geoTerritorySubscout = require('../src/subscouts/geo-territory-subscout');
+  const commercialServiceAdapter = require('../src/subscouts/commercial-service-adapter');
+  const subscoutCoordinator = require('../src/subscouts/subscout-coordinator');
+
+  runTest('Resolves La Milagrosa neighborhood to Comuna 9 in Medellin', () => {
+    const terr = geoTerritorySubscout.resolveTerritory('Ferreterías en el barrio La Milagrosa de Medellín');
+    assert.strictEqual(terr.neighborhood, 'La milagrosa');
+    assert.strictEqual(terr.city, 'Medellín');
+    assert.strictEqual(terr.country_iso, 'CO');
+  });
+
+  runTest('Adapts diagnostic to AI_AUTOMATION and ERP_POS_SOFTWARE services', () => {
+    const diagAI = commercialServiceAdapter.adaptServiceDiagnostic('AI_AUTOMATION', { name: 'Clínica Dental' }, {});
+    assert.strictEqual(diagAI.service_key, 'AI_AUTOMATION');
+    assert.strictEqual(diagAI.base_fee_usd, 150);
+
+    const diagPOS = commercialServiceAdapter.adaptServiceDiagnostic('ERP_POS_SOFTWARE', { name: 'Ferretería Central' }, {});
+    assert.strictEqual(diagPOS.service_key, 'ERP_POS_SOFTWARE');
+    assert.strictEqual(diagPOS.base_fee_usd, 80);
+  });
+
+  await runAsyncTest('Executes full Subscout Swarm for arbitrary micro-zone and service', async () => {
+    const swarmRes = await subscoutCoordinator.executeSubscoutSwarm('Ferreterías en el barrio La Milagrosa de Medellín', {
+      serviceOffer: 'AI_AUTOMATION',
+      limit: 2
+    });
+    assert.strictEqual(swarmRes.total_scouted >= 1, true);
+    assert.strictEqual(swarmRes.target_service, 'AI_AUTOMATION');
+    assert.strictEqual(swarmRes.results[0].institutional_verification.official_registry_board.includes('Cámara'), true);
   });
 
   // Summary
