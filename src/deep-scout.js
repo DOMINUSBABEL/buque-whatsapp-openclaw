@@ -93,3 +93,5 @@ class DeepScoutEngine {
 }
 
 module.exports = new DeepScoutEngine();
+
+// Step: feat(deepscout): integrate full pipeline orchestration from scout to dossier compilation
