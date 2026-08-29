@@ -72,10 +72,11 @@ class ScoutEngine {
     rawCity = rawCity.replace(/[-–,]\s*(alemania|germany|colombia|españa|spain|mexico|usa|estados unidos).*/i, '').trim();
     const city = rawCity || 'Ciudad Local';
 
-    // Extract niche / category
+    // Extract niche / category cleanly removing punctuation
     const cleanNiche = query
       .replace(/en\s+[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+/i, '')
-      .replace(/(alemania|colombia|españa|mexico|estados unidos|usa|germany)/gi, '')
+      .replace(/(alemania|colombia|españa|espana|mexico|estados unidos|usa|germany|francia)/gi, '')
+      .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
       .trim() || 'Comercio Local';
 
     const isGerman = targetCountry.lang === 'de';
@@ -85,7 +86,9 @@ class ScoutEngine {
 
     // Generate authentic local names based on country language and requested niche
     let sampleNames = [];
-    if (cleanNiche.toLowerCase().includes('panader') || cleanNiche.toLowerCase().includes('bäckerei') || cleanNiche.toLowerCase().includes('bakery') || cleanNiche.toLowerCase().includes('boulangerie')) {
+    const lowerNiche = cleanNiche.toLowerCase();
+
+    if (lowerNiche.includes('panader') || lowerNiche.includes('bäckerei') || lowerNiche.includes('bakery') || lowerNiche.includes('boulangerie')) {
       if (isGerman) {
         sampleNames = [
           { name: `Bäckerei & Konditorei Schmidt ${city}`, cat: 'Bäckerei & Konditorei', snip: ['Sehr leckeres Brot und frische Brötchen', 'Online-Bestellung leider nicht möglich'] },
@@ -113,33 +116,48 @@ class ScoutEngine {
           { name: `Horno Tradicional ${city}`, cat: 'Panadería y Café', snip: ['Excelente variedad de panes y repostería'] }
         ];
       }
+    } else if (lowerNiche.includes('taller') || lowerNiche.includes('mecanic') || lowerNiche.includes('auto')) {
+      sampleNames = [
+        { name: `Taller Mecánico & Frenos ${city}`, cat: 'Taller Mecánico', snip: ['Excelente mantenimiento y sincronización', 'No tienen página web'] },
+        { name: `Auto Servicio & Diagnóstico ${city}`, cat: 'Taller Mecánico & Electrónica', snip: ['Muy cumplidos con la entrega del vehículo'] },
+        { name: `Tecni-Autos ${city} Especializado`, cat: 'Taller Mecánico', snip: ['Diagnóstico por scanner confiable'] },
+        { name: `Centro Automotriz & Latonería ${city}`, cat: 'Taller Automotriz', snip: ['Servicio rápido y garantizado'] }
+      ];
+    } else if (lowerNiche.includes('dental') || lowerNiche.includes('odonto') || lowerNiche.includes('clinic')) {
+      sampleNames = [
+        { name: `Clínica Odontológica Integral ${city}`, cat: 'Clínica Dental', snip: ['Excelente atención profesional'] },
+        { name: `Centro de Especialistas Dentales ${city}`, cat: 'Odontología Avanzada', snip: ['Tratamientos modernos y garantizados'] }
+      ];
     } else {
       sampleNames = [
         { name: `${cleanNiche} Central ${city}`, cat: cleanNiche, snip: ['Excelente atención al cliente'] },
-        { name: `${cleanNiche} Premier ${city}`, cat: cleanNiche, snip: ['Muy recomendados en la zona'] }
+        { name: `${cleanNiche} Premier ${city}`, cat: cleanNiche, snip: ['Muy recomendados en la zona'] },
+        { name: `${cleanNiche} & Servicios ${city}`, cat: cleanNiche, snip: ['Cumplimiento y calidad garantizada'] }
       ];
     }
 
     const results = [];
     const count = Math.min(limit, 8);
+    const salt = (Math.floor(Date.now() / 1000) % 5000);
+
     for (let i = 0; i < count; i++) {
       const sample = sampleNames[i % sampleNames.length];
-      const name = `${sample.name} ${i > 2 ? (i + 1) : ''}`.trim();
+      const name = `${sample.name} ${i > 1 ? (i + 1) : ''}`.trim();
       const phonePrefix = `+${targetCountry.code}`;
       
       let localPhone = '';
-      if (targetCountry.code === '49') localPhone = `371${400000 + i * 111}`;
-      else if (targetCountry.code === '592') localPhone = `225${1000 + i * 111}`; // Guyana (Georgetown)
-      else if (targetCountry.code === '33') localPhone = `142${60000 + i * 111}`; // France (Paris)
-      else if (targetCountry.code === '1') localPhone = `305${555000 + i * 111}`; // USA
-      else if (targetCountry.code === '34') localPhone = `612${345000 + i * 111}`; // Spain
-      else if (targetCountry.code === '55') localPhone = `119876${5000 + i * 111}`; // Brazil
-      else localPhone = `300${100000 + i * 111}`;
+      if (targetCountry.code === '49') localPhone = `371${400000 + salt + i * 11}`;
+      else if (targetCountry.code === '592') localPhone = `225${1000 + (salt % 8000) + i * 11}`;
+      else if (targetCountry.code === '33') localPhone = `142${60000 + (salt % 30000) + i * 11}`;
+      else if (targetCountry.code === '1') localPhone = `305${555000 + (salt % 400000) + i * 11}`;
+      else if (targetCountry.code === '34') localPhone = `612${345000 + (salt % 600000) + i * 11}`;
+      else if (targetCountry.code === '55') localPhone = `119876${5000 + (salt % 4000) + i * 11}`;
+      else localPhone = `300${100000 + (salt * 10) + i * 13}`;
 
       const fullPhone = `${phonePrefix}${localPhone}`;
 
       results.push({
-        place_id: `maps_place_${Buffer.from(name + city + targetCountry.name).toString('hex').slice(0, 16)}`,
+        place_id: `maps_place_${Buffer.from(name + city + fullPhone).toString('hex').slice(0, 16)}`,
         name,
         category: sample.cat,
         rating: 4.5 + (i * 0.1 > 0.4 ? 0.2 : i * 0.1),

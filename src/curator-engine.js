@@ -88,15 +88,17 @@ class CuratorEngine {
 
     // 5. Niche matching
     const cleanQuery = query.toLowerCase()
-      .replace(/en\s+[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+/i, '')
-      .replace(/(alemania|colombia|españa|mexico|estados unidos|usa|guyana|francia)/gi, '')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/en\s+[a-z\s-]+/i, '')
+      .replace(/(alemania|colombia|espana|mexico|estados unidos|usa|guyana|francia)/gi, '')
+      .replace(/[^a-z0-9\s]/g, '')
       .trim();
 
-    const placeName = (place.name || '').toLowerCase();
-    const placeCat = (place.category || '').toLowerCase();
-    const snippets = (place.reviews_snippets || []).join(' ').toLowerCase();
+    const placeName = (place.name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const placeCat = (place.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const snippets = (place.reviews_snippets || []).join(' ').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-    const queryTokens = cleanQuery.split(/\s+/).filter(w => w.length > 3);
+    const queryTokens = cleanQuery.split(/\s+/).filter(w => w.length >= 3);
 
     if (queryTokens.length === 0) {
       checks.niche_relevance_valid = true;
@@ -106,14 +108,14 @@ class CuratorEngine {
       const matchInSnippets = queryTokens.some(token => snippets.includes(token));
 
       const aliases = {
-        'panader': ['bäckerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
+        'panader': ['backerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
         'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie', 'food'],
         'pizz': ['pizzeria', 'pizza'],
         'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista'],
         'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique', 'hospital', 'doctor'],
         'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne', 'cerveceria'],
         'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure', 'peluqueria', 'barber'],
-        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor']
+        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor', 'frenos', 'suspension']
       };
 
       let aliasMatch = false;

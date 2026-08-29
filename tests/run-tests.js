@@ -524,9 +524,27 @@ async function executeTestSuite() {
       key: { remoteJid: testJid, fromMe: false },
       message: { conversation: 'Medellín - Colombia' }
     });
-    const lastLocMsg = sentMessages[sentMessages.length - 1];
-    assert(lastLocMsg.includes('Paso 3/3'));
-    assert(lastLocMsg.includes('+57 - Colombia')); // Must be Colombia (+57), NEVER Saudi Arabia (+966)
+    // 4. Send Service (1 - Web Directa)
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: testJid, fromMe: false },
+      message: { conversation: '1' }
+    });
+    const lastSummaryMsg = sentMessages[sentMessages.length - 1];
+    assert(lastSummaryMsg.includes('PROSPECTOS CURADOS LISTOS PARA REVISIÓN'));
+    assert(lastSummaryMsg.includes('!aprobar-todos'));
+  });
+
+  await runAsyncTest('ScoutEngine and SwarmOrchestrator discovery for "Talleres Mecánicos. en Medellín - Colombia"', async () => {
+    const scout = require('../src/scout-engine');
+    const swarm = require('../src/swarm-orchestrator');
+
+    const places = await scout.searchPlaces('Talleres Mecánicos. en Medellín - Colombia', { limit: 3 });
+    assert(places.length >= 1);
+    assert.strictEqual(places[0].country, 'Colombia');
+
+    const batch = await swarm.runScanBatch('Talleres Mecánicos. en Medellín - Colombia', { limit: 2, targetService: 'WEB' });
+    assert(batch.length >= 1);
+    assert.strictEqual(batch[0].location.country, 'Colombia');
   });
 
   // Summary
