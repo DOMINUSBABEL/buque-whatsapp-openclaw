@@ -9,21 +9,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: {{BG_PRIMARY}}; color: #f8fafc; }
+    :root {
+      --bg-primary: {{BG_PRIMARY}};
+      --bg-card: {{BG_CARD}};
+      --accent-primary: {{ACCENT_PRIMARY}};
+      --accent-secondary: {{ACCENT_SECONDARY}};
+      --border-card: {{BORDER_CARD}};
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-primary); color: #f8fafc; }
     h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
     .font-mono-data { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
-      background: rgba(15, 23, 42, 0.85);
+      background: var(--bg-card);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-card);
     }
     .hero-gradient-overlay {
-      background: linear-gradient(180deg, rgba(7, 10, 18, 0.2) 0%, {{BG_PRIMARY}} 95%);
+      background: linear-gradient(180deg, rgba(7, 10, 18, 0.2) 0%, var(--bg-primary) 95%);
     }
     .accent-glow {
-      box-shadow: 0 0 35px -5px {{ACCENT_PRIMARY}}40;
+      box-shadow: 0 0 35px -5px var(--accent-primary);
     }
+    .accent-primary-text { color: var(--accent-primary); }
+    .accent-secondary-text { color: var(--accent-secondary); }
+    .accent-primary-bg { background-color: var(--accent-primary); }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between max-w-md mx-auto selection:bg-amber-500 selection:text-slate-950 pb-28">
@@ -34,12 +44,12 @@
       <div class="absolute inset-0 hero-gradient-overlay flex flex-col justify-end p-5">
         <div class="flex items-center gap-2 mb-1.5">
           <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ABIERTO AHORA
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> CANAL OFICIAL
           </span>
-          <span class="text-[11px] text-amber-300 font-mono-data font-bold">★ {{RATING}} ({{REVIEWS_COUNT}} reseñas)</span>
+          <span class="text-[11px] font-mono-data font-bold accent-primary-text">★ {{RATING}} ({{REVIEWS_COUNT}} reseñas)</span>
         </div>
         <h1 class="text-2xl font-black tracking-tight text-white drop-shadow-md font-heading leading-tight">{{COMPANY_NAME}}</h1>
-        <p class="text-xs text-slate-300 font-medium mt-0.5">{{TAGLINE}}</p>
+        <p class="text-xs font-medium mt-0.5 text-slate-200">{{TAGLINE}}</p>
         <p class="text-[11px] text-slate-400 mt-0.5">📍 {{ADDRESS}} • {{CITY}}</p>
       </div>
     </div>
@@ -47,16 +57,29 @@
     <!-- Interactive Navigation / Filter Tabs -->
     <div class="p-4 pt-3 space-y-4">
       <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-none text-xs font-bold font-heading">
-        <button onclick="filterCatalog('all')" id="tab-all" class="px-3.5 py-1.5 rounded-full bg-amber-500 text-slate-950 shadow-md">Todos</button>
+        <button onclick="filterCatalog('all')" id="tab-all" class="px-3.5 py-1.5 rounded-full text-slate-950 font-black shadow-md accent-primary-bg">Todos</button>
         <button onclick="filterCatalog('destacados')" id="tab-destacados" class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white">Destacados</button>
         <button onclick="filterCatalog('promos')" id="tab-promos" class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white">Promociones</button>
       </div>
 
+      <!-- Brand Mission & Vision Value Card -->
+      <div class="glass-card p-4 rounded-2xl space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="text-[10px] uppercase tracking-wider font-extrabold font-mono-data accent-primary-text">COMPROMISO & VISIÓN DE MARCA</div>
+          <span class="text-xs">🛡️</span>
+        </div>
+        <p class="text-xs text-slate-200 leading-relaxed font-medium">"{{BRAND_MISSION}}"</p>
+        <div class="border-t border-white/5 pt-2 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="font-mono-data text-[10px]">Visión:</span>
+          <span class="text-slate-300 italic">{{BRAND_VISION}}</span>
+        </div>
+      </div>
+
       <!-- Core Value Hook -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 border-amber-500/25 accent-glow">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 accent-glow">
         <div>
-          <div class="text-[10px] uppercase tracking-wider font-extrabold text-amber-400 font-mono-data">CANAL DIRECTO & SIN COMISIONES</div>
-          <div class="text-xs text-slate-200 font-semibold mt-0.5">Agrega tus productos y haz tu pedido directamente al WhatsApp oficial.</div>
+          <div class="text-[10px] uppercase tracking-wider font-extrabold font-mono-data accent-primary-text">CANAL DIRECTO & SIN INTERMEDIARIOS</div>
+          <div class="text-xs text-slate-200 font-semibold mt-0.5">Agrega tus productos y envía tu pedido directamente al WhatsApp oficial sin recargos.</div>
         </div>
         <div class="text-2xl">⚡</div>
       </div>
@@ -72,17 +95,17 @@
       </section>
 
       <!-- Interactive ROI / Liquidity Growth Simulator -->
-      <div class="glass-card p-4 rounded-2xl border-indigo-500/25 space-y-3">
+      <div class="glass-card p-4 rounded-2xl space-y-3">
         <div class="flex items-center justify-between">
-          <h3 class="text-xs font-bold text-indigo-300 uppercase tracking-wider font-heading">Simulador de Ahorro en Comisiones</h3>
-          <span class="text-[10px] font-mono-data bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-md">100% Directo</span>
+          <h3 class="text-xs font-bold uppercase tracking-wider font-heading accent-secondary-text">Simulador de Ahorro en Comisiones</h3>
+          <span class="text-[10px] font-mono-data bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-md font-bold">100% Directo</span>
         </div>
         <p class="text-xs text-slate-300">Si atiendes a tus clientes por este canal propio en lugar de intermediarios:</p>
         
         <div>
           <div class="flex justify-between text-xs font-mono-data mb-1">
             <span class="text-slate-400">Pedidos al mes:</span>
-            <span class="text-amber-400 font-bold" id="orders-display">60 pedidos</span>
+            <span class="font-bold accent-primary-text" id="orders-display">60 pedidos</span>
           </div>
           <input type="range" min="10" max="250" value="60" id="orders-slider" oninput="updateRoi(this.value)" class="w-full accent-amber-500 cursor-pointer" />
         </div>
@@ -94,26 +117,26 @@
       </div>
 
       <!-- Customer Testimonial Card -->
-      <div class="glass-card p-4 rounded-2xl text-xs space-y-2 border-slate-800">
+      <div class="glass-card p-4 rounded-2xl text-xs space-y-2">
         <div class="flex items-center justify-between">
           <div class="font-bold text-white flex items-center gap-1.5">
             <span>⭐️⭐️⭐️⭐️⭐️</span>
             <span class="text-slate-400 text-[11px] font-mono-data">Reseña Verificada</span>
           </div>
-          <span class="text-[10px] text-slate-500">Google Maps</span>
+          <span class="text-[10px] text-slate-500">Google Maps / Directorio Oficial</span>
         </div>
         <p class="text-slate-300 italic">"Excelente atención, puntualidad en el servicio y la comodidad de pedir directo por WhatsApp sin demoras."</p>
       </div>
 
       <!-- Trust Badges & Guarantee -->
-      <div class="glass-card p-4 rounded-2xl text-xs space-y-2 border-slate-800 text-slate-300">
+      <div class="glass-card p-4 rounded-2xl text-xs space-y-2 text-slate-300">
         <div class="flex items-center gap-2">
-          <span class="text-amber-400 font-bold">🛡️</span>
+          <span class="font-bold accent-primary-text">🛡️</span>
           <span>Atención y cotizaciones prioritarias por WhatsApp Oficial.</span>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-cyan-400 font-bold">🕒</span>
-          <span>Horario continuo de pedidos de Lunes a Sábado.</span>
+          <span class="font-bold accent-secondary-text">🕒</span>
+          <span>Horario continuo de atención y pedidos de Lunes a Sábado.</span>
         </div>
       </div>
     </div>
@@ -149,70 +172,56 @@
         <span>🛒</span>
         <span>Ver Carrito</span>
       </span>
-      <span id="cart-count-badge" class="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 font-black font-mono-data text-[11px]">0</span>
+      <span class="px-2 py-0.5 rounded-full text-slate-950 font-mono-data text-[10px] font-black accent-primary-bg" id="cart-badge">0</span>
     </button>
-
-    <a href="https://wa.me/{{PHONE_CLEAN}}?text=Hola%20equipo%20de%20{{COMPANY_NAME}},%20vi%20su%20catálogo%20oficial%20y%20quiero%20hacer%20una%20consulta"
-       class="flex-[2] flex items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-slate-950 font-black text-xs shadow-xl font-heading active:scale-95 transition">
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
-      </svg>
-      <span>WhatsApp Oficial 📲</span>
+    <a href="https://wa.me/{{PHONE_CLEAN}}?text=Hola,%20quisiera%20hacer%20una%20consulta%20directa"
+       class="flex-1 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black text-xs text-center flex items-center justify-center gap-1.5 shadow-lg">
+      <span>💬 Hablar por WhatsApp</span>
     </a>
   </footer>
 
   <script>
-    let cart = [];
+    const cart = [];
     const phoneClean = "{{PHONE_CLEAN}}";
-    const companyName = "{{COMPANY_NAME}}";
 
     function addToCart(title, priceStr) {
-      const price = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 25;
-      const existing = cart.find(item => item.title === title);
+      const priceNum = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 25;
+      const existing = cart.find(i => i.title === title);
       if (existing) {
-        existing.qty += 1;
+        existing.qty++;
       } else {
-        cart.push({ title, price, qty: 1 });
+        cart.push({ title, priceStr, priceNum, qty: 1 });
       }
-      updateCartUI();
+      renderCart();
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.classList.add('scale-125');
+        setTimeout(() => badge.classList.remove('scale-125'), 200);
+      }
     }
 
-    function changeQty(index, delta) {
-      if (cart[index]) {
-        cart[index].qty += delta;
-        if (cart[index].qty <= 0) cart.splice(index, 1);
-      }
-      updateCartUI();
-    }
+    function renderCart() {
+      const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      const totalPrice = cart.reduce((acc, i) => acc + (i.priceNum * i.qty), 0);
 
-    function updateCartUI() {
-      const badge = document.getElementById('cart-count-badge');
+      document.getElementById('cart-badge').textContent = totalCount;
+      document.getElementById('cart-total-display').textContent = `$${totalPrice.toFixed(0)} USD`;
+
       const list = document.getElementById('cart-items-list');
-      const totalDisplay = document.getElementById('cart-total-display');
-
-      const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
-      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-
-      badge.innerText = totalItems;
-      totalDisplay.innerText = '$' + totalPrice.toFixed(0) + ' USD';
-
       if (cart.length === 0) {
-        list.innerHTML = '<p class="text-slate-400 text-center py-4">Tu carrito está vacío. Agrega productos del catálogo.</p>';
-      } else {
-        list.innerHTML = cart.map((item, idx) => `
-          <div class="flex items-center justify-between bg-slate-800/60 p-2.5 rounded-xl">
-            <div>
-              <div class="font-bold text-white">${item.title}</div>
-              <div class="text-[11px] text-slate-400 font-mono-data">$${item.price} c/u</div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button onclick="changeQty(${idx}, -1)" class="w-6 h-6 rounded bg-slate-700 text-white font-bold">-</button>
-              <span class="font-bold font-mono-data text-amber-400">${item.qty}</span>
-              <button onclick="changeQty(${idx}, 1)" class="w-6 h-6 rounded bg-slate-700 text-white font-bold">+</button>
-            </div>
-          </div>
-        `).join('');
+        list.innerHTML = '<p class="text-slate-500 text-center py-4">Tu carrito está vacío. Agrega productos o servicios arriba.</p>';
+        return;
       }
+
+      list.innerHTML = cart.map(i => `
+        <div class="flex justify-between items-center p-2 rounded-xl bg-slate-800/60 border border-slate-700">
+          <div>
+            <div class="font-bold text-white">${i.title}</div>
+            <div class="text-slate-400 font-mono-data text-[10px]">${i.priceStr} x ${i.qty}</div>
+          </div>
+          <div class="font-mono-data font-bold text-emerald-400">$${(i.priceNum * i.qty).toFixed(0)} USD</div>
+        </div>
+      `).join('');
     }
 
     function toggleCart() {
@@ -222,44 +231,45 @@
 
     function checkoutWhatsApp() {
       if (cart.length === 0) {
-        alert('Por favor agrega al menos un producto al pedido.');
+        alert('Agrega al menos un producto o servicio para realizar tu pedido.');
         return;
       }
-      let msg = "Hola equipo de *" + companyName + "* 👋\\n\\nQuiero realizar el siguiente pedido:\\n";
-      let total = 0;
-      cart.forEach(item => {
-        const sub = item.price * item.qty;
-        total += sub;
-        msg += "• " + item.qty + "x " + item.title + " ($" + sub + ")\\n";
+      const total = cart.reduce((acc, i) => acc + (i.priceNum * i.qty), 0);
+      let text = `*Hola! Quisiera realizar el siguiente pedido directo:*\n\n`;
+      cart.forEach((i, idx) => {
+        text += `• ${i.qty}x ${i.title} (${i.priceStr})\n`;
       });
-      msg += "\\n*Total estimado:* $" + total + " USD\\n¿Me confirman disponibilidad y tiempo de entrega?";
-      window.location.href = "https://wa.me/" + phoneClean + "?text=" + encodeURIComponent(msg);
+      text += `\n💰 *Total Estimado:* $${total.toFixed(0)} USD\n📍 *Dirección de Entrega / Cita:* `;
+      window.open(`https://wa.me/${phoneClean}?text=${encodeURIComponent(text)}`, '_blank');
     }
 
     function updateRoi(orders) {
-      document.getElementById('orders-display').innerText = orders + " pedidos";
+      document.getElementById('orders-display').textContent = `${orders} pedidos`;
       const savings = Math.round(orders * 7.5);
-      document.getElementById('savings-display').innerText = "+$" + savings + " USD / mes";
+      document.getElementById('savings-display').textContent = `+$${savings} USD / mes`;
     }
 
-    function filterCatalog(category) {
-      const items = document.querySelectorAll('.catalog-card');
-      const tabs = ['tab-all', 'tab-destacados', 'tab-promos'];
-      tabs.forEach(t => {
-        const el = document.getElementById(t);
-        if (el) el.className = "px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white";
-      });
-      const activeTab = document.getElementById('tab-' + category);
-      if (activeTab) activeTab.className = "px-3.5 py-1.5 rounded-full bg-amber-500 text-slate-950 shadow-md font-bold";
-
-      items.forEach(item => {
-        if (category === 'all') {
-          item.style.display = 'flex';
+    function filterCatalog(type) {
+      document.querySelectorAll('#catalog-container .catalog-card').forEach((card, idx) => {
+        if (type === 'destacados' && idx > 1) {
+          card.style.display = 'none';
+        } else if (type === 'promos' && idx % 2 === 0) {
+          card.style.display = 'none';
         } else {
-          item.style.display = Math.random() > 0.3 ? 'flex' : 'none';
+          card.style.display = 'flex';
+        }
+      });
+      ['all', 'destacados', 'promos'].forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (t === type) {
+          btn.className = 'px-3.5 py-1.5 rounded-full text-slate-950 font-black shadow-md accent-primary-bg';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white';
         }
       });
     }
+
+    renderCart();
   </script>
 </body>
 </html>
