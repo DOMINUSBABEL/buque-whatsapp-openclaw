@@ -141,6 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 🛡️ Agente de Curaduría y Puerta Anti-Alucinaciones (`CURATOR_AGENT`)
+## 💼 Servicio VAREGO Social & Meta Ads ($100 USD/mes)
 
-Verifica la veracidad física, la coherencia de categoría (ej: descarta pizzerías cuando se buscan panaderías) y la correspondencia internacional del teléfono antes de generar assets o enviar mensajes.
+Especializado para negocios con clientes activos pero baja captación digital o redes dormantes. Incluye 12 posts/reels mensuales, gestión de copys y optimización de campañas de anuncios pagados directamente por el cliente.
