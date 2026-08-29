@@ -141,6 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 🌍 Registro Universal de Países y Prefijos ITU-T E.164
+## 🗺️ Explorador Visual por Captura de Mapa (`MapVisionScout`)
 
-ALARICUS cuenta con validación estricta para más de 200 países y territorios reconocidos. Al solicitar negocios en cualquier geografía (Alemania `+49`, Guyana `+592`, Francia `+33`, Colombia `+57`, USA `+1`, etc.), el sistema exige coherencia estricta del prefijo telefónico y descarta incongruencias geográficas.
+Permite enviar una captura de pantalla de Google Maps de una zona comercial vía WhatsApp o terminal (`!mapa [ruta_imagen]`). El agente detecta los comercios y puntos de interés visibles en el cuadrante y lanza prospección curada.
