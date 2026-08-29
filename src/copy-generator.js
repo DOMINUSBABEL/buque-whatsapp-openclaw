@@ -31,11 +31,33 @@ class CopyGenerator {
                   `${landingUrl}\n\n` +
                   `Podemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\n` +
                   `Quedo atento a sus comentarios.\n` +
-                  `Equipo Buque B2B`;
+                  `Equipo ALARICUS B2B`;
 
-      instagramDm = `Hola @${name} ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios. Échenle un ojo aquí: ${landingUrl}`;
-
+      instagramDm = `Hola @${name} ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: ${landingUrl}`;
       sms = `${name}: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: ${landingUrl} ¿La activamos esta semana?`;
+
+    } else if (route === 'RUTA_C_VAREGO') {
+      const handle = lead.scout_metadata?.social_audit?.instagram_handle || `@${name.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+      whatsapp = `Hola equipo de *${name}* 👋\n\n` +
+                 `Revisamos su presencia comercial en ${city} y tienen excelentes calificaciones de clientes, pero notamos que su cuenta de redes (${handle}) no está aprovechando todo su potencial de atracción con pauta de Meta Ads ni reels continuos.\n\n` +
+                 `Desde *VAREGO* manejamos la gestión profesional de sus redes sociales por solo *$100 USD al mes* (creación de contenido, diseño y optimización de anuncios; la inversión en pauta publicitaria es administrada directamente por ustedes a su medida).\n\n` +
+                 `Les preparamos este plan visual de crecimiento:\n` +
+                 `🔗 *Ver propuesta VAREGO:* ${landingUrl}\n\n` +
+                 `¿Les gustaría que coordinemos una breve llamada de 10 minutos para mostrarles la estrategia para este mes?`;
+
+      emailSubject = `Estrategia de crecimiento en Redes Sociales & Meta Ads para ${name} - VAREGO`;
+      emailBody = `Estimado equipo de ${name},\n\n` +
+                  `Analizando el mercado local en ${city}, vemos que su negocio cuenta con una reputación sobresaliente. Sin embargo, existe una gran oportunidad desaprovechada en la captación de clientes a través de Instagram y Meta Ads.\n\n` +
+                  `En VAREGO ofrecemos un servicio de Community Management y administración de pauta de alto impacto con un costo base accesible de $100 USD mensuales (con presupuesto publicitario cubierto directamente por su empresa de forma flexible).\n\n` +
+                  `Pueden revisar la propuesta estratégica interactiva aquí:\n` +
+                  `${landingUrl}\n\n` +
+                  `Quedamos a su disposición para agendar una sesión estratégica.\n\n` +
+                  `Cordialmente,\n` +
+                  `Equipo VAREGO / ALARICUS`;
+
+      instagramDm = `Hola ${handle} 🚀 Vemos un gran potencial en su marca y les armamos un plan de contenidos y Meta Ads por $100 USD/mes. Mírenlo aquí: ${landingUrl}`;
+      sms = `${name}: Activamos sus redes y Meta Ads por $100 USD/mes con VAREGO. Vea su propuesta: ${landingUrl}`;
+
     } else {
       // RUTA B
       whatsapp = `Hola equipo de *${name}* 👋\n\n` +
@@ -50,10 +72,9 @@ class CopyGenerator {
                   `${landingUrl}\n\n` +
                   `Esta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\n` +
                   `Saludos cordiales,\n` +
-                  `Equipo Buque B2B`;
+                  `Equipo ALARICUS B2B`;
 
       instagramDm = `Hola @${name} 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: ${landingUrl} ¿La revisamos?`;
-
       sms = `${name}: Rediseñamos su web resolviendo fallas de pedidos. Mírela: ${landingUrl} ¿Agendamos demo?`;
     }
 
