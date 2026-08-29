@@ -139,5 +139,3 @@ class DeepWebForensics {
 }
 
 module.exports = new DeepWebForensics();
-
-// Step: feat(forensics): add mobile responsive viewport tag verification
