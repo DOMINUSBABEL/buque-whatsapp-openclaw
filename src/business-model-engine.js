@@ -92,3 +92,5 @@ class BusinessModelEngine {
 }
 
 module.exports = new BusinessModelEngine();
+
+// Step: feat(bizmodel): synthesize 4-step digital monetization roadmap
