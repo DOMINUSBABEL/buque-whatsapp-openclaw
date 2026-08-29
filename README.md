@@ -141,6 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 🌐 Generación de Copys Multilingüe (DE, FR, EN, ES, PT)
+## ⌨️ Consola Interactiva REPL en Terminal (`ALARICUS>`)
 
-Los mensajes de aproximación y propuestas se redactan en el idioma correspondiente a la ubicación del prospecto (Alemán, Francés, Inglés, Español, Portugués).
+La consola de PowerShell permite interacción bidireccional directa con comandos como `asistido`, `scan`, `scan-varego`, `mapa`, `status`, `relink`, `dashboard` y `help`.
