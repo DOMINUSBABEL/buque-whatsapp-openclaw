@@ -278,5 +278,3 @@ ${businessModelData.monetization_roadmap.map(m => `- ${m}`).join('\n')}
 }
 
 module.exports = new DossierGenerator();
-
-// Step: feat(dossier): build McKinsey-grade HTML interactive report template
