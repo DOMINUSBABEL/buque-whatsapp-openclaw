@@ -31,12 +31,17 @@ class OutreachDispatcher {
     const copy = lead.diagnostics?.channel_copies?.whatsapp || 'Hola, tenemos una propuesta para tu negocio.';
 
     try {
-      // 1. Send Video Asset if available
+      // 1. Send Video Asset if available, otherwise Screenshot Image, or fallback text pitch
       if (lead.assets?.video_local_path && fs.existsSync(lead.assets.video_local_path)) {
         await sock.sendMessage(prospectJid, {
           video: fs.readFileSync(lead.assets.video_local_path),
           caption: copy,
           mimetype: 'video/mp4'
+        });
+      } else if (lead.assets?.screenshot_local_path && fs.existsSync(lead.assets.screenshot_local_path)) {
+        await sock.sendMessage(prospectJid, {
+          image: fs.readFileSync(lead.assets.screenshot_local_path),
+          caption: copy
         });
       } else {
         // Fallback text pitch
