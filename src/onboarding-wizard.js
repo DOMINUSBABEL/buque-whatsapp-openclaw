@@ -15,7 +15,7 @@ class OnboardingWizard {
 
     return new Promise((resolve) => {
       console.log('\n======================================================');
-      console.log('       🚢 BUQUE B2B AGENTIC HARNESS (OPENCLAW)       ');
+      console.log('      ⚔️  ALARICUS B2B AGENTIC SWARM (OPENCLAW)       ');
       console.log('======================================================\n');
       console.log('Selecciona el método de vinculación de WhatsApp:');
       console.log(' [1] 🔑 Código de Emparejamiento (8 dígitos en tu teléfono)');
