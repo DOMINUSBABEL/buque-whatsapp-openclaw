@@ -4,6 +4,7 @@
  * activity codes, and physical establishment addresses across global jurisdictions.
  */
 
+const /* JURISDICTION DEFINITIONS */
 const JURISDICTIONS = {
   'CO': {
     name: 'Cámara de Comercio / RUES (Colombia)',
@@ -142,5 +143,3 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
-
-// Step: feat(registry): initialize commercial registry and chamber of commerce inspector
