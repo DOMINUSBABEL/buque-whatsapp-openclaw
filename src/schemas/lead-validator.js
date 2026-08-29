@@ -33,8 +33,8 @@ class LeadValidator {
       }
     }
 
-    if (!['RUTA_A', 'RUTA_B'].includes(lead.lead_route)) {
-      errors.push(`lead_route must be RUTA_A or RUTA_B, received: ${lead.lead_route}`);
+    if (!['RUTA_A', 'RUTA_B', 'RUTA_C_VAREGO'].includes(lead.lead_route)) {
+      errors.push(`lead_route must be RUTA_A, RUTA_B, or RUTA_C_VAREGO, received: ${lead.lead_route}`);
     }
 
     if (!lead.scout_metadata) {
