@@ -468,6 +468,33 @@ async function executeTestSuite() {
     assert(prov.provenance_seal.signature.startsWith('TRUTH-SEAL-'));
   });
 
+  console.log('\n📱 [18/18] Testing Multi-Number Inbound Routing with Bang (!) Commands...');
+  const { handleIncomingMessage } = require('../src/alaricus-bot');
+
+  await runAsyncTest('Executes ! command when sent by an external non-admin number', async () => {
+    let sentMessage = null;
+    const mockSock = {
+      sendMessage: async (jid, payload) => {
+        sentMessage = { jid, payload };
+      }
+    };
+
+    const mockMsg = {
+      key: {
+        remoteJid: '573009998877@s.whatsapp.net',
+        fromMe: false
+      },
+      message: {
+        conversation: '!ayuda'
+      }
+    };
+
+    await handleIncomingMessage(mockSock, mockMsg);
+    assert(sentMessage !== null);
+    assert.strictEqual(sentMessage.jid, '573009998877@s.whatsapp.net');
+    assert(sentMessage.payload.text.includes('COMANDOS DE ADMINISTRACIÓN ALARICUS'));
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);

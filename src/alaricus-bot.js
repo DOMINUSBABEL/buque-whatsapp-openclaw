@@ -58,18 +58,20 @@ async function handleIncomingMessage(sock, msg) {
   const senderNumber = senderJid.replace(/[^0-9]/g, '');
   const isFromMe = !!msg.key.fromMe;
   const isAdmin = isFromMe || configManager.isAdmin(senderNumber);
+  const isBangCommand = rawText.trim().startsWith('!');
 
-  console.log(`\n📩 [WhatsApp Inbound] De: [${senderNumber}] | fromMe: ${isFromMe} | Admin: ${isAdmin}`);
+  console.log(`\n📩 [WhatsApp Inbound] De: [${senderNumber}] | fromMe: ${isFromMe} | Admin: ${isAdmin} | Bang: ${isBangCommand}`);
   console.log(`   Texto: "${rawText}"`);
 
-  // 1. ADMIN COMMAND EXECUTION & ASSISTED DIALOGUE
-  if (isAdmin) {
-    if (rawText.trim().startsWith('!')) {
-      console.log(`⚙️ [AdminCommand] 🚀 Ejecutando comando "${rawText.trim()}" solicitado por [${senderNumber}]...`);
-      await adminCommands.handleCommand(sock, senderJid, rawText);
-      return;
-    }
+  // 1. COMMAND EXECUTION (Admin OR External Numbers with "!" prefix)
+  if (isBangCommand) {
+    console.log(`⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Admin: ${isAdmin})...`);
+    await adminCommands.handleCommand(sock, senderJid, rawText);
+    return;
+  }
 
+  // 2. ADMIN ASSISTED DIALOGUE (Natural text without "!" from Admin)
+  if (isAdmin) {
     // Intercept natural conversation if in Assisted Copilot Mode
     const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
     if (handledByAssistant) return;
@@ -78,7 +80,7 @@ async function handleIncomingMessage(sock, msg) {
   // If message was sent by the bot itself and is not a command, ignore
   if (isFromMe) return;
 
-  // 2. PROSPECT ACQUISITION PIPELINE
+  // 3. PROSPECT ACQUISITION PIPELINE
   const session = sessionManager.getSession(senderJid);
   const isTrackedLead = session.isProspect ||
     leadDatabase.isDuplicate(`+${senderNumber}`) ||
