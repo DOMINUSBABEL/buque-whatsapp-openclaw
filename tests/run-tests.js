@@ -495,6 +495,40 @@ async function executeTestSuite() {
     assert(sentMessage.payload.text.includes('COMANDOS DE ADMINISTRACIÓN ALARICUS'));
   });
 
+  await runAsyncTest('Runs 3-step assisted copilot wizard end-to-end without help message interference and detects Colombia +57', async () => {
+    let sentMessages = [];
+    const mockSock = {
+      sendMessage: async (jid, payload) => {
+        sentMessages.push(payload.text);
+      }
+    };
+    const testJid = '573123456789@s.whatsapp.net';
+
+    // 1. !asistido
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: testJid, fromMe: false },
+      message: { conversation: '!asistido' }
+    });
+    assert(sentMessages[sentMessages.length - 1].includes('Paso 1/3'));
+
+    // 2. Send Niche (Talleres Mecánicos)
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: testJid, fromMe: false },
+      message: { conversation: 'Talleres Mecánicos' }
+    });
+    assert(sentMessages[sentMessages.length - 1].includes('Paso 2/3'));
+    assert(sentMessages[sentMessages.length - 1].includes('Talleres Mecánicos'));
+
+    // 3. Send Location (Medellín - Colombia)
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: testJid, fromMe: false },
+      message: { conversation: 'Medellín - Colombia' }
+    });
+    const lastLocMsg = sentMessages[sentMessages.length - 1];
+    assert(lastLocMsg.includes('Paso 3/3'));
+    assert(lastLocMsg.includes('+57 - Colombia')); // Must be Colombia (+57), NEVER Saudi Arabia (+966)
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);

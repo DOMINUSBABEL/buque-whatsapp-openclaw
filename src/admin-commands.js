@@ -268,12 +268,12 @@ class AdminCommands {
 
       case '!ayuda':
       case '!help':
-      default:
         const helpMsg = `⚔️ *COMANDOS DE ADMINISTRACIÓN ALARICUS*\n\n` +
                         `🤖 *MODOS DE DESPLIEGUE:*\n` +
                         `• \`!asistido\` (o \`!copiloto\`): Inicia diálogo guiado con revisión previa antes de enviar.\n` +
                         `• \`!auto\`: Modo 100% automático para comandos directos.\n\n` +
                         `🧠 *INTELIGENCIA Y DIAGNÓSTICO ESTRATÉGICO (Puro Scout):*\n` +
+                        `• \`!subscout [nicho] en [barrio]\`: Enjambre multi-fuente adaptado a cualquier servicio.\n` +
                         `• \`!dossier [nicho] en [barrio/ciudad]\`: Genera dossiers SWOT y Cámara de Comercio sin enviar mensajes.\n` +
                         `• \`!audit-social [handle]\`: Audita Instagram y Meta Ads de una cuenta.\n\n` +
                         `🔍 *PROSPECCIÓN Y DISPARO COMERCIAL:*\n` +
@@ -286,6 +286,16 @@ class AdminCommands {
                         `• \`!lead [id]\`: Consulta la ficha técnica de un prospecto.\n` +
                         `• \`!aprobar-todos\` / \`!descartar\`: Control de pre-aprobación en modo asistido.`;
         await sock.sendMessage(senderJid, { text: helpMsg });
+        break;
+
+      default:
+        // Try passing to assistant mode if user typed something with "!" during an active flow (e.g. !Medellín)
+        const handledInDefault = await assistantMode.handleAssistedConversation(sock, senderJid, text);
+        if (!handledInDefault) {
+          await sock.sendMessage(senderJid, {
+            text: `⚠️ Comando no reconocido: *${cmd}*\nEscribe *!ayuda* para ver la lista de comandos disponibles.`
+          });
+        }
         break;
     }
   }

@@ -75,27 +75,34 @@ async function handleIncomingMessage(sock, msg) {
   const isRegisteredAdmin = configManager.isAdmin(senderNumber);
   const isBangCommand = rawText.trim().startsWith('!');
 
-  // 1. BANG (!) COMMANDS: Executable from ANY number (self, admin, or external authorized caller)
+  // 1. ACTIVE ASSISTED SESSION INTERCEPTOR
+  // If this sender is currently in an active step-by-step wizard, process directly with or without "!"
+  if (assistantMode.isInActiveSession(senderJid)) {
+    const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
+    if (handledByAssistant) return;
+  }
+
+  // 2. BANG (!) COMMANDS: Executable from ANY number (self, admin, or external authorized caller)
   if (isBangCommand) {
     console.log(`\n⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
     await adminCommands.handleCommand(sock, senderJid, rawText);
     return;
   }
 
-  // 2. SELF-CHAT / DEDICATED ADMIN CHANNEL: Natural language assisted dialogue
+  // 3. SELF-CHAT / DEDICATED ADMIN CHANNEL: Natural language assisted dialogue
   // Only intercept natural conversation (without "!") IF the user is talking in the self-chat or an authorized admin chat
   if (isSelfChat || (isRegisteredAdmin && !isFromMe)) {
     const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
     if (handledByAssistant) return;
   }
 
-  // 3. OUTGOING MESSAGES TO THIRD PARTIES:
+  // 4. OUTGOING MESSAGES TO THIRD PARTIES:
   // If the message was sent by the user (fromMe) to a friend/contact (not self-chat) and has no "!", ignore (it's personal)
   if (isFromMe) {
     return;
   }
 
-  // 4. PROSPECT ACQUISITION PIPELINE
+  // 5. PROSPECT ACQUISITION PIPELINE
   const session = sessionManager.getSession(senderJid);
   const isTrackedLead = session.isProspect ||
     leadDatabase.isDuplicate(`+${senderNumber}`) ||

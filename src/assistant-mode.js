@@ -42,12 +42,19 @@ class AssistantMode {
     return state.mode;
   }
 
+  isInActiveSession(senderJid) {
+    if (!this.operatorStates.has(senderJid)) return false;
+    const st = this.operatorStates.get(senderJid);
+    return st.mode === 'ASSISTED' && st.step !== 'IDLE';
+  }
+
   async handleAssistedConversation(sock, senderJid, text) {
     const state = this.getOperatorState(senderJid);
-    const cleanText = text.trim();
+    const rawClean = text.trim();
+    const cleanText = rawClean.replace(/^!/, '').trim();
 
     // 1. Switch commands
-    if (cleanText.toLowerCase() === '!asistido' || cleanText.toLowerCase() === '!copiloto') {
+    if (rawClean.toLowerCase() === '!asistido' || rawClean.toLowerCase() === '!copiloto') {
       this.setMode(senderJid, 'ASSISTED');
       const msg = `🤝 *MODO ASISTIDO ACTIVADO (Copiloto ALARICUS)*\n\n` +
                   `Te guiaré paso a paso para estructurar tu campaña de prospección con verificación estricta.\n\n` +
@@ -57,7 +64,7 @@ class AssistantMode {
       return true;
     }
 
-    if (cleanText.toLowerCase() === '!auto' || cleanText.toLowerCase() === '!automatico') {
+    if (rawClean.toLowerCase() === '!auto' || rawClean.toLowerCase() === '!automatico') {
       this.setMode(senderJid, 'AUTO');
       const msg = `⚡ *MODO AUTOMÁTICO ACTIVADO*\n` +
                   `Ahora puedes ejecutar comandos directos como:\n` +
@@ -69,7 +76,7 @@ class AssistantMode {
     }
 
     // Approval commands
-    if (cleanText.toLowerCase().startsWith('!aprobar-todos') || cleanText.toLowerCase().startsWith('!aprobar todos')) {
+    if (rawClean.toLowerCase().startsWith('!aprobar-todos') || rawClean.toLowerCase().startsWith('!aprobar todos')) {
       if (state.pendingApprovalLeads.length === 0) {
         await sock.sendMessage(senderJid, { text: '⚠️ No hay prospectos pendientes de aprobación en este momento.' });
         return true;
@@ -87,7 +94,7 @@ class AssistantMode {
       return true;
     }
 
-    if (cleanText.toLowerCase().startsWith('!descartar')) {
+    if (rawClean.toLowerCase().startsWith('!descartar')) {
       state.pendingApprovalLeads = [];
       state.step = 'IDLE';
       await sock.sendMessage(senderJid, { text: '🗑️ Prospectos descartados. Puedes iniciar una nueva consulta.' });

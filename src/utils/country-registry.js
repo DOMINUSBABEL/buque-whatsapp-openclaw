@@ -75,7 +75,7 @@ const COUNTRIES = [
   { name: 'Singapur', code: '65', iso: 'SG', aliases: ['singapur', 'singapore'], lang: 'en' },
   { name: 'Emiratos Árabes Unidos', code: '971', iso: 'AE', aliases: ['emiratos arabes', 'uae', 'dubai', 'dubaï', 'abu dhabi', 'sharjah', 'ajman'], lang: 'ar' },
   { name: 'Israel', code: '972', iso: 'IL', aliases: ['israel', 'jerusalen', 'jerusalem', 'tel aviv', 'haifa', 'rishon lezion', 'petah tikva'], lang: 'he' },
-  { name: 'Arabia Saudita', code: '966', iso: 'SA', aliases: ['arabia saudita', 'saudi arabia', 'riad', 'riyadh', 'yeda', 'jeddah', 'meca', 'medina'], lang: 'ar' },
+  { name: 'Arabia Saudita', code: '966', iso: 'SA', aliases: ['arabia saudita', 'saudi arabia', 'riad', 'riyadh', 'yeda', 'jeddah', 'la meca', 'makkah', 'medina'], lang: 'ar' },
   { name: 'Filipinas', code: '63', iso: 'PH', aliases: ['filipinas', 'philippines', 'manila', 'quezon city', 'davao', 'cebu'], lang: 'en' },
   { name: 'Tailandia', code: '66', iso: 'TH', aliases: ['tailandia', 'thailand', 'bangkok', 'phuket', 'chiang mai', 'pattaya'], lang: 'th' },
   { name: 'Indonesia', code: '62', iso: 'ID', aliases: ['indonesia', 'yakarta', 'jakarta', 'surabaya', 'bandung', 'medan', 'bali', 'denpasar'], lang: 'id' },
@@ -109,9 +109,17 @@ class CountryRegistry {
     matchEntries.sort((a, b) => b.key.length - a.key.length);
 
     for (const entry of matchEntries) {
-      const regex = new RegExp(`\\b${entry.key}\\b`, 'i');
-      if (regex.test(text) || text.includes(entry.key)) {
-        return entry.country;
+      // For short words (<= 4 letters), enforce strict word boundary matching to prevent substring collisions
+      if (entry.key.length <= 4) {
+        const regex = new RegExp(`\\b${entry.key}\\b`, 'i');
+        if (regex.test(text)) {
+          return entry.country;
+        }
+      } else {
+        const regex = new RegExp(`\\b${entry.key}\\b`, 'i');
+        if (regex.test(text) || text.includes(entry.key)) {
+          return entry.country;
+        }
       }
     }
 
