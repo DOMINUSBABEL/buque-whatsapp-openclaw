@@ -142,3 +142,5 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
+
+// Step: feat(registry): add US Division of Corporations NAICS code classification
