@@ -142,3 +142,5 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
+
+// Step: feat(registry): initialize commercial registry and chamber of commerce inspector
