@@ -7,9 +7,9 @@
 const COUNTRIES = [
   // América del Sur
   { name: 'Colombia', code: '57', iso: 'CO', aliases: ['colombia', 'colombiano', 'medellin', 'bogota', 'cali', 'barranquilla', 'cartagena', 'bucaramanga', 'pereira', 'manizales', 'cucuta', 'santa marta', 'ibague', 'pasto'], lang: 'es' },
-  { name: 'Guyana', code: '592', iso: 'GY', aliases: ['guyana', 'guayana', 'georgetown', 'linden', 'new amsterdam', 'bartica'], lang: 'en' },
-  { name: 'Guayana Francesa', code: '594', iso: 'GF', aliases: ['guayana francesa', 'french guiana', 'guyane', 'cayenne', 'kourou', 'saint-laurent-du-maroni'], lang: 'fr' },
-  { name: 'Surinam', code: '597', iso: 'SR', aliases: ['surinam', 'suriname', 'paramaribo', 'ledo', 'nieuw nickerie'], lang: 'nl' },
+  { name: 'Guyana', code: '592', iso: 'GY', currency: 'USD', capital: 'Georgetown', aliases: ['guyana', 'guayana', 'georgetown', 'linden', 'new amsterdam', 'bartica'], lang: 'en' },
+  { name: 'Guayana Francesa', code: '594', iso: 'GF', currency: 'EUR', capital: 'Cayenne', aliases: ['guayana francesa', 'french guiana', 'guyane', 'cayenne', 'kourou', 'saint-laurent-du-maroni'], lang: 'fr' },
+  { name: 'Surinam', code: '597', iso: 'SR', currency: 'USD', capital: 'Paramaribo', aliases: ['surinam', 'suriname', 'paramaribo', 'ledo', 'nieuw nickerie'], lang: 'nl' },
   { name: 'Brasil', code: '55', iso: 'BR', aliases: ['brasil', 'brazil', 'sao paulo', 'rio de janeiro', 'brasilia', 'salvador', 'fortaleza', 'belo horizonte', 'curitiba', 'manaus', 'recife', 'porto alegre'], lang: 'pt' },
   { name: 'Venezuela', code: '58', iso: 'VE', aliases: ['venezuela', 'caracas', 'maracaibo', 'valencia', 'barquisimeto', 'maracay', 'ciudad guayana'], lang: 'es' },
   { name: 'Ecuador', code: '593', iso: 'EC', aliases: ['ecuador', 'quito', 'guayaquil', 'cuenca', 'ambato', 'manta', 'portoviejo'], lang: 'es' },
