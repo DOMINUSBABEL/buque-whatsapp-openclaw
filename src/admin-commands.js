@@ -166,8 +166,68 @@ class AdminCommands {
                   `• Ruta: ${lead.lead_route}\n` +
                   `• Teléfono: ${lead.contact_channel?.phone_e164}\n` +
                   `• Propuesta: ${lead.assets?.landing_page_url}\n` +
+                  `• Pantallazo: ${lead.assets?.screenshot_url || 'N/A'}\n` +
                   `• Hook: ${lead.diagnostics?.core_pain_hook}`
           });
+        }
+        break;
+
+      case '!pantallazo':
+      case '!screenshot':
+      case '!captura':
+        if (!args) {
+          await sock.sendMessage(senderJid, {
+            text: '⚠️ *Uso:* `!pantallazo [lead_id o slug o nombre]`\nEjemplo: `!pantallazo lead_123` o `!pantallazo restaurante-central`'
+          });
+          return;
+        }
+
+        const targetSearch = args.trim().toLowerCase();
+        let targetLead = leadDatabase.getLeadById(args.trim());
+        if (!targetLead) {
+          targetLead = leadDatabase.data.leads.find(l =>
+            l.lead_id.toLowerCase().includes(targetSearch) ||
+            l.company_name.toLowerCase().includes(targetSearch) ||
+            (l.assets?.landing_page_url && l.assets.landing_page_url.toLowerCase().includes(targetSearch))
+          );
+        }
+
+        if (!targetLead) {
+          await sock.sendMessage(senderJid, { text: `⚠️ No se encontró ningún prospecto coincidente con "${args}".` });
+          return;
+        }
+
+        try {
+          await sock.sendMessage(senderJid, {
+            text: `📸 *Capturando vista previa móvil de:* ${targetLead.company_name}...`
+          });
+
+          const fs = require('fs');
+          const path = require('path');
+          const screenshotEngine = require('./screenshot-engine');
+          const slug = targetLead.assets?.landing_page_url?.split('/demo/')[1] || targetLead.lead_id;
+          const htmlPath = path.join(__dirname, '..', 'generated_sites', slug, 'index.html');
+
+          let screenshotPath = targetLead.assets?.screenshot_local_path;
+          if (!screenshotPath || !fs.existsSync(screenshotPath)) {
+            screenshotPath = await screenshotEngine.captureLandingPage(htmlPath, slug);
+          }
+
+          if (fs.existsSync(screenshotPath)) {
+            await sock.sendMessage(senderJid, {
+              image: fs.readFileSync(screenshotPath),
+              caption: `📱 *Vista Previa Móvil Generada: ${targetLead.company_name}*\n` +
+                       `🎨 Diseño: ${targetLead.design_profile?.archetypeKey || 'Estándar'}\n` +
+                       `🌐 URL: ${targetLead.assets?.landing_page_url}\n` +
+                       `📞 Teléfono: ${targetLead.contact_channel?.phone_e164}`
+            });
+          } else {
+            await sock.sendMessage(senderJid, {
+              text: `⚠️ No se pudo generar la imagen del pantallazo. URL demo: ${targetLead.assets?.landing_page_url}`
+            });
+          }
+        } catch (capErr) {
+          await sock.sendMessage(senderJid, { text: `❌ Error capturando pantallazo: ${capErr.message}` });
         }
         break;
 
@@ -282,6 +342,7 @@ class AdminCommands {
                         `• \`!mapa [ruta_imagen]\`: Analiza una captura de Google Maps y prospecta en esa zona.\n\n` +
                         `⚙️ *CONTROL DE OPERACIONES:*\n` +
                         `• \`!estado\`: Consulta métricas y estadísticas del pipeline.\n` +
+                        `• \`!pantallazo [id o slug]\`: Captura y envía la vista previa móvil del sitio generado.\n` +
                         `• \`!pausar\` / \`!reanudar\`: Control de flujo de envíos.\n` +
                         `• \`!lead [id]\`: Consulta la ficha técnica de un prospecto.\n` +
                         `• \`!aprobar-todos\` / \`!descartar\`: Control de pre-aprobación en modo asistido.`;
