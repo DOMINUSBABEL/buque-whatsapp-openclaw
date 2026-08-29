@@ -434,5 +434,3 @@ async function executeTestSuite() {
 }
 
 executeTestSuite();
-
-// Curation Engine Step: test(curator): add unit tests for multi-source arbitration and source weighting
