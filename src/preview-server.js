@@ -54,6 +54,7 @@ class PreviewServer {
           </td>
           <td class="p-3 text-xs text-slate-300">${l.location?.city || '-'}</td>
           <td class="p-3 font-mono text-xs text-amber-300">${l.diagnostics?.lead_score || 50}/100</td>
+          <td class="p-3 font-mono text-xs text-emerald-400">$${l.diagnostics?.mrr_potential_usd || (l.lead_route === "RUTA_C_VAREGO" ? 100 : 0)} USD</td>
           <td class="p-3 text-xs">
             <a href="${l.assets?.landing_page_url || '#'}" target="_blank" class="text-sky-400 hover:underline">Ver Demo ↗</a>
           </td>
@@ -114,12 +115,13 @@ class PreviewServer {
                       <th class="p-3">Ruta</th>
                       <th class="p-3">Ciudad</th>
                       <th class="p-3">Score</th>
+                      <th class="p-3">MRR Potencial</th>
                       <th class="p-3">Propuesta</th>
                       <th class="p-3">Estado</th>
                     </tr>
                   </thead>
                   <tbody>
-                    ${leadsRows.length > 0 ? leadsRows : '<tr><td colspan="6" class="p-6 text-center text-slate-500">No hay leads registrados aún. Ejecuta un scan con `npm run simulator` o vía WhatsApp.</td></tr>'}
+                    ${leadsRows.length > 0 ? leadsRows : '<tr><td colspan="7" class="p-6 text-center text-slate-500">No hay leads registrados aún. Ejecuta un scan con `npm run simulator` o vía WhatsApp.</td></tr>'}
                   </tbody>
                 </table>
               </div>
