@@ -98,29 +98,39 @@ class CuratorEngine {
     const placeCat = (place.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const snippets = (place.reviews_snippets || []).join(' ').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
+    const stem = (w) => w.replace(/(es|s|as|os|ores|eros)$/i, '');
     const queryTokens = cleanQuery.split(/\s+/).filter(w => w.length >= 3);
 
     if (queryTokens.length === 0) {
       checks.niche_relevance_valid = true;
     } else {
-      const matchInName = queryTokens.some(token => placeName.includes(token));
-      const matchInCat = queryTokens.some(token => placeCat.includes(token));
-      const matchInSnippets = queryTokens.some(token => snippets.includes(token));
+      const matchInName = queryTokens.some(token => {
+        const tStem = stem(token);
+        return placeName.includes(token) || (tStem.length >= 3 && placeName.includes(tStem)) || (placeName.length >= 3 && token.includes(placeName));
+      });
+      const matchInCat = queryTokens.some(token => {
+        const tStem = stem(token);
+        return placeCat.includes(token) || (tStem.length >= 3 && placeCat.includes(tStem)) || (placeCat.length >= 3 && token.includes(placeCat));
+      });
+      const matchInSnippets = queryTokens.some(token => {
+        const tStem = stem(token);
+        return snippets.includes(token) || (tStem.length >= 3 && snippets.includes(tStem));
+      });
 
       const aliases = {
         'panader': ['backerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
         'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie', 'food'],
         'pizz': ['pizzeria', 'pizza'],
-        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista'],
+        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista', 'odonto'],
         'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique', 'hospital', 'doctor'],
         'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne', 'cerveceria'],
         'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure', 'peluqueria', 'barber'],
-        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor', 'frenos', 'suspension']
+        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor', 'frenos', 'suspension', 'automotriz', 'latoneria', 'pintura']
       };
 
       let aliasMatch = false;
       for (const [key, aliasList] of Object.entries(aliases)) {
-        if (cleanQuery.includes(key)) {
+        if (cleanQuery.includes(key) || queryTokens.some(t => stem(t).includes(key) || key.includes(stem(t)))) {
           aliasMatch = aliasList.some(a => placeName.includes(a) || placeCat.includes(a) || snippets.includes(a));
         }
       }

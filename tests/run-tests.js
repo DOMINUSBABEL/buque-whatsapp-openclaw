@@ -547,6 +547,26 @@ async function executeTestSuite() {
     assert.strictEqual(batch[0].location.country, 'Colombia');
   });
 
+  await runAsyncTest('Anti-Self-Echo Guard: Ignores bot system outputs emitted in self-chat to prevent echo loops', async () => {
+    let sentMessages = [];
+    const mockSock = {
+      user: { id: '573117272822:0@s.whatsapp.net' },
+      sendMessage: async (jid, payload) => {
+        sentMessages.push(payload.text);
+      }
+    };
+    const selfJid = '573117272822@s.whatsapp.net';
+
+    // Simulate bot sending a response that gets reflected back via Baileys with fromMe: true
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: selfJid, fromMe: true },
+      message: { conversation: '🤝 *MODO ASISTIDO ACTIVADO (Copiloto ALARICUS)*\n\n📌 Paso 1/3: ¿Qué nicho?' }
+    });
+
+    // It MUST be ignored and not produce any further messages
+    assert.strictEqual(sentMessages.length, 0);
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);

@@ -138,7 +138,7 @@ class ScoutEngine {
 
     const results = [];
     const count = Math.min(limit, 8);
-    const salt = (Math.floor(Date.now() / 1000) % 5000);
+    const randomSeed = Math.floor(Math.random() * 800000);
 
     for (let i = 0; i < count; i++) {
       const sample = sampleNames[i % sampleNames.length];
@@ -146,18 +146,19 @@ class ScoutEngine {
       const phonePrefix = `+${targetCountry.code}`;
       
       let localPhone = '';
-      if (targetCountry.code === '49') localPhone = `371${400000 + salt + i * 11}`;
-      else if (targetCountry.code === '592') localPhone = `225${1000 + (salt % 8000) + i * 11}`;
-      else if (targetCountry.code === '33') localPhone = `142${60000 + (salt % 30000) + i * 11}`;
-      else if (targetCountry.code === '1') localPhone = `305${555000 + (salt % 400000) + i * 11}`;
-      else if (targetCountry.code === '34') localPhone = `612${345000 + (salt % 600000) + i * 11}`;
-      else if (targetCountry.code === '55') localPhone = `119876${5000 + (salt % 4000) + i * 11}`;
-      else localPhone = `300${100000 + (salt * 10) + i * 13}`;
+      if (targetCountry.code === '49') localPhone = `371${100000 + ((randomSeed + i * 137) % 800000)}`;
+      else if (targetCountry.code === '592') localPhone = `225${1000 + ((randomSeed + i * 137) % 8000)}`;
+      else if (targetCountry.code === '33') localPhone = `142${10000 + ((randomSeed + i * 137) % 80000)}`;
+      else if (targetCountry.code === '1') localPhone = `305${100000 + ((randomSeed + i * 137) % 800000)}`;
+      else if (targetCountry.code === '34') localPhone = `612${100000 + ((randomSeed + i * 137) % 800000)}`;
+      else if (targetCountry.code === '55') localPhone = `119876${1000 + ((randomSeed + i * 137) % 8000)}`;
+      else localPhone = `300${1000000 + ((randomSeed + i * 137) % 8000000)}`;
 
       const fullPhone = `${phonePrefix}${localPhone}`;
 
+      const placeHash = require('crypto').createHash('sha256').update(`${name}|${city}|${fullPhone}`).digest('hex').slice(0, 16);
       results.push({
-        place_id: `maps_place_${Buffer.from(name + city + fullPhone).toString('hex').slice(0, 16)}`,
+        place_id: `maps_place_${placeHash}`,
         name,
         category: sample.cat,
         rating: 4.5 + (i * 0.1 > 0.4 ? 0.2 : i * 0.1),

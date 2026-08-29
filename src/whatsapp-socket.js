@@ -182,11 +182,30 @@ class WhatsAppSocketManager {
       }, 3000);
     }
 
+    // Wrap sock.sendMessage to track all outbound message IDs and prevent echo loops
+    const outboundBotMessageIds = new Set();
+    const rawSendMessage = this.sock.sendMessage.bind(this.sock);
+    this.sock.sendMessage = async (...args) => {
+      const sent = await rawSendMessage(...args);
+      if (sent && sent.key && sent.key.id) {
+        outboundBotMessageIds.add(sent.key.id);
+        if (outboundBotMessageIds.size > 2000) {
+          const firstKey = outboundBotMessageIds.values().next().value;
+          outboundBotMessageIds.delete(firstKey);
+        }
+      }
+      return sent;
+    };
+
     // Message listener
     this.sock.ev.on('messages.upsert', async (chatUpdate) => {
       if (chatUpdate.type !== 'notify') return;
       for (const msg of chatUpdate.messages) {
         if (!msg.key) continue;
+        if (msg.key.id && outboundBotMessageIds.has(msg.key.id)) {
+          // Ignore self-echo of messages sent by ALARICUS bot
+          continue;
+        }
         if (onMessageCallback) {
           await onMessageCallback(this.sock, msg);
         }

@@ -75,6 +75,31 @@ async function handleIncomingMessage(sock, msg) {
   const isRegisteredAdmin = configManager.isAdmin(senderNumber);
   const isBangCommand = rawText.trim().startsWith('!');
 
+  // Anti-Self-Echo Guard: If message comes from me and matches bot output signatures, ignore
+  const isBotSignature = (
+    rawText.startsWith('🤝') ||
+    rawText.startsWith('⚔️') ||
+    rawText.startsWith('✅') ||
+    rawText.startsWith('🔍') ||
+    rawText.startsWith('📋') ||
+    rawText.startsWith('⚠️') ||
+    rawText.startsWith('🚀') ||
+    rawText.startsWith('🗑️') ||
+    rawText.startsWith('⚡') ||
+    rawText.startsWith('❌') ||
+    rawText.startsWith('👉') ||
+    rawText.includes('MODO ASISTIDO ACTIVADO') ||
+    rawText.includes('COMANDOS DE ADMINISTRACIÓN') ||
+    rawText.includes('PROSPECTOS CURADOS LISTOS') ||
+    rawText.includes('Paso 1/3') ||
+    rawText.includes('Paso 2/3') ||
+    rawText.includes('Paso 3/3')
+  );
+
+  if (isFromMe && isBotSignature) {
+    return;
+  }
+
   // 1. ACTIVE ASSISTED SESSION INTERCEPTOR
   // If this sender is currently in an active step-by-step wizard, process directly with or without "!"
   if (assistantMode.isInActiveSession(senderJid)) {
