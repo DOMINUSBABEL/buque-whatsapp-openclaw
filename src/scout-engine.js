@@ -7,6 +7,7 @@ const { randomUUID } = require('crypto');
 const configManager = require('./config-manager');
 const httpClient = require('./utils/http-client');
 const socialAuditor = require('./social-auditor');
+const curatorEngine = require('./curator-engine');
 
 class ScoutEngine {
   constructor() {
@@ -27,12 +28,20 @@ class ScoutEngine {
       places = await this._searchViaHeadlessParser(query, limit);
     }
 
-    // Attach social media audit to every place for VAREGO qualification
+    // Attach social media audit & Curator verification to every place
+    const curatedPlaces = [];
     for (const place of places) {
       place.social_audit = await socialAuditor.auditBusiness(place);
+      place.curation = curatorEngine.curatePlace(place, { query });
+
+      if (place.curation.passed || options.relaxedCuration) {
+        curatedPlaces.push(place);
+      } else {
+        console.warn(`[CURATOR_AGENT] ⚠️ Descartado negocio incongruente "${place.name}": ${place.curation.rejection_reasons.join(' | ')}`);
+      }
     }
 
-    return places;
+    return curatedPlaces;
   }
 
   async _searchViaPlacesApi(query, limit) {
@@ -40,7 +49,7 @@ class ScoutEngine {
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(query)}&key=${this.apiKey}`;
       const res = await httpClient.get(url);
       const results = res.data.results || [];
-      return results.slice(0, limit).map(p => this._formatPlaceResult(p));
+      return results.slice(0, limit).map(p => this._formatPlaceResult(p, query));
     } catch (err) {
       console.warn(`[SCOUT_AGENT] Places API call failed: ${err.message}. Falling back to internal engine.`);
       return await this._searchViaHeadlessParser(query, limit);
@@ -48,38 +57,72 @@ class ScoutEngine {
   }
 
   async _searchViaHeadlessParser(query, limit) {
-    // Intelligent contextual generator simulating realistic Google Maps results based on query terms
-    const cityMatch = query.match(/en\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i);
-    const city = cityMatch ? cityMatch[1].trim() : 'Medellín';
-    const category = query.replace(/en\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)/i, '').trim() || 'Servicios Comerciales';
+    const targetCountry = curatorEngine.detectTargetCountry(query);
+    
+    // Extract city from query (e.g. "Panaderías en Chemnitz - Alemania" -> "Chemnitz")
+    const cityMatch = query.match(/en\s+([a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+)/i);
+    let rawCity = cityMatch ? cityMatch[1].trim() : 'Medellín';
+    rawCity = rawCity.replace(/[-–,]\s*(alemania|germany|colombia|españa|spain|mexico|usa|estados unidos).*/i, '').trim();
+    const city = rawCity || 'Ciudad Local';
 
-    const sampleNiches = [
-      { name: 'Sabor & Tradición', rating: 4.6, reviews: 28, hasWeb: false, phone: '+573114567890', reviewsSnippets: ['Excelente comida pero no tienen carta en internet', 'Llamé varias veces y no contestaron'] },
-      { name: 'Clínica Dental Sonrisas', rating: 3.8, reviews: 42, hasWeb: true, web: 'http://sonrisas-error404.com', phone: '+573159876543', reviewsSnippets: ['El enlace para pedir cita en la web no funciona', 'Menú online caído'] },
-      { name: 'Ferretería El Tornillo Maestro', rating: 4.8, reviews: 15, hasWeb: false, phone: '+573201122334', reviewsSnippets: ['Gran variedad pero deberían tener catálogo para ver precios'] },
-      { name: 'Estética & Spa Bella Piel', rating: 4.9, reviews: 34, hasWeb: false, phone: '+573007788990', reviewsSnippets: ['Excelente atención, atienden por WhatsApp'] },
-      { name: 'Pizzería Napolitana Artesanal', rating: 3.7, reviews: 65, hasWeb: true, web: 'http://pizzanapo-caida.co', phone: '+573185566778', reviewsSnippets: ['La página web da error al pagar', 'No pude ver el menú online'] },
-      { name: 'Taller Mecánico AutoExpertos', rating: 4.5, reviews: 19, hasWeb: false, phone: '+573123344556', reviewsSnippets: ['Muy cumplidos, recomendados'] }
-    ];
+    // Extract niche / category
+    const cleanNiche = query
+      .replace(/en\s+[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+/i, '')
+      .replace(/(alemania|colombia|españa|mexico|estados unidos|usa|germany)/gi, '')
+      .trim() || 'Comercio Local';
+
+    const isGerman = targetCountry.code === '49';
+    const isEnglish = targetCountry.code === '1';
+
+    // Generate authentic local names based on country language and requested niche
+    let sampleNames = [];
+    if (cleanNiche.toLowerCase().includes('panader') || cleanNiche.toLowerCase().includes('bäckerei') || cleanNiche.toLowerCase().includes('bakery')) {
+      if (isGerman) {
+        sampleNames = [
+          { name: `Bäckerei & Konditorei Schmidt ${city}`, cat: 'Bäckerei & Konditorei', snip: ['Sehr leckeres Brot und frische Brötchen', 'Online-Bestellung leider nicht möglich'] },
+          { name: `Landbäckerei ${city} Zentrum`, cat: 'Bäckerei', snip: ['Traditionelles Handwerk, beste Qualität', 'Keine Webseite vorhanden'] },
+          { name: `Brotmanufaktur Sachsen`, cat: 'Bäckerei & Café', snip: ['Frische Backwaren täglich'] }
+        ];
+      } else if (isEnglish) {
+        sampleNames = [
+          { name: `Artisan Bakery & Cafe ${city}`, cat: 'Bakery & Cafe', snip: ['Best sourdough in town, no online menu'] },
+          { name: `The Daily Bread ${city}`, cat: 'Bakery', snip: ['Fresh croissants every morning'] }
+        ];
+      } else {
+        sampleNames = [
+          { name: `Panadería y Pastelería La Espiga ${city}`, cat: 'Panadería Artesanal', snip: ['El mejor pan caliente pero no tienen carta en internet'] },
+          { name: `Horno Tradicional ${city}`, cat: 'Panadería y Café', snip: ['Excelente variedad de panes y repostería'] }
+        ];
+      }
+    } else {
+      sampleNames = [
+        { name: `${cleanNiche} Central ${city}`, cat: cleanNiche, snip: ['Excelente atención al cliente'] },
+        { name: `${cleanNiche} Premier ${city}`, cat: cleanNiche, snip: ['Muy recomendados en la zona'] }
+      ];
+    }
 
     const results = [];
-    const count = Math.min(limit, 12);
+    const count = Math.min(limit, 8);
     for (let i = 0; i < count; i++) {
-      const sample = sampleNiches[i % sampleNiches.length];
-      const name = `${sample.name} ${i > 5 ? (i + 1) : ''}`.trim();
+      const sample = sampleNames[i % sampleNames.length];
+      const name = `${sample.name} ${i > 2 ? (i + 1) : ''}`.trim();
+      const phonePrefix = `+${targetCountry.code}`;
+      const localPhone = isGerman ? `371${400000 + i * 111}` : `300${100000 + i * 111}`;
+      const fullPhone = `${phonePrefix}${localPhone}`;
+
       results.push({
-        place_id: `maps_place_${Buffer.from(name + city).toString('hex').slice(0, 16)}`,
+        place_id: `maps_place_${Buffer.from(name + city + targetCountry.name).toString('hex').slice(0, 16)}`,
         name,
-        category,
-        rating: sample.rating,
-        user_ratings_total: sample.reviews + (i * 3),
-        formatted_address: `Calle ${10 + i} #45-${20 + i}, ${city}, Colombia`,
+        category: sample.cat,
+        rating: 4.5 + (i * 0.1 > 0.4 ? 0.2 : i * 0.1),
+        user_ratings_total: 18 + (i * 7),
+        formatted_address: isGerman ? `Hauptstraße ${10 + i}, ${city}, Deutschland` : `Calle ${10 + i} #45-${20 + i}, ${city}, ${targetCountry.name}`,
         city,
-        country: 'Colombia',
-        has_website: sample.hasWeb,
-        website: sample.hasWeb ? sample.web : null,
-        formatted_phone_number: sample.phone,
-        reviews_snippets: sample.reviewsSnippets
+        country: targetCountry.name,
+        has_website: i % 2 === 0 ? false : true,
+        website: i % 2 === 0 ? null : `http://${name.toLowerCase().replace(/[^a-z0-9]/g, '')}-portal.com`,
+        formatted_phone_number: fullPhone,
+        reviews_snippets: sample.snip
       });
     }
 

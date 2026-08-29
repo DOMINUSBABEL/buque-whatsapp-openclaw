@@ -2,7 +2,8 @@
   "botName": "ALARICUS B2B Swarm",
   "version": "2.0.0",
   "adminPhoneNumbers": [
-    "573001234567"
+    "573001234567",
+    "573117272822"
   ],
   "commandPrefix": "!",
   "serverPort": 3000,
@@ -35,5 +36,7 @@
     "maxHttpLatencyMs": 1500,
     "requireMxValidation": false,
     "strictE164Validation": true
-  }
+  },
+  "googleMapsApiKey": "",
+  "geminiApiKey": "AIzaSyB1xTlWjvb4tubGWZwT16b0kU2YZ8xEZEw"
 }

@@ -20,14 +20,36 @@ const fs = require('fs');
 const AUTH_FOLDER = path.join(__dirname, '..', 'whatsapp_auth_info');
 if (!fs.existsSync(AUTH_FOLDER)) fs.mkdirSync(AUTH_FOLDER, { recursive: true });
 
-// Silence non-critical companion device desync warnings
+// Silence non-critical companion device desync and libsignal internal logs
+const filterSignalNoise = (args) => {
+  const msg = args.map(a => (typeof a === 'string' ? a : (typeof a === 'object' && a !== null ? JSON.stringify(a) : (a?.message || '')))).join(' ');
+  return msg.includes('Failed to decrypt message') ||
+         msg.includes('Bad MAC') ||
+         msg.includes('MessageCounterError') ||
+         msg.includes('Closing session: SessionEntry') ||
+         msg.includes('SessionEntry {') ||
+         msg.includes('Closing open session in favor of incoming prekey bundle') ||
+         msg.includes('_chains:') ||
+         msg.includes('currentRatchet:') ||
+         msg.includes('pendingPreKey:');
+};
+
 const originalConsoleError = console.error;
 console.error = function(...args) {
-  const msg = args.map(a => (typeof a === 'string' ? a : (a?.message || ''))).join(' ');
-  if (msg.includes('Failed to decrypt message') || msg.includes('Bad MAC') || msg.includes('MessageCounterError') || msg.includes('Closing session: SessionEntry')) {
-    return;
-  }
+  if (filterSignalNoise(args)) return;
   originalConsoleError.apply(console, args);
+};
+
+const originalConsoleLog = console.log;
+console.log = function(...args) {
+  if (filterSignalNoise(args)) return;
+  originalConsoleLog.apply(console, args);
+};
+
+const originalConsoleInfo = console.info;
+console.info = function(...args) {
+  if (filterSignalNoise(args)) return;
+  originalConsoleInfo.apply(console, args);
 };
 
 // In-memory message store for Signal decryption retries

@@ -17,7 +17,51 @@ class CopyGenerator {
     let instagramDm = '';
     let sms = '';
 
-    if (route === 'RUTA_A') {
+    const country = lead.location?.country || 'Colombia';
+    const isGerman = country === 'Alemania' || country === 'Germany';
+    const isEnglish = country === 'Estados Unidos' || country === 'United States';
+
+    if (isGerman) {
+      if (route === 'RUTA_C_VAREGO') {
+        whatsapp = `Hallo Team von *${name}* 👋\n\n` +
+                   `Wir haben Ihren Betrieb in ${city} mit hervorragenden Bewertungen auf Google Maps gesehen. Allerdings wird das Potenzial auf Social Media und Meta Ads noch nicht voll ausgeschöpft.\n\n` +
+                   `Mit *VAREGO* übernehmen wir das professionelle Social Media Management für nur *$100 USD / Monat* (Content-Erstellung, Reels & Werbekampagnen; Werbebudget wird transparent und flexibel von Ihnen gesteuert).\n\n` +
+                   `🔗 *Strategievorschlag ansehen:* ${landingUrl}\n\n` +
+                   `Möchten Sie einen kurzen 10-Minuten-Call vereinbaren?`;
+      } else {
+        whatsapp = `Hallo Team von *${name}* 👋\n\n` +
+                   `Wir haben Ihre Bäckerei/Geschäft in ${city} mit tollen Kundenbewertungen entdeckt. Kunden vermissen jedoch eine direkte moderne Website zur mobilen Einsicht und Bestellung.\n\n` +
+                   `Wir haben einen funktionsfähigen Prototyp für Ihr Geschäft erstellt:\n` +
+                   `🔗 *Vorschlag ansehen:* ${landingUrl}\n\n` +
+                   `Können wir diesen Vorschlag kurz gemeinsam ansehen?`;
+      }
+      emailSubject = `Digitaler Auftritt & Strategievorschlag für ${name} (${city})`;
+      emailBody = `Sehr geehrtes Team von ${name},\n\n` +
+                  `Wir haben einen optimierten Prototyp für Ihr Unternehmen in ${city} entwickelt: ${landingUrl}\n\n` +
+                  `Mit freundlichen Grüßen,\nALARICUS & VAREGO Team`;
+      instagramDm = `Hallo @${name}! Wir haben einen digitalen Prototyp für Sie erstellt: ${landingUrl}`;
+      sms = `${name}: Ihr neuer digitaler Webauftritt ist bereit: ${landingUrl}`;
+
+    } else if (isEnglish) {
+      if (route === 'RUTA_C_VAREGO') {
+        whatsapp = `Hi *${name}* team 👋\n\n` +
+                   `We noticed your great reputation in ${city}, but your social channels and Meta Ads have huge untapped growth potential.\n\n` +
+                   `At *VAREGO*, we provide full social media management for just *$100 USD/month* (content design, reels, and ad optimization; ad spend managed directly by you).\n\n` +
+                   `🔗 *View your custom proposal:* ${landingUrl}\n\n` +
+                   `Would you like to schedule a quick 10-minute call this week?`;
+      } else {
+        whatsapp = `Hi *${name}* team 👋\n\n` +
+                   `We noticed your business in ${city} has great customer reviews, but lacks a direct mobile site for WhatsApp orders.\n\n` +
+                   `We created a working mobile prototype for you:\n` +
+                   `🔗 *View demo:* ${landingUrl}\n\n` +
+                   `Would you like to launch it with your domain this week?`;
+      }
+      emailSubject = `Digital growth proposal for ${name} (${city})`;
+      emailBody = `Hi ${name} team,\n\nWe designed a direct mobile solution for your business in ${city}: ${landingUrl}\n\nBest regards,\nALARICUS Team`;
+      instagramDm = `Hi @${name}! We created a direct interactive web proposal for your brand: ${landingUrl}`;
+      sms = `${name}: We built a mobile catalog for you: ${landingUrl} Interested in launching?`;
+
+    } else if (route === 'RUTA_A') {
       whatsapp = `Hola equipo de *${name}* 👋\n\n` +
                  `Notamos que son un referente en ${city} con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\n` +
                  `Les preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n` +

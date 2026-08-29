@@ -62,11 +62,17 @@ async function handleIncomingMessage(sock, msg) {
   console.log(`\n📩 [WhatsApp Inbound] De: [${senderNumber}] | fromMe: ${isFromMe} | Admin: ${isAdmin}`);
   console.log(`   Texto: "${rawText}"`);
 
-  // 1. ADMIN COMMAND EXECUTION (Supports both remote admin and self-messages from connected phone)
-  if (isAdmin && rawText.trim().startsWith('!')) {
-    console.log(`⚙️ [AdminCommand] 🚀 Ejecutando comando "${rawText.trim()}" solicitado por [${senderNumber}]...`);
-    await adminCommands.handleCommand(sock, senderJid, rawText);
-    return;
+  // 1. ADMIN COMMAND EXECUTION & ASSISTED DIALOGUE
+  if (isAdmin) {
+    if (rawText.trim().startsWith('!')) {
+      console.log(`⚙️ [AdminCommand] 🚀 Ejecutando comando "${rawText.trim()}" solicitado por [${senderNumber}]...`);
+      await adminCommands.handleCommand(sock, senderJid, rawText);
+      return;
+    }
+
+    // Intercept natural conversation if in Assisted Copilot Mode
+    const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
+    if (handledByAssistant) return;
   }
 
   // If message was sent by the bot itself and is not a command, ignore
@@ -92,6 +98,8 @@ async function handleIncomingMessage(sock, msg) {
 const readline = require('readline');
 const swarmOrchestrator = require('./swarm-orchestrator');
 const socialAuditor = require('./social-auditor');
+const assistantMode = require('./assistant-mode');
+const mapVisionScout = require('./map-vision-scout');
 
 let replInitialized = false;
 
@@ -123,11 +131,11 @@ function setupTerminalRepl() {
       case 'scan':
       case 'escanear':
         if (!args) {
-          console.log('⚠️ Uso: scan <nicho> en <ciudad> (Ej: scan restaurantes en Medellin)');
+          console.log('⚠️ Uso: scan <nicho> en <ciudad> (Ej: scan panaderias en Chemnitz Alemania)');
         } else {
-          console.log(`\n🚀 [Terminal] Iniciando escaneo Web Directa para: "${args}"...`);
+          console.log(`\n🚀 [Terminal] Iniciando escaneo y curaduría Web Directa para: "${args}"...`);
           await swarmOrchestrator.runScanBatch(args, { limit: 5, targetService: 'WEB' }, (lead) => {
-            console.log(`✨ Lead listo: ${lead.company_name} | Web: ${lead.assets?.landing_page_url}`);
+            console.log(`✨ Lead verificado: ${lead.company_name} (${lead.location?.country} ${lead.contact_channel?.phone_e164}) | Web: ${lead.assets?.landing_page_url}`);
           });
         }
         break;
@@ -139,8 +147,25 @@ function setupTerminalRepl() {
         } else {
           console.log(`\n⚡ [Terminal] Iniciando prospección VAREGO ($100/mo) para: "${args}"...`);
           await swarmOrchestrator.runScanBatch(args, { limit: 5, targetService: 'VAREGO' }, (lead) => {
-            console.log(`🔥 Lead VAREGO: ${lead.company_name} | Propuesta: ${lead.assets?.landing_page_url}`);
+            console.log(`🔥 Lead VAREGO verificado: ${lead.company_name} (${lead.location?.country} ${lead.contact_channel?.phone_e164}) | Propuesta: ${lead.assets?.landing_page_url}`);
           });
+        }
+        break;
+
+      case 'mapa':
+      case 'map':
+        if (!args) {
+          console.log('⚠️ Uso: mapa <ruta_archivo_imagen>');
+        } else {
+          try {
+            console.log(`\n🗺️ [Terminal] Analizando mapa: "${args}"...`);
+            const mapRes = await mapVisionScout.analyzeMapImage(args);
+            console.log(`📍 Ubicación detectada: ${mapRes.detected_location.city} (${mapRes.detected_location.country} ${mapRes.detected_location.country_dialing_code})`);
+            console.log('🏢 Negocios extraídos:');
+            mapRes.extracted_business_pins.forEach((p, i) => console.log(`   ${i + 1}. ${p.pin_name} (${p.category}) - ${p.quadrant}`));
+          } catch (e) {
+            console.error(`❌ Error: ${e.message}`);
+          }
         }
         break;
 
@@ -198,6 +223,7 @@ function setupTerminalRepl() {
         console.log('\n⌨️  COMANDOS DISPONIBLES EN ESTA TERMINAL:');
         console.log(' • scan <nicho> en <ciudad>        -> Iniciar escaneo para Web Directa');
         console.log(' • scan-varego <nicho> en <ciudad> -> Iniciar escaneo para VAREGO ($100/mo)');
+        console.log(' • mapa <ruta_imagen>              -> Analizar captura de Google Maps');
         console.log(' • audit-social <handle>           -> Auditar cuenta de Instagram');
         console.log(' • status / estado                 -> Ver métricas y MRR');
         console.log(' • qr / relink                     -> Limpiar sesión y regenerar QR');

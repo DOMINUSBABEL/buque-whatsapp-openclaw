@@ -88,9 +88,9 @@
         "friction_keywords_found": [],
         "friction_snippet": "El negocio carece de presencia digital directa, dependiendo de terceros."
       },
-      "pipeline_status": "QUEUED_FOR_PITCH",
+      "pipeline_status": "IN_OUTREACH",
       "created_at": "2026-08-29T13:17:57.534Z",
-      "updated_at": "2026-08-29T13:17:57.535Z",
+      "updated_at": "2026-08-29T14:19:21.355Z",
       "diagnostics": {
         "lead_score": 90,
         "high_priority": true,
@@ -259,18 +259,95 @@
         },
         "rejection_log": null
       }
+    },
+    {
+      "lead_id": "lead_maps_place_5",
+      "company_name": "Pizzería Napolitana Artesanal",
+      "location": {
+        "address": "Calle 14 #45-24, Chemnitz, Colombia",
+        "city": "Chemnitz",
+        "country": "Colombia",
+        "maps_place_id": "maps_place_50697a7a6572c3ad"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573185566778",
+        "email": null,
+        "instagram_handle": "@pizzeranapolitanaartesanal"
+      },
+      "lead_route": "RUTA_B",
+      "scout_metadata": {
+        "has_website": true,
+        "website_url": "http://pizzanapo-caida.co",
+        "reviews_count": 77,
+        "rating": 3.7,
+        "category": "Panaderías - Alemania",
+        "friction_keywords_found": [
+          "página",
+          "web",
+          "error",
+          "menú online"
+        ],
+        "friction_snippet": "La página web da error al pagar",
+        "social_audit": {
+          "instagram_handle": "@pizzeranapolitanaartesanal",
+          "facebook_url": "https://facebook.com/pizzeranapolitanaartesanal",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @pizzeranapolitanaartesanal inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T14:17:53.048Z",
+      "updated_at": "2026-08-29T14:17:53.048Z",
+      "diagnostics": {
+        "mrr_potential_usd": 100,
+        "lead_score": 100,
+        "high_priority": true,
+        "core_pain_hook": "Clientes de Pizzería Napolitana Artesanal reportan fricciones directas en su canal web (La página web da error al pagar).",
+        "service_offer": "DIRECT_WEB",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Pizzería Napolitana Artesanal* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (La página web da error al pagar).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "email": {
+            "subject": "Optimización de canal web y pedidos para Pizzería Napolitana Artesanal",
+            "body": "Hola equipo de Pizzería Napolitana Artesanal,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo ALARICUS B2B"
+          },
+          "instagram_dm": "Hola @Pizzería Napolitana Artesanal 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m ¿La revisamos?",
+          "sms": "Pizzería Napolitana Artesanal: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m ¿Agendamos demo?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m",
+        "video_asset_url": "http://localhost:3000/videos/demo_pizzer-a-napolitana-artes_lead_m.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_pizzer-a-napolitana-artes_lead_m.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T14:17:57.311Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
     }
   ],
   "indexedPhones": {
     "+573159876543": "lead_maps_place_4",
     "+573114567890": "lead_maps_place_5",
     "+573201122334": "lead_maps_place_4",
-    "+573007788990": "lead_maps_place_4"
+    "+573007788990": "lead_maps_place_4",
+    "+573185566778": "lead_maps_place_5"
   },
   "indexedPlaceIds": {
     "maps_place_436cc3ad6e696361": "lead_maps_place_4",
     "maps_place_5361626f72202620": "lead_maps_place_5",
     "maps_place_4665727265746572": "lead_maps_place_4",
-    "maps_place_457374c3a9746963": "lead_maps_place_4"
+    "maps_place_457374c3a9746963": "lead_maps_place_4",
+    "maps_place_50697a7a6572c3ad": "lead_maps_place_5"
   }
 }

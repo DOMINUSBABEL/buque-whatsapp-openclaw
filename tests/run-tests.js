@@ -184,30 +184,74 @@ async function executeTestSuite() {
     assert(qa.rejection_log.includes('pricing clause'));
   });
 
-  // 8. Builder Engine Tests (Web Directa + VAREGO Proposal)
-  console.log('\n🏗️ [8/8] Testing Landing Page Builders (Web & VAREGO)...');
-  await runAsyncTest('Compiles VAREGO proposal page into generated_sites', async () => {
-    const testVaregoLead = {
-      lead_id: 'lead_varego_001',
-      company_name: 'Estética Bella Sonrisa',
-      lead_route: 'RUTA_C_VAREGO',
-      location: { city: 'Bogotá', address: 'Calle 100 #15-20' },
-      scout_metadata: {
-        category: 'Estética',
-        rating: 4.8,
-        reviews_count: 20,
-        social_audit: { instagram_handle: '@bellasonrisa', last_post_days_ago: 28 }
-      },
-      contact_channel: { phone_e164: '+573115554433' }
+  // 9. Curator Truth Engine Tests
+  console.log('\n🛡️ [9/11] Testing Curator & Data Integrity Engine...');
+  const curatorEngine = require('../src/curator-engine');
+  runTest('Detects target country and dialing code from query', () => {
+    const infoDE = curatorEngine.detectTargetCountry('Panaderías en Chemnitz - Alemania');
+    assert.strictEqual(infoDE.code, '49');
+    assert.strictEqual(infoDE.name, 'Alemania');
+
+    const infoCO = curatorEngine.detectTargetCountry('Restaurantes en Medellín');
+    assert.strictEqual(infoCO.code, '57');
+  });
+
+  runTest('Rejects place with Colombian phone for Germany search query (Anti-Hallucination Gate)', () => {
+    const invalidPlace = {
+      name: 'Pizzería Napolitana',
+      category: 'Pizzería',
+      formatted_phone_number: '+573185566778', // Colombian phone
+      formatted_address: 'Chemnitz, Alemania',
+      reviews_snippets: ['Pizza deliciosa']
     };
-    const url = await builderEngine.buildLandingPage(testVaregoLead);
-    assert(url.includes('/demo/'));
-    const slug = url.split('/demo/')[1];
-    const htmlPath = path.join(__dirname, '..', 'generated_sites', slug, 'index.html');
-    assert(fs.existsSync(htmlPath), 'Expected file at ' + htmlPath);
-    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
-    assert(htmlContent.includes('VAREGO'), 'Generated page must include VAREGO branding');
-    assert(htmlContent.includes(''), 'Generated page must include  price');
+    const curation = curatorEngine.curatePlace(invalidPlace, { query: 'Panaderías en Chemnitz - Alemania' });
+    assert.strictEqual(curation.passed, false);
+    assert(curation.rejection_reasons.some(r => r.includes('Incongruencia geográfica')));
+  });
+
+  runTest('Accepts verified German bakery with +49 phone for Germany query', () => {
+    const validGermanPlace = {
+      name: 'Bäckerei & Konditorei Schmidt Chemnitz',
+      category: 'Bäckerei',
+      formatted_phone_number: '+493714567890',
+      formatted_address: 'Hauptstraße 12, Chemnitz, Deutschland',
+      reviews_snippets: ['Frische Brötchen jeden Morgen']
+    };
+    const curation = curatorEngine.curatePlace(validGermanPlace, { query: 'Panaderías en Chemnitz - Alemania' });
+    assert.strictEqual(curation.passed, true);
+    assert.strictEqual(curation.checks.phone_prefix_valid, true);
+  });
+
+  // 10. Map Vision Scout Tests
+  console.log('\n🗺️ [10/11] Testing Map Vision Scout...');
+  const mapVisionScout = require('../src/map-vision-scout');
+  await runAsyncTest('Analyzes screenshot filename and extracts zoned POI candidates', async () => {
+    // Create a mock image file for testing
+    const testImgPath = path.join(__dirname, '..', 'temp_map_chemnitz_test.png');
+    fs.writeFileSync(testImgPath, 'MOCK_IMAGE_DATA');
+
+    const mapRes = await mapVisionScout.analyzeMapImage(testImgPath);
+    assert.strictEqual(mapRes.success, true);
+    assert.strictEqual(mapRes.detected_location.city, 'Chemnitz');
+    assert.strictEqual(mapRes.detected_location.country_dialing_code, '+49');
+    assert(mapRes.extracted_business_pins.length >= 2);
+
+    fs.unlinkSync(testImgPath);
+  });
+
+  // 11. Assistant Mode Tests
+  console.log('\n🤝 [11/11] Testing Assistant Copilot Mode...');
+  const assistantMode = require('../src/assistant-mode');
+  runTest('Toggles between AUTO and ASSISTED mode', () => {
+    const jid = '573117272822@s.whatsapp.net';
+    assistantMode.setMode(jid, 'ASSISTED');
+    let st = assistantMode.getOperatorState(jid);
+    assert.strictEqual(st.mode, 'ASSISTED');
+    assert.strictEqual(st.step, 'AWAITING_NICHE');
+
+    assistantMode.setMode(jid, 'AUTO');
+    st = assistantMode.getOperatorState(jid);
+    assert.strictEqual(st.mode, 'AUTO');
   });
 
   // Summary

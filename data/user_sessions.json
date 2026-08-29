@@ -1,1 +1,16 @@
-{}
+{
+  "573185566778@s.whatsapp.net": {
+    "jid": "573185566778@s.whatsapp.net",
+    "isProspect": true,
+    "isAdmin": false,
+    "businessName": "Pizzería Napolitana Artesanal 11",
+    "pipelineState": "PITCH_DELIVERED",
+    "leadId": "lead_maps_place_5",
+    "landingPageUrl": "http://localhost:3000/demo/pizzeria-napolitana-artesanal--lead_m",
+    "videoAssetUrl": "http://localhost:3000/videos/demo_pizzer-a-napolitana-artes_lead_m.mp4",
+    "messagesCount": 0,
+    "notes": [],
+    "createdAt": 1788013161354,
+    "lastInteraction": 1788013161354
+  }
+}
