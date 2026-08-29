@@ -10,6 +10,13 @@ const socialAuditor = require('./social-auditor');
 const curatorEngine = require('./curator-engine');
 
 class ScoutEngine {
+  static normalizeE164(phone, countryCode) {
+    if (!phone) return null;
+    const clean = phone.replace(/[^0-9]/g, '');
+    if (clean.startsWith(countryCode)) return `+${clean}`;
+    return `+${countryCode}${clean}`;
+  }
+
   constructor() {
     this.apiKey = configManager.get('googleMapsApiKey');
   }
