@@ -1,16 +1,10 @@
 const countryRegistry = require('./utils/country-registry');
 
 class CuratorEngine {
-  /**
-   * Detects the target country and dialing code from a query or location text (universal 200+ countries)
-   */
   detectTargetCountry(queryText) {
     return countryRegistry.findCountry(queryText);
   }
 
-  /**
-   * Curates and validates a discovered place against search query criteria
-   */
   curatePlace(place, searchContext = {}) {
     const query = searchContext.query || '';
     const targetCountry = searchContext.targetCountry || this.detectTargetCountry(query);
@@ -26,26 +20,23 @@ class CuratorEngine {
 
     const issues = [];
 
-    // 1. Name Check
     if (place.name && place.name.trim().length >= 3) {
       checks.has_valid_name = true;
     } else {
       issues.push('Nombre de negocio inválido o demasiado corto');
     }
 
-    // 2. Geographic & Country Phone Prefix Check
     if (phone) {
       if (phone.startsWith(targetCountry.code)) {
         checks.phone_prefix_valid = true;
         checks.geo_coherence_valid = true;
       } else {
-        issues.push(`Incongruencia geográfica: Teléfono (${phone}) no coincide con el prefijo +${targetCountry.code} de ${targetCountry.name}`);
+        issues.push(`Incongruencia geográfica: Teléfono (+${phone}) no coincide con el prefijo +${targetCountry.code} de ${targetCountry.name}`);
       }
     } else {
       issues.push('Sin teléfono disponible para verificación');
     }
 
-    // Address verification
     const address = (place.formatted_address || '').toLowerCase();
     if (address.length > 5) {
       checks.has_verifiable_address = true;
@@ -53,10 +44,9 @@ class CuratorEngine {
       issues.push('Dirección física no verificable');
     }
 
-    // 3. Niche / Category Semantic Coherence Check
     const cleanQuery = query.toLowerCase()
       .replace(/en\s+[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+/i, '')
-      .replace(/(alemania|colombia|españa|mexico|estados unidos|usa)/gi, '')
+      .replace(/(alemania|colombia|españa|mexico|estados unidos|usa|guyana|francia)/gi, '')
       .trim();
 
     const placeName = (place.name || '').toLowerCase();
@@ -72,15 +62,14 @@ class CuratorEngine {
       const matchInCat = queryTokens.some(token => placeCat.includes(token));
       const matchInSnippets = queryTokens.some(token => snippets.includes(token));
 
-      // Multilingual aliases (e.g. panadería <-> bäckerei / bakery)
       const aliases = {
-        'panader': ['bäckerei', 'baeckerei', 'bakery', 'pan', 'pasteleria', 'konditorei', 'croissant'],
-        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining'],
+        'panader': ['bäckerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
+        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie'],
         'pizz': ['pizzeria', 'pizza'],
-        'dental': ['zahnarzt', 'dentist', 'odontolog'],
-        'clinic': ['klinik', 'praxis', 'salud', 'medical'],
-        'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe'],
-        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon']
+        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire'],
+        'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique'],
+        'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne'],
+        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure']
       };
 
       let aliasMatch = false;
