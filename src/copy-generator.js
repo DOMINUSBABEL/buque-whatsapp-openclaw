@@ -19,9 +19,48 @@ class CopyGenerator {
 
     const country = lead.location?.country || 'Colombia';
     const isGerman = country === 'Alemania' || country === 'Germany';
+    const isFrench = country === 'Francia' || country === 'France' || country === 'Guayana Francesa';
+    const isPortuguese = country === 'Brasil' || country === 'Portugal';
     const isEnglish = country === 'Estados Unidos' || country === 'United States';
 
-    if (isGerman) {
+        if (isFrench) {
+      if (route === 'RUTA_C_VAREGO') {
+        whatsapp = `Bonjour l'équipe de *${name}* 👋\n\n` +
+                   `Nous avons découvert votre établissement à ${city}. Votre réputation est excellente, mais votre présence sur les réseaux sociaux et Meta Ads peut encore accélérer votre croissance.\n\n` +
+                   `Avec *VAREGO*, nous gérons votre communication digitale pour seulement *$100 USD / mois* (création de contenu, 12 publications/reels et optimisation publicitaire; budget publicitaire géré directement par vous).\n\n` +
+                   `🔗 *Voir la proposition stratégique:* ${landingUrl}\n\n` +
+                   `Souhaitez-vous planifier un échange de 10 minutes cette semaine?`;
+      } else {
+        whatsapp = `Bonjour l'équipe de *${name}* 👋\n\n` +
+                   `Vos clients à ${city} recherchent un accès direct et mobile à vos services/produits sans intermédiaire.\n\n` +
+                   `Nous avons conçu ce prototype interactif pour votre entreprise:\n` +
+                   `🔗 *Voir la démo:* ${landingUrl}\n\n` +
+                   `Pouvons-nous l'activer avec votre propre domaine cette semaine?`;
+      }
+      emailSubject = `Proposition digitale directe pour ${name} (${city})`;
+      emailBody = `Bonjour équipe ${name},\n\nNous avons développé une solution mobile pour votre entreprise à ${city}: ${landingUrl}\n\nCordialement,\nÉquipe ALARICUS`;
+      instagramDm = `Bonjour @${name} ✨ Voici votre prototype web interactif: ${landingUrl}`;
+      sms = `${name}: Votre prototype web mobile est prêt: ${landingUrl}`;
+
+    } else if (isPortuguese) {
+      if (route === 'RUTA_C_VAREGO') {
+        whatsapp = `Olá equipe da *${name}* 👋\n\n` +
+                   `Notamos o sucesso do seu negócio em ${city}, mas suas redes sociais e anúncios de Meta Ads têm um potencial de captação ainda maior.\n\n` +
+                   `Na *VAREGO*, oferecemos gestão de redes sociais por apenas *$100 USD/mês* (design de 12 posts/reels mensais e otimização de anúncios; orçamento de mídia gerenciado diretamente por vocês).\n\n` +
+                   `🔗 *Ver proposta visual:* ${landingUrl}\n\n` +
+                   `Podemos agendar uma breve conversa de 10 minutos esta semana?`;
+      } else {
+        whatsapp = `Olá equipe da *${name}* 👋\n\n` +
+                   `Desenvolvemos uma proposta de site direto e pedidos no WhatsApp para seu negócio em ${city}:\n` +
+                   `🔗 *Ver demonstração:* ${landingUrl}\n\n` +
+                   `Podemos ativá-lo com seu próprio domínio esta semana?`;
+      }
+      emailSubject = `Proposta digital direta para ${name} (${city})`;
+      emailBody = `Olá equipe ${name},\n\nCriamos uma solução mobile para seu negócio em ${city}: ${landingUrl}\n\nAtenciosamente,\nEquipe ALARICUS`;
+      instagramDm = `Olá @${name}! Criamos uma proposta de site interativo para sua marca: ${landingUrl}`;
+      sms = `${name}: Desenvolvemos seu novo catálogo web: ${landingUrl}`;
+
+    } else if (isGerman) {
       if (route === 'RUTA_C_VAREGO') {
         whatsapp = `Hallo Team von *${name}* 👋\n\n` +
                    `Wir haben Ihren Betrieb in ${city} mit hervorragenden Bewertungen auf Google Maps gesehen. Allerdings wird das Potenzial auf Social Media und Meta Ads noch nicht voll ausgeschöpft.\n\n` +
