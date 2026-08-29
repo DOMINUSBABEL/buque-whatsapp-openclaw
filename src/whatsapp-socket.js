@@ -55,7 +55,23 @@ class WhatsAppSocketManager {
     this.reconnectAttempts = 0;
   }
 
-  async initSocket(onMessageCallback, onQrCallback = null, onPairingCodeCallback = null, targetPhoneNumber = null, onOpenCallback = null) {
+  purgeAuthFolder() {
+    try {
+      if (fs.existsSync(AUTH_FOLDER)) {
+        const files = fs.readdirSync(AUTH_FOLDER);
+        for (const file of files) {
+          try {
+            fs.unlinkSync(path.join(AUTH_FOLDER, file));
+          } catch (e) {}
+        }
+        console.log('🧹 [WhatsAppSocket] Credenciales desvinculadas purgadas de whatsapp_auth_info.');
+      }
+    } catch (err) {
+      console.warn(`[WhatsAppSocket] Error purging auth folder: ${err.message}`);
+    }
+  }
+
+  async initSocket(onMessageCallback, onQrCallback = null, onPairingCodeCallback = null, targetPhoneNumber = null, onOpenCallback = null, onLoggedOutCallback = null) {
     const { state, saveCreds } = await useMultiFileAuthState(AUTH_FOLDER);
     const { version, isLatest } = await fetchLatestBaileysVersion();
 
@@ -98,21 +114,32 @@ class WhatsAppSocketManager {
 
       if (connection === 'close') {
         const statusCode = lastDisconnect?.error?.output?.statusCode;
-        const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
-        console.warn(`[WhatsAppSocket] Connection closed (Status: ${statusCode}). Reconnect: ${shouldReconnect}`);
+        const isLoggedOut = statusCode === DisconnectReason.loggedOut || statusCode === 401 || statusCode === 403;
+        console.warn(`[WhatsAppSocket] Connection closed (Status: ${statusCode}). Logged out: ${isLoggedOut}`);
 
-        if (shouldReconnect) {
-          this.reconnectAttempts++;
-          const delay = Math.min(5000 * Math.pow(1.5, this.reconnectAttempts), 60000);
-          console.log(`[WhatsAppSocket] Reconnecting in ${Math.round(delay / 1000)}s (Attempt #${this.reconnectAttempts})...`);
-          setTimeout(() => {
-            this.initSocket(onMessageCallback, onQrCallback, onPairingCodeCallback, targetPhoneNumber, onOpenCallback);
-          }, delay);
+        if (isLoggedOut) {
+          console.log('\n❌ [WhatsAppSocket] Sesión desvinculada en WhatsApp. Purgando credenciales caducadas...');
+          this.purgeAuthFolder();
+          this.reconnectAttempts = 0;
+
+          if (onLoggedOutCallback) {
+            onLoggedOutCallback();
+          } else {
+            console.log('🔄 Regenerando nuevo código QR para vincular dispositivo...\n');
+            setTimeout(() => {
+              this.initSocket(onMessageCallback, onQrCallback, onPairingCodeCallback, targetPhoneNumber, onOpenCallback, onLoggedOutCallback);
+            }, 2000);
+          }
         } else {
-          console.error(`[WhatsAppSocket] Logged out. Manual re-authentication required.`);
+          this.reconnectAttempts++;
+          const delay = Math.min(3000 * Math.pow(1.5, this.reconnectAttempts), 30000);
+          console.log(`[WhatsAppSocket] Reconectando en ${Math.round(delay / 1000)}s (Intento #${this.reconnectAttempts})...`);
+          setTimeout(() => {
+            this.initSocket(onMessageCallback, onQrCallback, onPairingCodeCallback, targetPhoneNumber, onOpenCallback, onLoggedOutCallback);
+          }, delay);
         }
       } else if (connection === 'open') {
-        console.log(`[WhatsAppSocket] ✅ Connection established successfully! Socket active.`);
+        console.log(`[WhatsAppSocket] ✅ ¡Conexión establecida con éxito! Socket activo.`);
         this.reconnectAttempts = 0;
         if (onOpenCallback) {
           onOpenCallback(this.sock);
