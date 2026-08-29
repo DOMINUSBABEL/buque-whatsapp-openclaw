@@ -4,6 +4,12 @@
  * and Meta Ad Library activity to identify high-converting prospects for VAREGO.
  */
 class SocialAuditor {
+  extractBioLink(text) {
+    if (!text) return null;
+    const match = text.match(/https?:\/\/[^\s]+/);
+    return match ? match[0] : null;
+  }
+
   /**
    * Performs an audit on social channels for a scouted business
    */
