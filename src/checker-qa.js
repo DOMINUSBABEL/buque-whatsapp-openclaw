@@ -70,13 +70,17 @@ class CheckerQA {
     }
 
     // 3. ROUTE & COPY COHERENCE CHECK
-    if (lead.lead_route === 'RUTA_A' && copies.whatsapp && copies.whatsapp.includes('fallas con su página web')) {
+    if (lead.lead_route === 'RUTA_A' && copies.whatsapp && (copies.whatsapp.includes('fallas con su página web') || copies.whatsapp.includes('VAREGO'))) {
       inspections.route_copy_coherence = false;
-      failureReasons.push('Route A lead mistakenly received Route B friction copy');
+      failureReasons.push('Route A lead received incorrect route copy');
     }
-    if (lead.lead_route === 'RUTA_B' && copies.whatsapp && copies.whatsapp.includes('no tienen una página web oficial')) {
+    if (lead.lead_route === 'RUTA_B' && copies.whatsapp && (copies.whatsapp.includes('no tienen una página web oficial') || copies.whatsapp.includes('VAREGO'))) {
       inspections.route_copy_coherence = false;
-      failureReasons.push('Route B lead mistakenly received Route A missing-web copy');
+      failureReasons.push('Route B lead received incorrect route copy');
+    }
+    if (lead.lead_route === 'RUTA_C_VAREGO' && copies.whatsapp && (!copies.whatsapp.includes('VAREGO') || !copies.whatsapp.includes('100 USD'))) {
+      inspections.route_copy_coherence = false;
+      failureReasons.push('Route C VAREGO lead copy missing agency name or $100 USD pricing clause');
     }
 
     // 4. URL VERIFICATION CHECK
