@@ -1,6 +1,6 @@
 {
   "name": "alaricus-b2b-swarm",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "ALARICUS: Autonomous Multi-Agent B2B Acquisition Swarm & VAREGO Social Engine on OpenClaw & Baileys",
   "main": "src/alaricus-bot.js",
   "scripts": {
