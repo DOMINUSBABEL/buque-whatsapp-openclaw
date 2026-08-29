@@ -3,9 +3,10 @@
  * Scrapes and inspects Google Maps profiles, extracting business metadata,
  * review volume, contact numbers, and category catalogs.
  */
-const { v4: uuidv4 } = require('crypto');
+const { randomUUID } = require('crypto');
 const configManager = require('./config-manager');
 const httpClient = require('./utils/http-client');
+const socialAuditor = require('./social-auditor');
 
 class ScoutEngine {
   constructor() {
@@ -19,12 +20,19 @@ class ScoutEngine {
     const limit = options.limit || 20;
     console.log(`[SCOUT_AGENT] Searching candidates for query: "${query}" (Target: ${limit} leads)`);
 
-    // If Google Places API Key is present, query official endpoints; otherwise use resilient parser/mock pipeline
+    let places = [];
     if (this.apiKey) {
-      return await this._searchViaPlacesApi(query, limit);
+      places = await this._searchViaPlacesApi(query, limit);
     } else {
-      return await this._searchViaHeadlessParser(query, limit);
+      places = await this._searchViaHeadlessParser(query, limit);
     }
+
+    // Attach social media audit to every place for VAREGO qualification
+    for (const place of places) {
+      place.social_audit = await socialAuditor.auditBusiness(place);
+    }
+
+    return places;
   }
 
   async _searchViaPlacesApi(query, limit) {
