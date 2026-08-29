@@ -85,5 +85,3 @@ class SwotAnalyzer {
 }
 
 module.exports = new SwotAnalyzer();
-
-// Step: feat(swot): synthesize neighborhood micro-zone context in analysis
