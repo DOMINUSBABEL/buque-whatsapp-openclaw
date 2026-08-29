@@ -50,7 +50,10 @@ class DiagnoserEngine {
       corePainHook = `Alta demanda comprobada (${reviews} opiniones) pero sus redes sociales llevan ${days} días sin publicaciones estratégicas ni campañas de pauta Meta Ads activas.`;
     }
 
+    const isHighTicket = ['clinica', 'dental', 'estetica', 'automotriz'].some(k => (scout_metadata.category || '').toLowerCase().includes(k));
+    const mrrPotentialUsd = isHighTicket ? 150 : 100;
     return {
+      mrr_potential_usd: mrrPotentialUsd,
       lead_score: score,
       high_priority: false, // Set dynamically by orchestrator for top 3-5
       core_pain_hook: corePainHook,
