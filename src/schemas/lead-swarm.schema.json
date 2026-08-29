@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LeadSwarmPayload",
+  "description": "Standardized interoperability data contract for BUQUE B2B Autonomous Swarm",
+  "type": "object",
+  "required": [
+    "lead_id",
+    "company_name",
+    "location",
+    "contact_channel",
+    "lead_route",
+    "scout_metadata",
+    "diagnostics",
+    "pipeline_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the lead"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Commercial name extracted from Google Maps"
+    },
+    "location": {
+      "type": "object",
+      "required": ["city", "country"],
+      "properties": {
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "state_province": { "type": "string" },
+        "country": { "type": "string" },
+        "maps_place_id": { "type": "string" },
+        "maps_url": { "type": "string" }
+      }
+    },
+    "contact_channel": {
+      "type": "object",
+      "required": ["primary_type", "phone_e164"],
+      "properties": {
+        "primary_type": {
+          "type": "string",
+          "enum": ["WHATSAPP", "EMAIL", "INSTAGRAM_DM", "SMS"]
+        },
+        "phone_e164": {
+          "type": ["string", "null"]
+        },
+        "email": {
+          "type": ["string", "null"]
+        },
+        "instagram_handle": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "lead_route": {
+      "type": "string",
+      "enum": ["RUTA_A", "RUTA_B"],
+      "description": "RUTA_A (No website), RUTA_B (Has website with friction)"
+    },
+    "scout_metadata": {
+      "type": "object",
+      "required": ["has_website", "reviews_count", "rating"],
+      "properties": {
+        "has_website": { "type": "boolean" },
+        "website_url": { "type": ["string", "null"] },
+        "reviews_count": { "type": "integer", "minimum": 0 },
+        "rating": { "type": "number", "minimum": 1.0, "maximum": 5.0 },
+        "category": { "type": "string" },
+        "products_services": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "friction_keywords_found": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "friction_snippet": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "required": ["lead_score", "high_priority", "core_pain_hook"],
+      "properties": {
+        "lead_score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "high_priority": {
+          "type": "boolean"
+        },
+        "core_pain_hook": {
+          "type": "string"
+        },
+        "channel_copies": {
+          "type": "object",
+          "properties": {
+            "whatsapp": { "type": "string" },
+            "email": {
+              "type": "object",
+              "properties": {
+                "subject": { "type": "string" },
+                "body": { "type": "string" }
+              }
+            },
+            "instagram_dm": { "type": "string" },
+            "sms": { "type": "string" }
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "properties": {
+        "landing_page_url": { "type": ["string", "null"] },
+        "video_asset_url": { "type": ["string", "null"] },
+        "thumbnail_url": { "type": ["string", "null"] },
+        "catalog_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "price_tag": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "qa_verification": {
+      "type": "object",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "checked_at": { "type": ["string", "null"] },
+        "inspections": {
+          "type": "object",
+          "properties": {
+            "syntax_and_placeholders_valid": { "type": "boolean" },
+            "urls_http_200_under_1500ms": { "type": "boolean" },
+            "recipient_identity_valid": { "type": "boolean" },
+            "route_copy_coherence": { "type": "boolean" }
+          }
+        },
+        "rejection_log": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "pipeline_status": {
+      "type": "string",
+      "enum": [
+        "SCOUTED",
+        "DIAGNOSED",
+        "BUILDING_ASSETS",
+        "ASSETS_READY",
+        "QA_PENDING",
+        "QA_REJECTED",
+        "QUEUED_FOR_PITCH",
+        "IN_OUTREACH",
+        "CONVERTED",
+        "ARCHIVED"
+      ]
+    },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}
