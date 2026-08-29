@@ -14,8 +14,10 @@ class HttpClient {
   }
 
   async request(config) {
+    const timeout = config.timeout || this.timeoutMs;
+    const maxRetries = config.maxRetries !== undefined ? config.maxRetries : this.maxRetries;
     const fullConfig = {
-      timeout: this.timeoutMs,
+      timeout,
       headers: {
         'User-Agent': this.userAgent,
         ...(config.headers || {})
@@ -24,7 +26,7 @@ class HttpClient {
     };
 
     let attempt = 0;
-    while (attempt < this.maxRetries) {
+    while (attempt < maxRetries) {
       const startTime = Date.now();
       try {
         const response = await axios(fullConfig);
@@ -47,16 +49,16 @@ class HttpClient {
     }
   }
 
-  async get(url, headers = {}) {
-    return this.request({ method: 'GET', url, headers });
+  async get(url, headers = {}, options = {}) {
+    return this.request({ method: 'GET', url, headers, ...options });
   }
 
-  async head(url, headers = {}) {
-    return this.request({ method: 'HEAD', url, headers });
+  async head(url, headers = {}, options = {}) {
+    return this.request({ method: 'HEAD', url, headers, ...options });
   }
 
-  async post(url, data, headers = {}) {
-    return this.request({ method: 'POST', url, data, headers });
+  async post(url, data, headers = {}, options = {}) {
+    return this.request({ method: 'POST', url, data, headers, ...options });
   }
 }
 
