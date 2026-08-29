@@ -97,19 +97,21 @@ class CountryRegistry {
 
     const text = queryText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-    // 1. Direct search by country name / aliases
+    // Collect all match entries and sort by length descending (longest first to avoid substring collisions)
+    const matchEntries = [];
     for (const c of COUNTRIES) {
-      const normName = c.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      if (text.includes(normName)) {
-        return c;
-      }
+      matchEntries.push({ key: c.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''), country: c });
       for (const alias of c.aliases) {
-        const normAlias = alias.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        // Match whole word or bounded phrase
-        const regex = new RegExp(`\\b${normAlias}\\b`, 'i');
-        if (regex.test(text) || text.includes(normAlias)) {
-          return c;
-        }
+        matchEntries.push({ key: alias.normalize('NFD').replace(/[\u0300-\u036f]/g, ''), country: c });
+      }
+    }
+
+    matchEntries.sort((a, b) => b.key.length - a.key.length);
+
+    for (const entry of matchEntries) {
+      const regex = new RegExp(`\\b${entry.key}\\b`, 'i');
+      if (regex.test(text) || text.includes(entry.key)) {
+        return entry.country;
       }
     }
 
