@@ -85,5 +85,3 @@ class SwotAnalyzer {
 }
 
 module.exports = new SwotAnalyzer();
-
-// Step: feat(swot): add strategic posture classifier (expansion, recovery, activation)
