@@ -43,6 +43,23 @@ function extractMessageText(rawMsg) {
          '';
 }
 
+// Global process exception handlers to guarantee 100% crash immunity from Baileys Signal socket flaps
+process.on('unhandledRejection', (reason) => {
+  const msg = reason?.message || String(reason);
+  if (msg.includes('Connection Closed') || msg.includes('prekey') || msg.includes('SessionEntry') || msg.includes('428') || msg.includes('440')) {
+    return;
+  }
+  console.warn('⚠️ [UnhandledRejection Warning]:', msg);
+});
+
+process.on('uncaughtException', (err) => {
+  const msg = err?.message || String(err);
+  if (msg.includes('Connection Closed') || msg.includes('SessionEntry') || msg.includes('Boom') || msg.includes('428') || msg.includes('440')) {
+    return;
+  }
+  console.error('❌ [UncaughtException Error]:', err);
+});
+
 const SERVER_START_TIME = Date.now();
 
 async function handleIncomingMessage(sock, msg) {
@@ -67,11 +84,12 @@ async function handleIncomingMessage(sock, msg) {
   if (!rawText.trim()) return;
 
   const myJid = sock.user ? sock.user.id.replace(/:.*@/, '@') : '';
+  const myLid = sock.user?.lid ? sock.user.lid.replace(/:.*@/, '@') : '';
   const myCleanNumber = myJid ? myJid.replace(/[^0-9]/g, '') : '';
   const senderNumber = senderJid.replace(/[^0-9]/g, '');
 
   const isFromMe = !!msg.key.fromMe;
-  const isSelfChat = (senderJid === myJid) || (senderNumber === myCleanNumber);
+  const isSelfChat = (senderJid === myJid) || (myLid && senderJid === myLid) || (myCleanNumber && senderNumber === myCleanNumber);
   const isRegisteredAdmin = configManager.isAdmin(senderNumber);
   const isBangCommand = rawText.trim().startsWith('!');
 
@@ -124,24 +142,30 @@ async function handleIncomingMessage(sock, msg) {
     return;
   }
 
-  // 3. OUTSIDE ESTABLISHED FLOW: ONLY RESPOND IF MESSAGE CONTAINS !alaricus
+  // 3. OUTSIDE ESTABLISHED FLOW: RESPOND IF MESSAGE HAS !alaricus OR DIRECT ADMIN COMMAND
   const isAlaricusCommand = rawText.toLowerCase().includes('!alaricus');
-  if (!isAlaricusCommand) {
+  const isDirectAdminCommand = (isSelfChat || isRegisteredAdmin) && rawText.trim().startsWith('!');
+
+  if (!isAlaricusCommand && !isDirectAdminCommand) {
     // Completely ignore messages without !alaricus outside established conversational flows
     return;
   }
 
-  // Parse subcommand after !alaricus (e.g. "!alaricus asistido" -> "!asistido", "!alaricus scan ..." -> "!scan ...", "!alaricus" -> "!ayuda")
-  const alaricusMatch = rawText.match(/!alaricus\s*(.*)/i);
-  let innerCommand = alaricusMatch ? alaricusMatch[1].trim() : '';
-
-  if (!innerCommand) {
-    innerCommand = '!ayuda';
-  } else if (!innerCommand.startsWith('!')) {
-    innerCommand = `!${innerCommand}`;
+  // Parse subcommand
+  let innerCommand = '';
+  if (isAlaricusCommand) {
+    const alaricusMatch = rawText.match(/!alaricus\s*(.*)/i);
+    innerCommand = alaricusMatch ? alaricusMatch[1].trim() : '';
+    if (!innerCommand) {
+      innerCommand = '!ayuda';
+    } else if (!innerCommand.startsWith('!')) {
+      innerCommand = `!${innerCommand}`;
+    }
+  } else {
+    innerCommand = rawText.trim();
   }
 
-  console.log(`\n⚙️ [AlaricusActivator] 🚀 Ejecutando "${innerCommand}" activado por !alaricus desde [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
+  console.log(`\n⚙️ [AlaricusActivator] 🚀 Ejecutando "${innerCommand}" (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
 
   // If command starts assistant copilot mode
   if (innerCommand.toLowerCase().startsWith('!asistido') || innerCommand.toLowerCase().startsWith('!copiloto')) {
