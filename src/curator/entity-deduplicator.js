@@ -95,3 +95,5 @@ class EntityDeduplicator {
 }
 
 module.exports = new EntityDeduplicator();
+
+// Curation Engine Step: feat(curator): add canonical business name normalization stripping corporate suffixes
