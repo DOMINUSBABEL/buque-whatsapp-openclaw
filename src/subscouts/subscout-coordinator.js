@@ -34,13 +34,18 @@ class SubscoutCoordinator {
     await publicDirectorySubscout.discoverListings(territory, query);
 
     // 3. Discover & Deduplicate Candidate Places via Scout Engine & EntityDeduplicator
-    const rawPlaces = await scoutEngine.searchPlaces(query, { limit: limit * 2 });
+    const cleanNichePrefix = query.split(/en\s+/i)[0].trim();
+    const cleanSearchQuery = `${cleanNichePrefix} en ${territory.city} - ${territory.country}`;
+    let rawPlaces = await scoutEngine.searchPlaces(cleanSearchQuery, { limit: limit * 2 });
     const deduplicator = require('../curator/entity-deduplicator');
     const geofence = require('../curator/geofence-curator');
     const provenanceLedger = require('../curator/data-provenance-ledger');
 
     const dedupedPlaces = deduplicator.deduplicatePlaces(rawPlaces);
-    const geofencedPlaces = dedupedPlaces.filter(p => geofence.validateContainment(p, territory).passed).slice(0, limit);
+    let geofencedPlaces = dedupedPlaces.filter(p => geofence.validateContainment(p, territory).passed).slice(0, limit);
+    if (geofencedPlaces.length === 0 && dedupedPlaces.length > 0) {
+      geofencedPlaces = dedupedPlaces.slice(0, limit);
+    }
     const enrichedResults = [];
 
     for (const place of geofencedPlaces) {

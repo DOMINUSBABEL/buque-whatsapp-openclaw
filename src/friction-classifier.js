@@ -47,41 +47,38 @@ class FrictionClassifier {
     }
 
     if (targetService === 'WEB') {
-      // Prioritize Web Route A (No web) then Route B (Friction web)
-      if (!hasWebsite && reviewsCount >= 3) {
+      // Prioritize Web Route A (No web) then Route B (Web redesign / conversion optimization)
+      if (!hasWebsite) {
         return {
           qualified: true,
           route: 'RUTA_A',
           frictionKeywords: foundKeywords,
-          frictionSnippet: matchingSnippet || 'El negocio carece de presencia digital directa para ordenar.',
-          rationale: 'Local demand without digital conversion channel'
+          frictionSnippet: matchingSnippet || 'El negocio carece de presencia digital directa para captar clientes.',
+          rationale: 'Local establishment without verified online conversion channel'
         };
-      }
-      if (hasWebsite && (rating <= 3.9 || foundKeywords.length > 0)) {
+      } else {
         return {
           qualified: true,
           route: 'RUTA_B',
           frictionKeywords: foundKeywords,
-          frictionSnippet: matchingSnippet || `Fallas en canal web actual reportadas por clientes (${rating} estrellas).`,
-          rationale: 'Active web with verified user friction'
+          frictionSnippet: matchingSnippet || `Oportunidad de optimización de canal web y modernización digital (${rating}⭐).`,
+          rationale: 'Active web presence with modernization and high-conversion UX opportunity'
         };
       }
     }
 
-    // 2. AUTO Mode: Coexistence of both Web Directa and VAREGO Social
-    // If business has no web, Route A is a strong pain point
-    if (!hasWebsite && reviewsCount >= 5 && targetService !== 'VAREGO') {
+    // 2. AUTO Mode: Dual optimization (Web Directa + VAREGO Social)
+    if (!hasWebsite) {
       return {
         qualified: true,
         route: 'RUTA_A',
         frictionKeywords: foundKeywords,
-        frictionSnippet: matchingSnippet || 'El negocio carece de presencia digital directa, dependiendo de terceros.',
-        rationale: 'High local demand without digital conversion channel'
+        frictionSnippet: matchingSnippet || 'El negocio carece de presencia web directa, dependiendo exclusivamente de tráfico presencial.',
+        rationale: 'High local commercial demand without dedicated web conversion engine'
       };
     }
 
-    // If social channels are dormant or business needs customer acquisition / liquidity
-    if (socialAudit.social_dormant || (reviewsCount >= 3 && !socialAudit.active_meta_ads)) {
+    if (socialAudit.social_dormant || !socialAudit.active_meta_ads) {
       return {
         qualified: true,
         route: 'RUTA_C_VAREGO',
@@ -91,27 +88,13 @@ class FrictionClassifier {
       };
     }
 
-    // Route B: Has website with customer friction
-    if (hasWebsite && (rating <= 3.9 || foundKeywords.length > 0)) {
-      return {
-        qualified: true,
-        route: 'RUTA_B',
-        frictionKeywords: foundKeywords,
-        frictionSnippet: matchingSnippet || `Calificación baja (${rating}) y fallas en canal digital detectadas.`,
-        rationale: 'Active web presence with verified customer friction in reviews'
-      };
-    }
-
-    // RUTA B: Has Website with Friction (Priority 2 / Reserve)
-    if (hasWebsite && (rating <= 3.9 || foundKeywords.length > 0)) {
-      return {
-        qualified: true,
-        route: 'RUTA_B',
-        frictionKeywords: foundKeywords,
-        frictionSnippet: matchingSnippet || `Calificación baja (${rating}) y fallas en canal digital detectadas.`,
-        rationale: 'Active web presence with verified customer friction in reviews'
-      };
-    }
+    return {
+      qualified: true,
+      route: 'RUTA_B',
+      frictionKeywords: foundKeywords,
+      frictionSnippet: matchingSnippet || `Modernización y optimización de conversión para canal web existente.`,
+      rationale: 'Active digital presence ready for high-conversion overhaul'
+    };
 
     return {
       qualified: false,

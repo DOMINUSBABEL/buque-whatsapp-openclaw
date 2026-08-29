@@ -47,6 +47,7 @@ async function runAsyncTest(name, fn) {
 }
 
 async function executeTestSuite() {
+  leadDatabase.purge();
   console.log('\n======================================================');
   console.log('   ⚔️  RUNNING ALARICUS & VAREGO VALIDATION SUITE     ');
   console.log('======================================================\n');
@@ -557,7 +558,7 @@ async function executeTestSuite() {
     assert(places.length >= 1);
     assert.strictEqual(places[0].country, 'Colombia');
 
-    const batch = await swarm.runScanBatch('Talleres Mecánicos. en Medellín - Colombia', { limit: 2, targetService: 'WEB' });
+    const batch = await swarm.runScanBatch('Restaurantes en Medellín - Colombia', { limit: 2, targetService: 'WEB' });
     assert(batch.length >= 1);
     assert.strictEqual(batch[0].location.country, 'Colombia');
   });

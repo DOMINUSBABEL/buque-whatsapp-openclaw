@@ -99,6 +99,15 @@ class LeadDatabase {
       dispatchedCount: this.data.leads.filter(l => l.pipeline_status === 'IN_OUTREACH' || l.pipeline_status === 'CONVERTED').length
     };
   }
+
+  purge() {
+    this.data = {
+      leads: [],
+      indexedPhones: {},
+      indexedPlaceIds: {}
+    };
+    this.save();
+  }
 }
 
 module.exports = new LeadDatabase();

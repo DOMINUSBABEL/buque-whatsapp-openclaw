@@ -1,59 +1,66 @@
 {
   "leads": [
     {
-      "lead_id": "lead_maps_place_4",
-      "company_name": "Clínica Dental Sonrisas",
+      "lead_id": "lead_osm_node_d20",
+      "company_name": "Montallantas",
       "location": {
-        "address": "Calle 11 #45-21, Medellin, Colombia",
-        "city": "Medellin",
+        "address": "Calle 43 #45-23, Medellín, Colombia",
+        "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "maps_place_436cc3ad6e696361"
+        "maps_place_id": "osm_node_d2040a5c5cffe802"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573159876543",
+        "phone_e164": "+573005065993",
         "email": null,
-        "instagram_handle": null
+        "instagram_handle": "@montallantas"
       },
-      "lead_route": "RUTA_B",
+      "lead_route": "RUTA_A",
       "scout_metadata": {
-        "has_website": true,
-        "website_url": "http://sonrisas-error404.com",
-        "reviews_count": 45,
-        "rating": 3.8,
-        "category": "restaurantes",
-        "friction_keywords_found": [
-          "web",
-          "no funciona",
-          "menú online"
-        ],
-        "friction_snippet": "El enlace para pedir cita en la web no funciona"
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 43,
+        "rating": 4.8,
+        "category": "tyres",
+        "friction_keywords_found": [],
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
+        "social_audit": {
+          "instagram_handle": "@montallantas",
+          "facebook_url": "https://facebook.com/montallantas",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @montallantas inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T13:17:57.535Z",
-      "updated_at": "2026-08-29T13:17:57.535Z",
+      "created_at": "2026-08-29T17:46:35.469Z",
+      "updated_at": "2026-08-29T17:46:35.469Z",
       "diagnostics": {
-        "lead_score": 95,
+        "mrr_potential_usd": 100,
+        "lead_score": 90,
         "high_priority": true,
-        "core_pain_hook": "Clientes de Clínica Dental Sonrisas reportan fricciones directas en su canal web (El enlace para pedir cita en la web no funciona).",
+        "core_pain_hook": "Actualmente Montallantas tiene 43 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *Clínica Dental Sonrisas* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (El enlace para pedir cita en la web no funciona).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/clinica-dental-sonrisas-lead_m\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "whatsapp": "Hola equipo de *Montallantas* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/montallantas-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Optimización de canal web y pedidos para Clínica Dental Sonrisas",
-            "body": "Hola equipo de Clínica Dental Sonrisas,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/clinica-dental-sonrisas-lead_m\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo Buque B2B"
+            "subject": "Propuesta digital directa para Montallantas (Medellín)",
+            "body": "Estimado equipo de Montallantas,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/montallantas-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @Clínica Dental Sonrisas 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/clinica-dental-sonrisas-lead_m ¿La revisamos?",
-          "sms": "Clínica Dental Sonrisas: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/clinica-dental-sonrisas-lead_m ¿Agendamos demo?"
+          "instagram_dm": "Hola @Montallantas ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/montallantas-lead_o",
+          "sms": "Montallantas: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/montallantas-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/clinica-dental-sonrisas-lead_m",
-        "video_asset_url": "http://localhost:3000/videos/demo_cl-nica-dental-sonrisas_lead_m.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_cl-nica-dental-sonrisas_lead_m.mp4"
+        "landing_page_url": "http://localhost:3000/demo/montallantas-lead_o",
+        "video_asset_url": "http://localhost:3000/videos/demo_montallantas_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_montallantas_lead_o.mp4"
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T13:18:01.260Z",
+        "checked_at": "2026-08-29T17:46:44.007Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -64,124 +71,66 @@
       }
     },
     {
-      "lead_id": "lead_maps_place_5",
-      "company_name": "Sabor & Tradición",
+      "lead_id": "lead_osm_node_3a3",
+      "company_name": "Taller",
       "location": {
-        "address": "Calle 10 #45-20, Medellin, Colombia",
-        "city": "Medellin",
+        "address": "Calle 48 #45-48, Medellín, Colombia",
+        "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "maps_place_5361626f72202620"
+        "maps_place_id": "osm_node_3a3dbb81e6b2d66a"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573114567890",
+        "phone_e164": "+573003424198",
         "email": null,
-        "instagram_handle": null
+        "instagram_handle": "@taller"
       },
       "lead_route": "RUTA_A",
       "scout_metadata": {
         "has_website": false,
         "website_url": null,
         "reviews_count": 28,
-        "rating": 4.6,
-        "category": "restaurantes",
-        "friction_keywords_found": [],
-        "friction_snippet": "El negocio carece de presencia digital directa, dependiendo de terceros."
-      },
-      "pipeline_status": "IN_OUTREACH",
-      "created_at": "2026-08-29T13:17:57.534Z",
-      "updated_at": "2026-08-29T14:19:21.355Z",
-      "diagnostics": {
-        "lead_score": 90,
-        "high_priority": true,
-        "core_pain_hook": "Actualmente Sabor & Tradición tiene 28 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
-        "channel_copies": {
-          "whatsapp": "Hola equipo de *Sabor & Tradición* 👋\n\nNotamos que son un referente en Medellin con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/sabor-tradicion-lead_m\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
-          "email": {
-            "subject": "Propuesta digital directa para Sabor & Tradición (Medellin)",
-            "body": "Estimado equipo de Sabor & Tradición,\n\nRevisando las reseñas de sus clientes en Medellin, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/sabor-tradicion-lead_m\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo Buque B2B"
-          },
-          "instagram_dm": "Hola @Sabor & Tradición ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios. Échenle un ojo aquí: http://localhost:3000/demo/sabor-tradicion-lead_m",
-          "sms": "Sabor & Tradición: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/sabor-tradicion-lead_m ¿La activamos esta semana?"
-        }
-      },
-      "assets": {
-        "landing_page_url": "http://localhost:3000/demo/sabor-tradicion-lead_m",
-        "video_asset_url": "http://localhost:3000/videos/demo_sabor---tradici-n_lead_m.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_sabor---tradici-n_lead_m.mp4"
-      },
-      "qa_verification": {
-        "passed": true,
-        "checked_at": "2026-08-29T13:18:04.568Z",
-        "inspections": {
-          "syntax_and_placeholders_valid": true,
-          "urls_http_200_under_1500ms": true,
-          "recipient_identity_valid": true,
-          "route_copy_coherence": true
-        },
-        "rejection_log": null
-      }
-    },
-    {
-      "lead_id": "lead_maps_place_4",
-      "company_name": "Ferretería El Tornillo Maestro",
-      "location": {
-        "address": "Calle 12 #45-22, Medellin, Colombia",
-        "city": "Medellin",
-        "country": "Colombia",
-        "maps_place_id": "maps_place_4665727265746572"
-      },
-      "contact_channel": {
-        "primary_type": "WHATSAPP",
-        "phone_e164": "+573201122334",
-        "email": null,
-        "instagram_handle": "@ferreteraeltornillomaestro"
-      },
-      "lead_route": "RUTA_C_VAREGO",
-      "scout_metadata": {
-        "has_website": false,
-        "website_url": null,
-        "reviews_count": 21,
         "rating": 4.8,
-        "category": "gastrobares",
+        "category": "car_repair",
         "friction_keywords_found": [],
-        "friction_snippet": "Cuenta @ferreteraeltornillomaestro inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja.",
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
         "social_audit": {
-          "instagram_handle": "@ferreteraeltornillomaestro",
-          "facebook_url": "https://facebook.com/ferreteraeltornillomaestro",
+          "instagram_handle": "@taller",
+          "facebook_url": "https://facebook.com/taller",
           "last_post_days_ago": 28,
           "social_dormant": true,
           "active_meta_ads": false,
           "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @ferreteraeltornillomaestro inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
+          "audit_summary": "Cuenta @taller inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
         }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T13:34:27.138Z",
-      "updated_at": "2026-08-29T13:34:27.138Z",
+      "created_at": "2026-08-29T17:46:35.469Z",
+      "updated_at": "2026-08-29T17:46:35.469Z",
       "diagnostics": {
-        "lead_score": 100,
+        "mrr_potential_usd": 100,
+        "lead_score": 90,
         "high_priority": true,
-        "core_pain_hook": "Alta demanda comprobada (21 opiniones) pero sus redes sociales llevan 28 días sin publicaciones estratégicas ni campañas de pauta Meta Ads activas.",
-        "service_offer": "VAREGO_SOCIAL_ADS",
+        "core_pain_hook": "Actualmente Taller tiene 28 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *Ferretería El Tornillo Maestro* 👋\n\nRevisamos su presencia comercial en Medellin y tienen excelentes calificaciones de clientes, pero notamos que su cuenta de redes (@ferreteraeltornillomaestro) no está aprovechando todo su potencial de atracción con pauta de Meta Ads ni reels continuos.\n\nDesde *VAREGO* manejamos la gestión profesional de sus redes sociales por solo *$100 USD al mes* (creación de contenido, diseño y optimización de anuncios; la inversión en pauta publicitaria es administrada directamente por ustedes a su medida).\n\nLes preparamos este plan visual de crecimiento:\n🔗 *Ver propuesta VAREGO:* http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m\n\n¿Les gustaría que coordinemos una breve llamada de 10 minutos para mostrarles la estrategia para este mes?",
+          "whatsapp": "Hola equipo de *Taller* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/taller-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Estrategia de crecimiento en Redes Sociales & Meta Ads para Ferretería El Tornillo Maestro - VAREGO",
-            "body": "Estimado equipo de Ferretería El Tornillo Maestro,\n\nAnalizando el mercado local en Medellin, vemos que su negocio cuenta con una reputación sobresaliente. Sin embargo, existe una gran oportunidad desaprovechada en la captación de clientes a través de Instagram y Meta Ads.\n\nEn VAREGO ofrecemos un servicio de Community Management y administración de pauta de alto impacto con un costo base accesible de $100 USD mensuales (con presupuesto publicitario cubierto directamente por su empresa de forma flexible).\n\nPueden revisar la propuesta estratégica interactiva aquí:\nhttp://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m\n\nQuedamos a su disposición para agendar una sesión estratégica.\n\nCordialmente,\nEquipo VAREGO / ALARICUS"
+            "subject": "Propuesta digital directa para Taller (Medellín)",
+            "body": "Estimado equipo de Taller,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/taller-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @ferreteraeltornillomaestro 🚀 Vemos un gran potencial en su marca y les armamos un plan de contenidos y Meta Ads por $100 USD/mes. Mírenlo aquí: http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m",
-          "sms": "Ferretería El Tornillo Maestro: Activamos sus redes y Meta Ads por $100 USD/mes con VAREGO. Vea su propuesta: http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m"
+          "instagram_dm": "Hola @Taller ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/taller-lead_o",
+          "sms": "Taller: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/taller-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m",
-        "video_asset_url": "http://localhost:3000/videos/demo_ferreter-a-el-tornillo-ma_lead_m.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_ferreter-a-el-tornillo-ma_lead_m.mp4"
+        "landing_page_url": "http://localhost:3000/demo/taller-lead_o",
+        "video_asset_url": "http://localhost:3000/videos/demo_taller_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_taller_lead_o.mp4"
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T13:34:35.149Z",
+        "checked_at": "2026-08-29T17:46:52.577Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -192,65 +141,66 @@
       }
     },
     {
-      "lead_id": "lead_maps_place_4",
-      "company_name": "Estética & Spa Bella Piel",
+      "lead_id": "lead_osm_node_a1e",
+      "company_name": "Honda",
       "location": {
-        "address": "Calle 13 #45-23, Medellin, Colombia",
-        "city": "Medellin",
+        "address": "Calle 17 #45-37, Medellín, Colombia",
+        "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "maps_place_457374c3a9746963"
+        "maps_place_id": "osm_node_a1e985c3fe5a7393"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573007788990",
+        "phone_e164": "+573002087247",
         "email": null,
-        "instagram_handle": "@estticaspabellapiel"
+        "instagram_handle": "@honda"
       },
-      "lead_route": "RUTA_C_VAREGO",
+      "lead_route": "RUTA_A",
       "scout_metadata": {
         "has_website": false,
         "website_url": null,
-        "reviews_count": 43,
-        "rating": 4.9,
-        "category": "gastrobares",
+        "reviews_count": 22,
+        "rating": 4.7,
+        "category": "car",
         "friction_keywords_found": [],
-        "friction_snippet": "Cuenta @estticaspabellapiel inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja.",
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
         "social_audit": {
-          "instagram_handle": "@estticaspabellapiel",
-          "facebook_url": "https://facebook.com/estticaspabellapiel",
-          "last_post_days_ago": 34,
+          "instagram_handle": "@honda",
+          "facebook_url": "https://facebook.com/honda",
+          "last_post_days_ago": 28,
           "social_dormant": true,
           "active_meta_ads": false,
           "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @estticaspabellapiel inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+          "audit_summary": "Cuenta @honda inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
         }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T13:34:27.138Z",
-      "updated_at": "2026-08-29T13:34:27.138Z",
+      "created_at": "2026-08-29T17:46:35.469Z",
+      "updated_at": "2026-08-29T17:46:35.469Z",
       "diagnostics": {
-        "lead_score": 100,
+        "mrr_potential_usd": 100,
+        "lead_score": 90,
         "high_priority": true,
-        "core_pain_hook": "Alta demanda comprobada (43 opiniones) pero sus redes sociales llevan 34 días sin publicaciones estratégicas ni campañas de pauta Meta Ads activas.",
-        "service_offer": "VAREGO_SOCIAL_ADS",
+        "core_pain_hook": "Actualmente Honda tiene 22 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *Estética & Spa Bella Piel* 👋\n\nRevisamos su presencia comercial en Medellin y tienen excelentes calificaciones de clientes, pero notamos que su cuenta de redes (@estticaspabellapiel) no está aprovechando todo su potencial de atracción con pauta de Meta Ads ni reels continuos.\n\nDesde *VAREGO* manejamos la gestión profesional de sus redes sociales por solo *$100 USD al mes* (creación de contenido, diseño y optimización de anuncios; la inversión en pauta publicitaria es administrada directamente por ustedes a su medida).\n\nLes preparamos este plan visual de crecimiento:\n🔗 *Ver propuesta VAREGO:* http://localhost:3000/demo/estetica-spa-bella-piel-lead_m\n\n¿Les gustaría que coordinemos una breve llamada de 10 minutos para mostrarles la estrategia para este mes?",
+          "whatsapp": "Hola equipo de *Honda* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/honda-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Estrategia de crecimiento en Redes Sociales & Meta Ads para Estética & Spa Bella Piel - VAREGO",
-            "body": "Estimado equipo de Estética & Spa Bella Piel,\n\nAnalizando el mercado local en Medellin, vemos que su negocio cuenta con una reputación sobresaliente. Sin embargo, existe una gran oportunidad desaprovechada en la captación de clientes a través de Instagram y Meta Ads.\n\nEn VAREGO ofrecemos un servicio de Community Management y administración de pauta de alto impacto con un costo base accesible de $100 USD mensuales (con presupuesto publicitario cubierto directamente por su empresa de forma flexible).\n\nPueden revisar la propuesta estratégica interactiva aquí:\nhttp://localhost:3000/demo/estetica-spa-bella-piel-lead_m\n\nQuedamos a su disposición para agendar una sesión estratégica.\n\nCordialmente,\nEquipo VAREGO / ALARICUS"
+            "subject": "Propuesta digital directa para Honda (Medellín)",
+            "body": "Estimado equipo de Honda,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/honda-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @estticaspabellapiel 🚀 Vemos un gran potencial en su marca y les armamos un plan de contenidos y Meta Ads por $100 USD/mes. Mírenlo aquí: http://localhost:3000/demo/estetica-spa-bella-piel-lead_m",
-          "sms": "Estética & Spa Bella Piel: Activamos sus redes y Meta Ads por $100 USD/mes con VAREGO. Vea su propuesta: http://localhost:3000/demo/estetica-spa-bella-piel-lead_m"
+          "instagram_dm": "Hola @Honda ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/honda-lead_o",
+          "sms": "Honda: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/honda-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/estetica-spa-bella-piel-lead_m",
-        "video_asset_url": "http://localhost:3000/videos/demo_est-tica---spa-bella-piel_lead_m.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_est-tica---spa-bella-piel_lead_m.mp4"
+        "landing_page_url": "http://localhost:3000/demo/honda-lead_o",
+        "video_asset_url": "http://localhost:3000/videos/demo_honda_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_honda_lead_o.mp4"
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T13:34:42.634Z",
+        "checked_at": "2026-08-29T17:47:01.103Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -261,71 +211,136 @@
       }
     },
     {
-      "lead_id": "lead_maps_place_5",
-      "company_name": "Pizzería Napolitana Artesanal",
+      "lead_id": "lead_osm_node_05f",
+      "company_name": "Presto",
       "location": {
-        "address": "Calle 14 #45-24, Chemnitz, Colombia",
-        "city": "Chemnitz",
+        "address": "Calle 19 #45-39, Medellín, Colombia",
+        "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "maps_place_50697a7a6572c3ad"
+        "maps_place_id": "osm_node_05fe6ac73a1a0c08"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573185566778",
+        "phone_e164": "+573003172289",
         "email": null,
-        "instagram_handle": "@pizzeranapolitanaartesanal"
+        "instagram_handle": "@presto"
       },
-      "lead_route": "RUTA_B",
+      "lead_route": "RUTA_A",
       "scout_metadata": {
-        "has_website": true,
-        "website_url": "http://pizzanapo-caida.co",
-        "reviews_count": 77,
-        "rating": 3.7,
-        "category": "Panaderías - Alemania",
-        "friction_keywords_found": [
-          "página",
-          "web",
-          "error",
-          "menú online"
-        ],
-        "friction_snippet": "La página web da error al pagar",
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 59,
+        "rating": 4.9,
+        "category": "fast_food",
+        "friction_keywords_found": [],
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
         "social_audit": {
-          "instagram_handle": "@pizzeranapolitanaartesanal",
-          "facebook_url": "https://facebook.com/pizzeranapolitanaartesanal",
+          "instagram_handle": "@presto",
+          "facebook_url": "https://facebook.com/presto",
           "last_post_days_ago": 34,
           "social_dormant": true,
           "active_meta_ads": false,
           "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @pizzeranapolitanaartesanal inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+          "audit_summary": "Cuenta @presto inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
         }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T14:17:53.048Z",
-      "updated_at": "2026-08-29T14:17:53.048Z",
+      "created_at": "2026-08-29T17:49:12.116Z",
+      "updated_at": "2026-08-29T17:49:12.116Z",
       "diagnostics": {
         "mrr_potential_usd": 100,
-        "lead_score": 100,
+        "lead_score": 95,
         "high_priority": true,
-        "core_pain_hook": "Clientes de Pizzería Napolitana Artesanal reportan fricciones directas en su canal web (La página web da error al pagar).",
+        "core_pain_hook": "Actualmente Presto tiene 59 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
         "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *Pizzería Napolitana Artesanal* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (La página web da error al pagar).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "whatsapp": "Hola equipo de *Presto* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/presto-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Optimización de canal web y pedidos para Pizzería Napolitana Artesanal",
-            "body": "Hola equipo de Pizzería Napolitana Artesanal,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo ALARICUS B2B"
+            "subject": "Propuesta digital directa para Presto (Medellín)",
+            "body": "Estimado equipo de Presto,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/presto-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @Pizzería Napolitana Artesanal 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m ¿La revisamos?",
-          "sms": "Pizzería Napolitana Artesanal: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m ¿Agendamos demo?"
+          "instagram_dm": "Hola @Presto ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/presto-lead_o",
+          "sms": "Presto: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/presto-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/pizzeria-napolitana-artesanal-lead_m",
-        "video_asset_url": "http://localhost:3000/videos/demo_pizzer-a-napolitana-artes_lead_m.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_pizzer-a-napolitana-artes_lead_m.mp4"
+        "landing_page_url": "http://localhost:3000/demo/presto-lead_o",
+        "video_asset_url": "http://localhost:3000/videos/demo_presto_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_presto_lead_o.mp4"
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T14:17:57.311Z",
+        "checked_at": "2026-08-29T17:49:20.554Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_osm_node_5e6",
+      "company_name": "El Corral",
+      "location": {
+        "address": "Avenida Nutibara 74-09, Medellín, Colombia",
+        "city": "Medellín",
+        "country": "Colombia",
+        "maps_place_id": "osm_node_5e66f5a3b5a9aa5d"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573001816384",
+        "email": null,
+        "instagram_handle": "@elcorral"
+      },
+      "lead_route": "RUTA_A",
+      "scout_metadata": {
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 24,
+        "rating": 4.9,
+        "category": "fast_food",
+        "friction_keywords_found": [],
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
+        "social_audit": {
+          "instagram_handle": "@elcorral",
+          "facebook_url": "https://facebook.com/elcorral",
+          "last_post_days_ago": 28,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @elcorral inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T17:49:12.116Z",
+      "updated_at": "2026-08-29T17:49:12.116Z",
+      "diagnostics": {
+        "mrr_potential_usd": 100,
+        "lead_score": 90,
+        "high_priority": true,
+        "core_pain_hook": "Actualmente El Corral tiene 24 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "service_offer": "DIRECT_WEB",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *El Corral* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/el-corral-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
+          "email": {
+            "subject": "Propuesta digital directa para El Corral (Medellín)",
+            "body": "Estimado equipo de El Corral,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/el-corral-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
+          },
+          "instagram_dm": "Hola @El Corral ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/el-corral-lead_o",
+          "sms": "El Corral: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/el-corral-lead_o ¿La activamos esta semana?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/el-corral-lead_o",
+        "video_asset_url": "http://localhost:3000/videos/demo_el-corral_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_el-corral_lead_o.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T17:49:28.881Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -337,17 +352,17 @@
     }
   ],
   "indexedPhones": {
-    "+573159876543": "lead_maps_place_4",
-    "+573114567890": "lead_maps_place_5",
-    "+573201122334": "lead_maps_place_4",
-    "+573007788990": "lead_maps_place_4",
-    "+573185566778": "lead_maps_place_5"
+    "+573005065993": "lead_osm_node_d20",
+    "+573003424198": "lead_osm_node_3a3",
+    "+573002087247": "lead_osm_node_a1e",
+    "+573003172289": "lead_osm_node_05f",
+    "+573001816384": "lead_osm_node_5e6"
   },
   "indexedPlaceIds": {
-    "maps_place_436cc3ad6e696361": "lead_maps_place_4",
-    "maps_place_5361626f72202620": "lead_maps_place_5",
-    "maps_place_4665727265746572": "lead_maps_place_4",
-    "maps_place_457374c3a9746963": "lead_maps_place_4",
-    "maps_place_50697a7a6572c3ad": "lead_maps_place_5"
+    "osm_node_d2040a5c5cffe802": "lead_osm_node_d20",
+    "osm_node_3a3dbb81e6b2d66a": "lead_osm_node_3a3",
+    "osm_node_a1e985c3fe5a7393": "lead_osm_node_a1e",
+    "osm_node_05fe6ac73a1a0c08": "lead_osm_node_05f",
+    "osm_node_5e66f5a3b5a9aa5d": "lead_osm_node_5e6"
   }
 }

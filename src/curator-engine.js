@@ -118,14 +118,16 @@ class CuratorEngine {
       });
 
       const aliases = {
-        'panader': ['backerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
-        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie', 'food'],
+        'panader': ['backerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant', 'pastry', 'confectionery'],
+        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie', 'food', 'fast_food', 'cafe', 'bar', 'pub'],
         'pizz': ['pizzeria', 'pizza'],
-        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista', 'odonto'],
-        'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique', 'hospital', 'doctor'],
+        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista', 'odonto', 'clinic', 'doctors'],
+        'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique', 'hospital', 'doctor', 'pharmacy'],
         'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne', 'cerveceria'],
-        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure', 'peluqueria', 'barber'],
-        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor', 'frenos', 'suspension', 'automotriz', 'latoneria', 'pintura']
+        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure', 'peluqueria', 'barber', 'hairdresser', 'barberia'],
+        'barber': ['barberia', 'barber', 'hairdresser', 'beauty', 'peluqueria', 'salon', 'corte', 'afeitado'],
+        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos', 'motor', 'frenos', 'suspension', 'automotriz', 'latoneria', 'pintura', 'car_repair', 'car', 'tyres', 'mantenimiento', 'montallantas', 'honda', 'chevrolet', 'renault', 'taller'],
+        'ferreter': ['hardware', 'doityourself', 'trade', 'ferreteria', 'materiales', 'herramientas', 'tornillos', 'construccion']
       };
 
       let aliasMatch = false;
