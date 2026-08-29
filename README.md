@@ -141,6 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 🗺️ Explorador Visual por Captura de Mapa (`MapVisionScout`)
+## 🛡️ Agente de Curaduría y Puerta Anti-Alucinaciones (`CURATOR_AGENT`)
 
-Permite enviar una captura de pantalla de Google Maps de una zona comercial vía WhatsApp o terminal (`!mapa [ruta_imagen]`). El agente detecta los comercios y puntos de interés visibles en el cuadrante y lanza prospección curada.
+Verifica la veracidad física, la coherencia de categoría (ej: descarta pizzerías cuando se buscan panaderías) y la correspondencia internacional del teléfono antes de generar assets o enviar mensajes.
