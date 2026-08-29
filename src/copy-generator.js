@@ -4,6 +4,13 @@
  * with emotional resonance, route coherence, and clean call-to-actions.
  */
 class CopyGenerator {
+  static getCurrencySymbol(countryName) {
+    if (countryName === 'Francia' || countryName === 'Alemania' || countryName === 'España' || countryName === 'Guayana Francesa') return 'EUR';
+    if (countryName === 'Brasil') return 'BRL';
+    if (countryName === 'Reino Unido') return 'GBP';
+    return 'USD';
+  }
+
   static generateCopies(lead) {
     const name = lead.company_name;
     const city = lead.location?.city || 'su ciudad';
