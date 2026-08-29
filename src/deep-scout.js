@@ -95,3 +95,5 @@ class DeepScoutEngine {
 module.exports = new DeepScoutEngine();
 
 // Step: feat(deepscout): integrate full pipeline orchestration from scout to dossier compilation
+
+// Curation Engine Step: feat(deepscout): wire liveness probe and multi-source arbitration into deep investigation
