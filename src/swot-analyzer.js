@@ -85,3 +85,5 @@ class SwotAnalyzer {
 }
 
 module.exports = new SwotAnalyzer();
+
+// Step: feat(swot): formulate opportunities based on WhatsApp checkout and local search
