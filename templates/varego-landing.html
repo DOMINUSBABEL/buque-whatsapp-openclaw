@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>{{COMPANY_NAME}} | Plan de Crecimiento en Redes & Meta Ads (VAREGO)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
+    h1, h2, h3, .brand-font { font-family: 'Outfit', sans-serif; }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glow-accent {
+      box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between max-w-md mx-auto p-4 selection:bg-pink-500 selection:text-white">
+  <div>
+    <!-- Top Agency Badge Header -->
+    <header class="text-center pt-6 pb-4">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-950/60 border border-pink-500/40 text-xs text-pink-300 font-bold uppercase tracking-widest mb-3">
+        <span>⚡</span> Propuesta Exclusiva VAREGO
+      </div>
+      <h1 class="text-2xl font-black tracking-tight text-white">{{COMPANY_NAME}}</h1>
+      <p class="text-xs font-medium text-slate-400 mt-1 flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+        Estrategia de Redes & Pauta en {{CITY}}
+      </p>
+      
+      <!-- Instagram Audit Status Card -->
+      <div class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/50 text-[11px] text-slate-300">
+        <span>📸</span> {{INSTAGRAM_HANDLE}} • <span>{{SOCIAL_STATUS_SNIPPET}}</span>
+      </div>
+    </header>
+
+    <!-- Core Opportunity & Value Proposition Banner -->
+    <div class="glass-card p-5 rounded-3xl mb-5 text-center glow-accent border-pink-500/30">
+      <p class="text-xs text-pink-400 font-bold uppercase tracking-wider">Plan de Aceleración Comercial</p>
+      <h2 class="text-lg font-black text-white mt-1">Atrae Clientes Diarios y Aumenta tu Liquidez</h2>
+      <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+        Transformamos tus redes sociales en un canal automatizado de ventas mediante contenido profesional de alto impacto y anuncios segmentados en Meta Ads.
+      </p>
+    </div>
+
+    <!-- Monthly Retainer & Pricing Structure Card -->
+    <div class="glass-card p-5 rounded-3xl mb-5 border-emerald-500/30 bg-gradient-to-b from-slate-900/90 to-emerald-950/30">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Tarifa Todo Incluido</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-extrabold">Mejor Valor B2B</span>
+      </div>
+      <div class="mt-3 flex items-baseline gap-1">
+        <span class="text-3xl font-extrabold text-white"></span>
+        <span class="text-sm font-semibold text-slate-400">USD / mes</span>
+      </div>
+      <p class="text-xs text-slate-300 mt-1">Costo base mensual por gestión completa de Community Management y pauta.</p>
+
+      <ul class="mt-4 space-y-2 text-xs text-slate-200">
+        <li class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold">✓</span> 12 publicaciones y Reels mensuales de alta estética
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold">✓</span> Configuración y optimización continua de Meta Ads
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold">✓</span> Copywriting persuasivo y ganchos comerciales
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold">✓</span> Presupuesto de pauta flexible administrado 100% por ti
+        </li>
+      </ul>
+    </div>
+
+    <!-- Content Ideas & Sample Grid Section -->
+    <section class="space-y-3 mb-6">
+      <div class="flex items-center justify-between px-1">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-slate-400">Ideas de Contenido para tu Negocio</h2>
+        <span class="text-[10px] text-pink-400 font-semibold">Semana 1</span>
+      </div>
+
+      {{CONTENT_IDEAS_HTML}}
+    </section>
+
+    <!-- Client Ad Budget Explanation Note -->
+    <div class="glass-card p-4 rounded-2xl mb-6 text-xs text-slate-300 space-y-2">
+      <div class="flex items-start gap-2">
+        <span class="text-pink-400 font-bold">💡</span>
+        <span><strong>Control total de pauta:</strong> Tú decides cuánto invertir en anuncios de Meta (desde  USD/mes) pagados directamente a la plataforma. Nosotros nos encargamos de que cada dólar genere conversiones.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Bottom Conversion Footer -->
+  <footer class="sticky bottom-3 z-50 pt-2">
+    <a href="https://wa.me/{{PHONE_CLEAN}}?text=Hola%20equipo%20de%20VAREGO,%20quiero%20activar%20el%20plan%20de%20redes%20y%20Meta%20Ads%20de%20100%20USD%20para%20{{COMPANY_NAME}}"
+       class="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold text-sm shadow-xl shadow-pink-950/50 active:scale-[0.98] transition">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+      </svg>
+      <span>Activar Plan VAREGO ( USD/mes)</span>
+    </a>
+  </footer>
+</body>
+</html>
