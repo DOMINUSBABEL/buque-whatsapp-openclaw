@@ -583,6 +583,101 @@ async function executeTestSuite() {
     assert.strictEqual(sentMessages.length, 0);
   });
 
+  // 19. Design Systems & design.md Archetype Resolution
+  console.log('\n🎨 [19/20] Testing Design Systems & design.md Archetype Loader...');
+  const designSystemLoader = require('../src/design-system-loader');
+
+  runTest('Loads and parses 5 specialized design.md specifications', () => {
+    assert.strictEqual(designSystemLoader.designDocs.size, 5);
+    assert(designSystemLoader.designDocs.has('b2b_industrial_automotive'));
+    assert(designSystemLoader.designDocs.has('b2c_gastronomy_hospitality'));
+    assert(designSystemLoader.designDocs.has('b2c_wellness_medical_beauty'));
+    assert(designSystemLoader.designDocs.has('b2b_tech_software_consulting'));
+    assert(designSystemLoader.designDocs.has('b2c_retail_boutique_fitness'));
+  });
+
+  runTest('Resolves bespoke archetype, brand mission, vision and palettes per business model', () => {
+    const autoLead = { company_name: 'Taller Mecánico El Pistón', scout_metadata: { category: 'Taller Mecánico' }, location: { city: 'Pereira' } };
+    const autoProfile = designSystemLoader.resolveDesignProfile(autoLead);
+    assert.strictEqual(autoProfile.archetypeKey, 'b2b_industrial_automotive');
+    assert(autoProfile.brand.mission.includes('soluciones técnicas confiables'));
+    assert(autoProfile.palette.accent_primary.includes('#'));
+
+    const gastroLead = { company_name: 'Pizzería Napolitana', scout_metadata: { category: 'Restaurante' }, location: { city: 'Medellín' } };
+    const gastroProfile = designSystemLoader.resolveDesignProfile(gastroLead);
+    assert.strictEqual(gastroProfile.archetypeKey, 'b2c_gastronomy_hospitality');
+    assert(gastroProfile.brand.motto.includes('Sabores de Autor'));
+
+    const dentalLead = { company_name: 'Clínica Dental Sonrisas', scout_metadata: { category: 'Clínica Dental' }, location: { city: 'Cali' } };
+    const dentalProfile = designSystemLoader.resolveDesignProfile(dentalLead);
+    assert.strictEqual(dentalProfile.archetypeKey, 'b2c_wellness_medical_beauty');
+    assert(dentalProfile.brand.vision.includes('salud, odontología y estética'));
+  });
+
+  // 20. Screenshot Engine & Image Outreach
+  console.log('\n📸 [20/20] Testing Mobile Screenshot Engine & Image Outreach...');
+  const screenshotEngine = require('../src/screenshot-engine');
+
+  await runAsyncTest('Captures high-res mobile screenshot and attaches asset to lead object', async () => {
+    const mockLead = {
+      lead_id: 'test-screenshot-lead-999',
+      company_name: 'Café & Panadería Artesanal',
+      lead_route: 'RUTA_A',
+      location: { city: 'Medellín', address: 'Calle 10 #43-20' },
+      contact_channel: { phone_e164: '+573001234567' },
+      scout_metadata: {
+        category: 'Panadería Artesanal',
+        rating: 4.9,
+        reviews_count: 28,
+        reviews_snippets: ['El mejor pan de masa madre y café de origen']
+      }
+    };
+
+    const landingUrl = await builderEngine.buildLandingPage(mockLead);
+    assert(landingUrl.includes('/demo/'));
+    assert(mockLead.assets?.screenshot_local_path);
+    assert(fs.existsSync(mockLead.assets.screenshot_local_path));
+    assert(mockLead.assets?.screenshot_url.includes('.png'));
+  });
+
+  await runAsyncTest('Executes !pantallazo administrative command and sends image back via WhatsApp', async () => {
+    let sentImageMessage = null;
+    const mockSock = {
+      sendMessage: async (jid, payload) => {
+        sentImageMessage = { jid, payload };
+      }
+    };
+
+    const testLead = {
+      lead_id: 'lead-test-pantallazo-123',
+      company_name: 'Auto Taller Racing',
+      lead_route: 'RUTA_A',
+      contact_channel: { phone_e164: '+573119998877' },
+      location: { city: 'Pereira' },
+      assets: {
+        landing_page_url: 'http://localhost:3000/demo/auto-taller-racing-123',
+        screenshot_local_path: path.join(__dirname, '..', 'generated_screenshots', 'auto-taller-racing-123.png')
+      }
+    };
+    leadDatabase.insertLead(testLead);
+
+    // Create a dummy screenshot file for testing the command
+    fs.writeFileSync(testLead.assets.screenshot_local_path, 'DUMMY_SCREENSHOT_DATA');
+
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: '573117272822@s.whatsapp.net', fromMe: false },
+      message: { conversation: '!pantallazo lead-test-pantallazo-123' }
+    });
+
+    assert(sentImageMessage !== null);
+    assert(sentImageMessage.payload.image);
+    assert(sentImageMessage.payload.caption.includes('Vista Previa Móvil Generada'));
+
+    if (fs.existsSync(testLead.assets.screenshot_local_path)) {
+      fs.unlinkSync(testLead.assets.screenshot_local_path);
+    }
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);
