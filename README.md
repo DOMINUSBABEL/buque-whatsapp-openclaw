@@ -26,7 +26,7 @@
                                           │
                                           ▼
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    ┃              8-AGENT AUTONOMOUS B2B PIPELINE (SWARM & CURATOR)                ┃
+    ┃              6-AGENT AUTONOMOUS B2B PIPELINE (SWARM)                ┃
     ┃  ┌─────────────────────────────┐   ┌─────────────────────────────┐  ┃
     ┃  │  1. SCOUT_AGENT             │   │  4. FILMER_AGENT            │  ┃
     ┃  │     (Maps & Social Auditor) │   │     (10s 9:16 Vertical Demo)│  ┃
@@ -139,3 +139,9 @@ http://localhost:3000/dashboard
 
 ## 📜 Registro de Cambios
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
+
+
+## 🤖 Modos de Despliegue (Dual Execution Modes)
+
+1. **Modo Automático (`!auto` o `!scan ...`):** Ejecución 100% autónoma con curaduría y despacho automático.
+2. **Modo Asistido / Copiloto (`!asistido` o `!copiloto`):** Diálogo guiado paso a paso con compilación de demos y pre-aprobación requerida (`!aprobar-todos`) antes de cualquier despacho por WhatsApp.
