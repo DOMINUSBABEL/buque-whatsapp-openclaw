@@ -71,6 +71,9 @@ class BuilderEngine {
       // Web Directa Page (Rutas A/B)
       template = fs.readFileSync(TEMPLATE_WEB_FILE, 'utf8');
 
+      const themeEngine = require('./theme-engine');
+      const theme = themeEngine.resolveTheme(lead.scout_metadata?.category || '');
+
       const catalogItems = lead.assets?.catalog_items ||
         catalogBuilder.extractCatalog({
           category: lead.scout_metadata?.category,
@@ -78,19 +81,22 @@ class BuilderEngine {
           contact_channel: lead.contact_channel
         });
 
-      const catalogHtml = catalogItems.map(item => `
-        <div class="glass-card p-4 rounded-2xl flex items-center justify-between hover:border-indigo-500/40 transition">
-          <div class="pr-2">
+      const catalogHtml = catalogItems.map((item, idx) => {
+        const itemImg = theme.catalog_images ? theme.catalog_images[idx % theme.catalog_images.length] : null;
+        return `
+        <div class="glass-card p-4 rounded-2xl flex items-center justify-between hover:border-amber-500/40 transition gap-3">
+          ${itemImg ? `<img src="${itemImg}" alt="${item.title}" class="w-14 h-14 object-cover rounded-xl border border-white/10 flex-shrink-0" />` : ''}
+          <div class="flex-1 pr-2">
             <h3 class="font-bold text-sm text-white">${item.title}</h3>
-            <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">${item.description}</p>
-            <span class="inline-block text-[11px] font-bold text-indigo-300 mt-1">${item.price_tag || 'Consultar'}</span>
+            <p class="text-xs text-slate-400 mt-0.5 leading-relaxed line-clamp-2">${item.description}</p>
+            <span class="inline-block text-[11px] font-bold text-amber-400 mt-1">${item.price_tag || 'Consultar'}</span>
           </div>
           <a href="https://wa.me/${phoneClean}?text=Hola,%20quiero%20información%20sobre%20el%20servicio:%20${encodeURIComponent(item.title)}"
-             class="flex-shrink-0 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow-md shadow-indigo-900/30">
-            Pedir
+             class="flex-shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-slate-950 font-black text-xs px-3.5 py-2.5 rounded-xl transition shadow-lg shadow-amber-950/40">
+            Pedir 📲
           </a>
         </div>
-      `).join('\n');
+      `;}).join('\n');
 
       template = template
         .replace(/{{COMPANY_NAME}}/g, lead.company_name)
@@ -100,7 +106,10 @@ class BuilderEngine {
         .replace(/{{REVIEWS_COUNT}}/g, String(lead.scout_metadata?.reviews_count || 12))
         .replace(/{{ADDRESS}}/g, lead.location?.address || 'Ubicación céntrica')
         .replace(/{{PHONE_CLEAN}}/g, phoneClean)
-        .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml);
+        .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml)
+        .replace(/{{HERO_IMAGE}}/g, theme.hero_image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=85')
+        .replace(/{{BG_PRIMARY}}/g, theme.bg_primary || '#090d16')
+        .replace(/{{ACCENT_PRIMARY}}/g, theme.accent_primary || '#f59e0b');
     }
 
     const indexPath = path.join(siteFolder, 'index.html');
