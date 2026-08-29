@@ -1,19 +1,19 @@
-# ⚔️ ALARICUS B2B: Autonomous Multi-Agent Acquisition Swarm & VAREGO Social Engine
+# ⚔️ ALARICUS B2B: Autonomous Multi-Agent Acquisition Swarm & Strategic Intelligence Engine
 
-### *A Deterministic State-Graph Harness for Commercial Discovery, Truth-Curated Verification, Universal ITU E.164 Geo-Targeting, VAREGO Social Auditing ($100 USD/mo), and Closed-Loop WhatsApp Outreach*
+### *A Deterministic State-Graph Harness for Commercial Discovery, Chamber of Commerce Registry Verification, Deep Web Forensics, SWOT Strategic Diagnostics, VAREGO Social Retainers ($100 USD/mo), and Ultra-Premium Web Synthesis*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B%20%7C%2020%2B-blue.svg)](https://nodejs.org/)
 [![Protocol: Baileys](https://img.shields.io/badge/Protocol-WhiskeySockets%20Baileys-green.svg)](https://github.com/WhiskeySockets/Baileys)
 [![Architecture: OpenClaw Swarm](https://img.shields.io/badge/Architecture-OpenClaw%20Swarm-purple.svg)](https://github.com/DOMINUSBABEL)
-[![Version: 2.1.0](https://img.shields.io/badge/Release-v2.1.0--ALARICUS-rose.svg)](https://github.com/DOMINUSBABEL)
+[![Version: 2.2.0](https://img.shields.io/badge/Release-v2.2.0--ALARICUS-rose.svg)](https://github.com/DOMINUSBABEL)
 
 ---
 
 ```
-                       ALARICUS B2B AGENTIC SWARM ARCHITECTURE
+                       ALARICUS B2B STRATEGIC INTELLIGENCE ARCHITECTURE
  
-    [ Operator / Admin WhatsApp or REPL CLI ] ── Trigger: "!asistido", "!scan", or "!mapa"
+    [ Operator / Admin WhatsApp or REPL CLI ] ── Trigger: "!dossier", "!asistido", "!scan"
                   │
                   ▼
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -21,94 +21,67 @@
     ┃  • Baileys WebSocket with Cacheable Signal KeyStore                 ┃
     ┃  • Dual Modes: Mode AUTO (Autonomous) & Mode ASSISTED (Copilot)     ┃
     ┃  • Universal 200+ Country ITU-T E.164 Calling Code Registry         ┃
+    ┃  • Pure Scout / Intelligence Mode (Zero-Outreach Dossiers)          ┃
     ┃  • Interactive Terminal REPL Console (`ALARICUS>`)                  ┃
-    ┃  • Signal Auto-Healer & Zero-Lockout 401 Credential Recovery        ┃
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
                                           │
                                           ▼
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    ┃              8-AGENT AUTONOMOUS B2B PIPELINE (SWARM)                ┃
+    ┃              MULTI-LAYER COMMERCIAL INTELLIGENCE PIPELINE           ┃
     ┃  ┌─────────────────────────────┐   ┌─────────────────────────────┐  ┃
-    ┃  │  1. SCOUT_AGENT             │   │  5. BUILDER_AGENT           │  ┃
-    ┃  │     (Maps & Social Auditor) │   │     (Web & VAREGO Proposals)│  ┃
+    ┃  │  1. REGISTRY_INSPECTOR      │   │  5. THEME_LUXURY_ENGINE     │  ┃
+    ┃  │  (Chamber of Commerce/RUES) │   │  (Glassmorphism & Palettes) │  ┃
     ┃  ├─────────────────────────────┤   ├─────────────────────────────┤  ┃
-    ┃  │  2. MAP_VISION_AGENT        │   │  6. FILMER_AGENT            │  ┃
-    ┃  │     (Screenshot Quadrants)  │   │     (10s 9:16 Vertical Demo)│  ┃
+    ┃  │  2. DEEP_WEB_FORENSICS      │   │  6. BUILDER_AGENT           │  ┃
+    ┃  │  (CMS, SSL, Tech & Vacancy) │   │  (High-Aesthetic Sites/Deck)│  ┃
     ┃  ├─────────────────────────────┤   ├─────────────────────────────┤  ┃
-    ┃  │  3. CURATOR_AGENT           │   │  7. CHECKER_AGENT (QA)      │  ┃
-    ┃  │     (Truth & E.164 Country) │   │     (E.164, Latency & Rate) │  ┃
+    ┃  │  3. SWOT_DAFO_ENGINE        │   │  7. DOSSIER_GENERATOR       │  ┃
+    ┃  │  (4-Quadrant Strategy NLP)  │   │  (McKinsey HTML Dossiers)   │  ┃
     ┃  ├─────────────────────────────┤   ├─────────────────────────────┤  ┃
-    ┃  │  4. DIAGNOSER_AGENT         │   │  8. PITCHER_AGENT           │  ┃
-    ┃  │     (Heuristics & Copy Gen) │   │     (WhatsApp State-Machine)│  ┃
+    ┃  │  4. BIZ_MODEL_DECOMPOSER    │   │  8. PITCHER_AGENT           │  ┃
+    ┃  │  (Herfindahl Density Index) │   │  (Closed-Loop WhatsApp Conv)│  ┃
     ┃  └─────────────────────────────┘   └─────────────────────────────┘  ┃
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
                                           │
                                           ▼
-    [ Prospect Client (WhatsApp) ] ──── Video Demo + Live Proposal / Web Preview
-                  │
-                  ▼
-    [ Bidirectional Negotiation ] ──── Auto-Closing / Human Escalation Loop
+    [ Strategic Intelligence Dossier / High-Aesthetic Mobile Web Demo ]
 ```
 
 ---
 
 ## 📄 Abstract (Resumen Ejecutivo)
 
-**ALARICUS** es un *Harness Agéntico Multimodal Autónomo* de prospección comercial B2B de última generación. Integra validación internacional estricta para más de 200 países, curaduría de datos en tiempo real, dos modos de despliegue y dos ofertas comerciales:
+**ALARICUS v2.2.0** es un *Harness Agéntico de Inteligencia Comercial B2B y Prospección Estratégica*. Va mucho más allá de un rastreador básico de Google Maps: implementa múltiples capas de profundidad técnica para auditar y diagnosticar negocios en micro-zonas (barrios, comunas y cuadrantes) de cualquier país:
 
-1. **🌐 Servicio Web Directa (Rutas A y B):**
-   - **Ruta A:** Negocios sin página web directa para captar clientes ($\ge 3$ reseñas). Genera catálogo interactivo y pedidos a WhatsApp sin comisiones intermediarias.
-   - **Ruta B:** Negocios con sitio web deficiente o enlaces caídos ($\le 3.9$ o keywords de fricción). Ofrece rediseño de carga ultrarrápida.
-2. **📱 Servicio VAREGO Social & Meta Ads (Ruta C):**
-   - Negocios con reputación activa que requieren expandir sus ventas y liquidez mediante redes sociales profesionales y campañas de Meta Ads.
-   - **Oferta comercial:** **$100 USD / mes** de costo base de Community Management (diseño de 12 piezas/reels mensuales + optimización de anuncios). El presupuesto publicitario en pauta es cubierto y administrado directamente por el cliente.
+1. **🏛️ Inspección en Cámaras de Comercio y Registros Mercantiles (`RegistryInspector`):**
+   - Cruza nombres comerciales con bases de datos mercantiles oficiales (Cámara de Comercio / RUES en Colombia, Handelsregister en Alemania, Division of Corporations en USA, RCS SIRENE en Francia, Registro Mercantil en España).
+   - Valida estado legal (`MATRICULADO / ACTIVO`), código de actividad económica (CIIU 4752, NAF, NAICS, CNAE), años de trayectoria y concordancia física del establecimiento.
+
+2. **⚡ Forense Web Profundo & Vacancia Digital (`DeepWebForensics`):**
+   - Detección de Stack y CMS (WordPress, WooCommerce, Shopify, Wix, Squarespace).
+   - Medición de latencia HTTP, validez de certificados SSL/HTTPS, metadatos Schema.org LocalBusiness y cálculo de índice de fricción de conversión (0–100).
+
+3. **🎯 Matriz Estratégica SWOT / DAFO (`SwotAnalyzer`):**
+   - Generación de matriz ejecutiva de 4 cuadrantes (Fortalezas, Debilidades, Oportunidades, Amenazas) con NLP sobre opiniones de clientes y postura estratégica (Expansión, Recuperación o Activación).
+
+4. **📈 Descomposición del Modelo de Negocio & Densidad Competitiva (`BusinessModelEngine`):**
+   - Arquetipos de modelo de ingresos (Retail B2B/B2C, Gastronomía, Clínicas, Hospitalidad), estimación de ticket promedio y cálculo de índice de densidad competitiva local (simulación Herfindahl-Hirschman por barrio).
+
+5. **🎨 Sistema de Diseño de Ultra-Lujo (`ThemeEngine`):**
+   - Diseños con estética *glassmorphism*, tipografía premium (Outfit, Plus Jakarta Sans, JetBrains Mono) y paletas adaptadas dinámicamente al nicho (Titanium Industrial, Obsidian Gourmet, Arctic Health, Royal Velvet, Cyber Indigo).
+
+6. **📋 Generador de Dossiers Estratégicos (`DossierGenerator`):**
+   - Informes interactivos en HTML y Markdown listos para consultoría de alto nivel o venta consultiva sin necesidad de despachar mensajes en frío.
 
 ---
 
-## 🤖 Modos de Despliegue (Dual Execution Modes)
+## 🤖 Modos de Despliegue
 
 | Modo | Comando | Descripción |
 | :--- | :--- | :--- |
-| **Modo Asistido (Copiloto)** | `!asistido` o `!copiloto` | **Human-in-the-Loop.** El agente interactúa mediante un diálogo guiado de 3 pasos (Nicho, Ciudad/País y Servicio) y genera los prospectos con sus demos **sin enviarlos**. Presenta la lista curada y espera autorización con `!aprobar-todos` o `!descartar`. |
-| **Modo Automático** | `!auto` o `!scan ...` | Prospección y despacho autónomo directo aplicando los filtros del `CURATOR_AGENT`. |
-
----
-
-## 🌍 Registro Universal de Países y Prefijos ITU-T E.164
-
-ALARICUS cuenta con un **Registro Universal de Países** (`src/utils/country-registry.js`) con validación de prefijos internacionales:
-- **Guyana:** `+592` (ej: Georgetown)
-- **Guayana Francesa:** `+594` (ej: Cayenne)
-- **Francia:** `+33` (ej: Paris)
-- **Alemania:** `+49` (ej: Chemnitz, Berlin)
-- **Colombia:** `+57` (ej: Medellín, Bogotá)
-- **Estados Unidos / Canadá:** `+1` (ej: Miami, New York)
-- **España:** `+34` (ej: Madrid, Barcelona)
-- **Brasil:** `+55` (ej: São Paulo)
-- **Y más de 200 países y territorios.**
-
-> 🛡️ **Puerta Anti-Alucinaciones:** Si una búsqueda es en Alemania o Guyana y el número extraído no corresponde con el prefijo internacional de ese país, el `CURATOR_AGENT` descarta el prospecto de inmediato para evitar envíos a números equivocados.
-
----
-
-## 🗺️ Explorador Visual por Captura de Mapa (`MapVisionScout`)
-
-Permite enviar una captura de pantalla de Google Maps de una zona o cuadrante comercial vía WhatsApp o consola (`!mapa [ruta_imagen]` o comando `mapa` en terminal). El agente analiza los puntos de interés visibles y lanza prospección curada sobre esa área.
-
----
-
-## 🔬 Topología Agéntica (8 Agentes Especializados)
-
-| Rol | Archivo | Responsabilidad |
-| :--- | :--- | :--- |
-| **SCOUT_AGENT** | `src/scout-engine.js` | Descubrimiento comercial en Google Maps y auditoría social. |
-| **MAP_VISION_AGENT** | `src/map-vision-scout.js` | Análisis multimodal de capturas de pantalla de mapas y cuadrantes. |
-| **CURATOR_AGENT** | `src/curator-engine.js` | Verificación de veracidad, correspondencia de país y coherencia de nicho. |
-| **DIAGNOSER_AGENT** | `src/diagnoser-engine.js` | Scoring 1-100 y redacción persuasiva multilingüe (DE, FR, EN, ES, PT). |
-| **BUILDER_AGENT** | `src/builder-engine.js` | Compilación instantánea de demos web y decks interactivos de VAREGO. |
-| **FILMER_AGENT** | `src/filmer-engine.js` | Producción de micro-videos verticales 9:16 MP4 a 30 FPS. |
-| **CHECKER_AGENT** | `src/checker-qa.js` | Quality gatekeeper (E.164, latencia HTTP < 1.5s, cláusula $100 USD). |
-| **PITCHER_AGENT** | `src/state-machine.js` | Despacho con espaciado anti-spam (45-120s) y negociación en WhatsApp. |
+| **Puro Scout / Inteligencia** | `!dossier [nicho] en [barrio]` | **Cero envíos.** Realiza investigación profunda, valida Cámara de Comercio, audita web, genera matriz SWOT y compila el dossier interactivo. |
+| **Modo Asistido (Copiloto)** | `!asistido` o `!copiloto` | Diálogo guiado paso a paso con pre-aprobación requerida (`!aprobar-todos`) antes de enviar mensajes. |
+| **Modo Automático** | `!auto` o `!scan ...` | Prospección y despacho autónomo directo aplicando curaduría de país y anti-alucinaciones. |
 
 ---
 
@@ -120,24 +93,23 @@ Set-Location "C:\Users\jegom\buque-whatsapp-openclaw"
 npm start
 ```
 
-### 2. Comandos en WhatsApp o Terminal REPL (`ALARICUS>`)
-- `!asistido` — Iniciar diálogo guiado de campaña con pre-aprobación.
-- `!scan [nicho] en [ciudad]` — Prospección para Web Directa (ej: `!scan panaderias en Chemnitz - Alemania`).
-- `!scan-varego [nicho] en [ciudad]` — Prospección VAREGO $100/mes (ej: `!scan-varego gastrobares en Medellin`).
-- `!mapa [ruta_imagen]` — Prospección a partir de captura de Google Maps.
-- `!audit-social [handle]` — Auditoría express de Instagram y Meta Ads.
-- `!estado` — Métricas en vivo y cálculo de MRR potencial.
-- `!aprobar-todos` — Confirmar despacho de prospectos en modo asistido.
-- `!pausar` / `!reanudar` — Control de flujo de envíos.
-- `!ayuda` — Menú completo de comandos.
+### 2. Comandos Clave en WhatsApp o Consola REPL (`ALARICUS>`)
+- `!dossier ferreterias en el barrio La Milagrosa de Medellin` — Diagnóstico multi-capa y generación de dossier estratégico.
+- `!scan panaderias en Chemnitz - Alemania` — Prospección y síntesis web para negocios internacionales.
+- `!scan-varego gastrobares en Medellin` — Prospección para VAREGO Social & Meta Ads ($100 USD/mes).
+- `!mapa [ruta_imagen]` — Prospección visual a partir de captura de Google Maps.
+- `!audit-social [handle]` — Auditoría express de Instagram y pauta de Meta Ads.
+- `!estado` — Métricas y cálculo de MRR potencial.
 
 ---
 
-## 📊 Dashboard Web en Tiempo Real
-Monitoreo gráfico en vivo en: `http://localhost:3000/dashboard`
+## 📊 Visualización de Dossiers y Dashboard
+- **Dashboard en Vivo:** `http://localhost:3000/dashboard`
+- **Dossiers Generados:** `http://localhost:3000/dossier/[nombre-del-negocio]`
 
 ---
 
 ## 🛡️ Licencia y Autor
 - **Autor:** Dominus Babel / BABYLON.IA (Juan Esteban Gómez Bernal)
 - **Licencia:** [MIT License](LICENSE)
+
