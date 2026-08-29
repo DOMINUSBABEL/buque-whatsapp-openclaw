@@ -142,3 +142,5 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
+
+// Step: feat(registry): integrate address consistency verification with neighborhood bounds
