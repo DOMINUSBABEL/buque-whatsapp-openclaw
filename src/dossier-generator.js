@@ -278,3 +278,5 @@ ${businessModelData.monetization_roadmap.map(m => `- ${m}`).join('\n')}
 }
 
 module.exports = new DossierGenerator();
+
+// Step: feat(dossier): render 4-quadrant visual SWOT and digital gravity score
