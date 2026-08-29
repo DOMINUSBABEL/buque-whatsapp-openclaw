@@ -1,17 +1,33 @@
 {
-  "botName": "Buque B2B Swarm",
-  "version": "1.0.0",
+  "botName": "ALARICUS B2B Swarm",
+  "version": "2.0.0",
   "adminPhoneNumbers": [
     "573001234567"
   ],
   "commandPrefix": "!",
   "serverPort": 3000,
   "publicBaseUrl": "http://localhost:3000",
+  "varegoSettings": {
+    "agencyName": "VAREGO",
+    "baseMonthlyFeeUsd": 100,
+    "currency": "USD",
+    "adSpendClause": "Pauta publicitaria cubierta y administrada por el cliente",
+    "deliverables": [
+      "Diseño y publicación de 12 posts/reels mensuales",
+      "Estrategia de contenido y copys persuasivos",
+      "Configuración y optimización de campañas de Meta Ads",
+      "Reporte mensual de rendimiento y alcance"
+    ],
+    "minReviewsForSocialAudit": 15,
+    "dormantThresholdDays": 25,
+    "bookingUrl": "https://calendly.com/varego-agency/estrategia-social"
+  },
   "scanSettings": {
     "defaultQuotaPerBatch": 20,
     "maxDailyInspections": 220,
     "minReviewsForRouteA": 5,
     "maxRatingForRouteB": 3.9,
+    "minReviewsForRouteC": 15,
     "pacingDelayMinSeconds": 45,
     "pacingDelayMaxSeconds": 120
   },
