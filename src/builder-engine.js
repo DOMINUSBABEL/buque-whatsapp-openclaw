@@ -6,8 +6,10 @@
 const fs = require('fs');
 const path = require('path');
 const configManager = require('./config-manager');
+const catalogBuilder = require('./catalog-builder');
 
-const TEMPLATE_FILE = path.join(__dirname, '..', 'templates', 'landing-base.html');
+const TEMPLATE_WEB_FILE = path.join(__dirname, '..', 'templates', 'landing-base.html');
+const TEMPLATE_VAREGO_FILE = path.join(__dirname, '..', 'templates', 'varego-landing.html');
 const SITES_DIR = path.join(__dirname, '..', 'generated_sites');
 
 if (!fs.existsSync(SITES_DIR)) {
@@ -20,7 +22,7 @@ class BuilderEngine {
   }
 
   /**
-   * Generates a complete standalone landing page for the lead
+   * Generates a complete standalone landing page for the lead (Web Directa or VAREGO Proposal)
    */
   async buildLandingPage(lead) {
     const slug = this._generateSlug(lead.company_name, lead.lead_id);
@@ -29,41 +31,83 @@ class BuilderEngine {
       fs.mkdirSync(siteFolder, { recursive: true });
     }
 
-    let template = fs.readFileSync(TEMPLATE_FILE, 'utf8');
-
     const phoneClean = (lead.contact_channel?.phone_e164 || '').replace(/[^0-9]/g, '');
-    const catalogItems = lead.assets?.catalog_items || this._generateFallbackCatalog(lead);
+    const isVarego = lead.lead_route === 'RUTA_C_VAREGO';
+    let template = '';
 
-    const catalogHtml = catalogItems.map(item => `
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between hover:border-indigo-500/40 transition">
-        <div class="pr-2">
-          <h3 class="font-bold text-sm text-white">${item.title}</h3>
-          <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">${item.description}</p>
-          <span class="inline-block text-[11px] font-bold text-indigo-300 mt-1">${item.price_tag || 'Consultar'}</span>
+    if (isVarego && fs.existsSync(TEMPLATE_VAREGO_FILE)) {
+      // VAREGO Social & Ads Proposal Page
+      template = fs.readFileSync(TEMPLATE_VAREGO_FILE, 'utf8');
+
+      const handle = lead.scout_metadata?.social_audit?.instagram_handle || `@${lead.company_name.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+      const daysAgo = lead.scout_metadata?.social_audit?.last_post_days_ago || 30;
+      const statusSnippet = daysAgo > 20 ? `Inactivo hace ${daysAgo} días` : 'Sin pauta Meta Ads activa';
+
+      const contentIdeas = [
+        { title: 'Reel 1: Detrás de Cámaras & Preparación', desc: 'Video dinámico con audio en tendencia mostrando la calidad del servicio.', hook: 'Genera confianza inmediata' },
+        { title: 'Post 2: Oferta Irresistible de la Semana', desc: 'Diseño publicitario optimizado con llamado a la acción directo al WhatsApp.', hook: 'Conversión directa' },
+        { title: 'Reel 3: Testimonio Real de Cliente', desc: 'Reseña en video destacando la experiencia y satisfacción del cliente.', hook: 'Prueba social de alto impacto' }
+      ];
+
+      const contentHtml = contentIdeas.map(item => `
+        <div class="glass-card p-4 rounded-2xl border-pink-500/20">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-sm text-white">${item.title}</h3>
+            <span class="text-[10px] font-bold text-pink-300 px-2 py-0.5 rounded-md bg-pink-950/40">${item.hook}</span>
+          </div>
+          <p class="text-xs text-slate-300 mt-1 leading-relaxed">${item.desc}</p>
         </div>
-        <a href="https://wa.me/${phoneClean}?text=Hola,%20quiero%20información%20sobre%20el%20servicio:%20${encodeURIComponent(item.title)}"
-           class="flex-shrink-0 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow-md shadow-indigo-900/30">
-          Pedir
-        </a>
-      </div>
-    `).join('\n');
+      `).join('\n');
 
-    // Replace template placeholders
-    template = template
-      .replace(/{{COMPANY_NAME}}/g, lead.company_name)
-      .replace(/{{CATEGORY}}/g, lead.scout_metadata?.category || 'Negocio Local')
-      .replace(/{{CITY}}/g, lead.location?.city || 'Medellín')
-      .replace(/{{RATING}}/g, (lead.scout_metadata?.rating || 4.8).toFixed(1))
-      .replace(/{{REVIEWS_COUNT}}/g, String(lead.scout_metadata?.reviews_count || 12))
-      .replace(/{{ADDRESS}}/g, lead.location?.address || 'Ubicación céntrica')
-      .replace(/{{PHONE_CLEAN}}/g, phoneClean)
-      .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml);
+      template = template
+        .replace(/{{COMPANY_NAME}}/g, lead.company_name)
+        .replace(/{{CITY}}/g, lead.location?.city || 'Medellín')
+        .replace(/{{INSTAGRAM_HANDLE}}/g, handle)
+        .replace(/{{SOCIAL_STATUS_SNIPPET}}/g, statusSnippet)
+        .replace(/{{PHONE_CLEAN}}/g, phoneClean)
+        .replace(/{{CONTENT_IDEAS_HTML}}/g, contentHtml);
+
+    } else {
+      // Web Directa Page (Rutas A/B)
+      template = fs.readFileSync(TEMPLATE_WEB_FILE, 'utf8');
+
+      const catalogItems = lead.assets?.catalog_items ||
+        catalogBuilder.extractCatalog({
+          category: lead.scout_metadata?.category,
+          reviews_snippets: lead.scout_metadata?.reviews_snippets,
+          contact_channel: lead.contact_channel
+        });
+
+      const catalogHtml = catalogItems.map(item => `
+        <div class="glass-card p-4 rounded-2xl flex items-center justify-between hover:border-indigo-500/40 transition">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-white">${item.title}</h3>
+            <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">${item.description}</p>
+            <span class="inline-block text-[11px] font-bold text-indigo-300 mt-1">${item.price_tag || 'Consultar'}</span>
+          </div>
+          <a href="https://wa.me/${phoneClean}?text=Hola,%20quiero%20información%20sobre%20el%20servicio:%20${encodeURIComponent(item.title)}"
+             class="flex-shrink-0 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow-md shadow-indigo-900/30">
+            Pedir
+          </a>
+        </div>
+      `).join('\n');
+
+      template = template
+        .replace(/{{COMPANY_NAME}}/g, lead.company_name)
+        .replace(/{{CATEGORY}}/g, lead.scout_metadata?.category || 'Negocio Local')
+        .replace(/{{CITY}}/g, lead.location?.city || 'Medellín')
+        .replace(/{{RATING}}/g, (lead.scout_metadata?.rating || 4.8).toFixed(1))
+        .replace(/{{REVIEWS_COUNT}}/g, String(lead.scout_metadata?.reviews_count || 12))
+        .replace(/{{ADDRESS}}/g, lead.location?.address || 'Ubicación céntrica')
+        .replace(/{{PHONE_CLEAN}}/g, phoneClean)
+        .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml);
+    }
 
     const indexPath = path.join(siteFolder, 'index.html');
     fs.writeFileSync(indexPath, template, 'utf8');
 
     const landingUrl = `${this.baseUrl}/demo/${slug}`;
-    console.log(`[BUILDER_AGENT] Generated landing page for ${lead.company_name} -> ${landingUrl}`);
+    console.log(`[BUILDER_AGENT] Generated ${isVarego ? 'VAREGO Proposal' : 'Web Directa'} for ${lead.company_name} -> ${landingUrl}`);
     return landingUrl;
   }
 
