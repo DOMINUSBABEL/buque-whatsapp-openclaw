@@ -49,7 +49,7 @@ class WhatsAppSocketManager {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, logger)
       },
-      browser: ['Buque B2B Engine', 'Chrome', '1.0.0'],
+      browser: ['ALARICUS Swarm', 'Chrome', '2.0.0'],
       generateHighQualityLinkPreview: true,
       syncFullHistory: false
     });
