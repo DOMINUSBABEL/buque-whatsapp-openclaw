@@ -148,6 +148,24 @@ class PreviewServer {
         `);
       }
     });
+
+    // Dynamic strategic intelligence dossier route
+    this.app.get('/dossier/:slug', (req, res) => {
+      const slug = req.params.slug;
+      const dossiersDir = path.join(__dirname, '..', 'generated_dossiers');
+      const htmlPath = path.join(dossiersDir, slug, 'index.html');
+
+      if (fs.existsSync(htmlPath)) {
+        res.sendFile(htmlPath);
+      } else {
+        res.status(404).send(`
+          <div style="font-family: sans-serif; text-align: center; padding: 50px; background: #090d16; color: white;">
+            <h2>Dossier de Inteligencia no encontrado</h2>
+            <p>El diagnóstico estratégico para <code>${slug}</code> no se encuentra en los registros generados.</p>
+          </div>
+        `);
+      }
+    });
   }
 
   start() {
