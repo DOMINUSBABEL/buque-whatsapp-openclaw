@@ -364,6 +364,65 @@ async function executeTestSuite() {
     assert.strictEqual(swarmRes.results[0].institutional_verification.official_registry_board.includes('Cámara'), true);
   });
 
+  console.log('\n🛡️ [17/17] Testing 5 Advanced Curation Engines (Deduplication, Geofence, Liveness, Arbitration, Provenance)...');
+  const entityDeduplicator = require('../src/curator/entity-deduplicator');
+  const sourceArbitrator = require('../src/curator/source-arbitrator');
+  const geofenceCurator = require('../src/curator/geofence-curator');
+  const livenessProbe = require('../src/curator/liveness-probe');
+  const dataProvenanceLedger = require('../src/curator/data-provenance-ledger');
+
+  runTest('Deduplicates fuzzy business names (Auto Taller El Paisa SAS vs Taller El Paisa)', () => {
+    const rawPlaces = [
+      { name: 'Auto Taller El Paisa S.A.S.', formatted_phone_number: '+573110000000', user_ratings_total: 15 },
+      { name: 'Taller El Paisa', formatted_phone_number: '+573110000000', user_ratings_total: 25 },
+      { name: 'Mecánica Rápida Los Álamos', formatted_phone_number: '+573129999999', user_ratings_total: 8 }
+    ];
+    const deduped = entityDeduplicator.deduplicatePlaces(rawPlaces);
+    assert.strictEqual(deduped.length, 2);
+    assert.strictEqual(deduped[0].reviews_count, 25);
+  });
+
+  runTest('Arbitrates multi-source conflicts with weighted field-level reliability', () => {
+    const arb = sourceArbitrator.arbitrate({
+      mapsData: { name: 'Taller Paisa', formatted_phone_number: '+573117272822', formatted_address: 'Av 30 de Agosto #15-20, Pereira' },
+      registryData: { verified: true, legal_data: { trade_name: 'Auto Taller El Paisa S.A.S.' } },
+      socialData: { whatsapp_phone: '+573117272822' }
+    });
+    assert.strictEqual(arb.canonical_profile.name, 'Auto Taller El Paisa S.A.S.');
+    assert.strictEqual(arb.canonical_profile.phone_e164, '+573117272822');
+    assert(arb.arbitration_confidence.overall_truth_weight >= 0.85);
+  });
+
+  runTest('GeoFence validates city and neighborhood enclosure', () => {
+    const valid = geofenceCurator.validateContainment(
+      { formatted_address: 'Calle 21 #15-40, Barrio Turín, Pereira, Risaralda' },
+      { city: 'Pereira', neighborhood: 'Turín' }
+    );
+    assert.strictEqual(valid.passed, true);
+    assert.strictEqual(valid.city_verified, true);
+  });
+
+  runTest('Liveness probe evaluates operational status and review volume', () => {
+    const live = livenessProbe.evaluateRecency({ business_status: 'OPERATIONAL', user_ratings_total: 20, rating: 4.8 });
+    assert.strictEqual(live.is_operational, true);
+    assert(live.liveness_score >= 0.9);
+
+    const dead = livenessProbe.evaluateRecency({ business_status: 'CLOSED_PERMANENTLY' });
+    assert.strictEqual(dead.is_operational, false);
+  });
+
+  runTest('Data Provenance Ledger compiles cryptographic truth seal and composite score', () => {
+    const prov = dataProvenanceLedger.compileLedger(
+      { name: 'Taller Mecánico Central', formatted_phone_number: '+573001234567', formatted_address: 'Carrera 8 #20-15, Pereira' },
+      { verified: true, legal_data: { legal_status: 'MATRICULADO_ACTIVO', activity_code: '4520' } },
+      { has_website: true, cms: 'WordPress' },
+      { is_registered_on_whatsapp: true, confidence: 0.95 }
+    );
+    assert(prov.truth_score >= 85);
+    assert.strictEqual(prov.quality_gate_passed, true);
+    assert(prov.provenance_seal.signature.startsWith('TRUTH-SEAL-'));
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);
