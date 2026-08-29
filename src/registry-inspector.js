@@ -142,5 +142,3 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
-
-// Step: feat(registry): add Spanish Registro Mercantil CNAE definitions
