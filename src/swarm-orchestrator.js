@@ -8,7 +8,7 @@
  * 5. Filmer Agent (10s Vertical Micro-Demo Video)
  * 6. Checker Agent (QA Gatekeeper)
  */
-const { v4: uuidv4 } = require('crypto');
+const { randomUUID } = require('crypto');
 const scoutEngine = require('./scout-engine');
 const frictionClassifier = require('./friction-classifier');
 const diagnoserEngine = require('./diagnoser-engine');
@@ -49,7 +49,7 @@ class SwarmOrchestrator {
       if (this.isPaused) break;
 
       // 2. CLASSIFIER AGENT
-      const classification = frictionClassifier.classify(place);
+      const classification = frictionClassifier.classify(place, options);
       if (!classification.qualified) continue;
 
       const leadId = place.place_id ? `lead_${place.place_id.slice(0, 12)}` : `lead_${Date.now()}`;
@@ -67,7 +67,7 @@ class SwarmOrchestrator {
           primary_type: 'WHATSAPP',
           phone_e164: place.formatted_phone_number || '+573000000000',
           email: null,
-          instagram_handle: null
+          instagram_handle: place.social_audit?.instagram_handle || null
         },
         lead_route: classification.route,
         scout_metadata: {
@@ -77,7 +77,8 @@ class SwarmOrchestrator {
           rating: place.rating,
           category: place.category,
           friction_keywords_found: classification.frictionKeywords,
-          friction_snippet: classification.frictionSnippet
+          friction_snippet: classification.frictionSnippet,
+          social_audit: place.social_audit || null
         },
         pipeline_status: 'SCOUTED',
         created_at: new Date().toISOString(),
