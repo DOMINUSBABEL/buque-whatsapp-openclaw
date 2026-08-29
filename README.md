@@ -26,7 +26,7 @@
                                           │
                                           ▼
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    ┃              6-AGENT AUTONOMOUS B2B PIPELINE (SWARM)                ┃
+    ┃              8-AGENT AUTONOMOUS B2B PIPELINE (SWARM & CURATOR)                ┃
     ┃  ┌─────────────────────────────┐   ┌─────────────────────────────┐  ┃
     ┃  │  1. SCOUT_AGENT             │   │  4. FILMER_AGENT            │  ┃
     ┃  │     (Maps & Social Auditor) │   │     (10s 9:16 Vertical Demo)│  ┃
