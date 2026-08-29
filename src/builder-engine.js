@@ -1,12 +1,13 @@
 /**
- * BUILDER ENGINE
- * Compiles hyper-personalized mobile-first landing pages tailored to the business's
- * exact products, services, and Google Maps reviews.
+ * BUILDER ENGINE (v2.3.0)
+ * Compiles hyper-personalized mobile-first landing pages and interactive web prototypes
+ * with dynamic luxury theme tokens, interactive multi-item WhatsApp cart, and ROI simulator.
  */
 const fs = require('fs');
 const path = require('path');
 const configManager = require('./config-manager');
 const catalogBuilder = require('./catalog-builder');
+const themeEngine = require('./theme-engine');
 
 const TEMPLATE_WEB_FILE = path.join(__dirname, '..', 'templates', 'landing-base.html');
 const TEMPLATE_VAREGO_FILE = path.join(__dirname, '..', 'templates', 'varego-landing.html');
@@ -71,7 +72,6 @@ class BuilderEngine {
       // Web Directa Page (Rutas A/B)
       template = fs.readFileSync(TEMPLATE_WEB_FILE, 'utf8');
 
-      const themeEngine = require('./theme-engine');
       const theme = themeEngine.resolveTheme(lead.scout_metadata?.category || '');
 
       const catalogItems = lead.assets?.catalog_items ||
@@ -83,18 +83,25 @@ class BuilderEngine {
 
       const catalogHtml = catalogItems.map((item, idx) => {
         const itemImg = theme.catalog_images ? theme.catalog_images[idx % theme.catalog_images.length] : null;
+        const priceClean = item.price_tag || '$25 USD';
         return `
-        <div class="glass-card p-4 rounded-2xl flex items-center justify-between hover:border-amber-500/40 transition gap-3">
+        <div class="glass-card catalog-card p-4 rounded-2xl flex items-center justify-between hover:border-amber-500/40 transition gap-3 border-slate-800/80">
           ${itemImg ? `<img src="${itemImg}" alt="${item.title}" class="w-14 h-14 object-cover rounded-xl border border-white/10 flex-shrink-0" />` : ''}
           <div class="flex-1 pr-2">
-            <h3 class="font-bold text-sm text-white">${item.title}</h3>
+            <h3 class="font-bold text-sm text-white font-heading">${item.title}</h3>
             <p class="text-xs text-slate-400 mt-0.5 leading-relaxed line-clamp-2">${item.description}</p>
-            <span class="inline-block text-[11px] font-bold text-amber-400 mt-1">${item.price_tag || 'Consultar'}</span>
+            <span class="inline-block text-[11px] font-mono-data font-bold text-amber-400 mt-1">${priceClean}</span>
           </div>
-          <a href="https://wa.me/${phoneClean}?text=Hola,%20quiero%20información%20sobre%20el%20servicio:%20${encodeURIComponent(item.title)}"
-             class="flex-shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-slate-950 font-black text-xs px-3.5 py-2.5 rounded-xl transition shadow-lg shadow-amber-950/40">
-            Pedir 📲
-          </a>
+          <div class="flex flex-col gap-1.5 flex-shrink-0">
+            <button onclick="addToCart('${item.title.replace(/'/g, "\\'")}', '${priceClean}')"
+                    class="bg-slate-800 hover:bg-slate-700 active:scale-95 text-amber-400 border border-amber-500/30 font-bold text-[11px] px-3 py-1.5 rounded-xl transition shadow-md">
+              ➕ Agregar
+            </button>
+            <a href="https://wa.me/${phoneClean}?text=Hola,%20quiero%20información%20sobre:%20${encodeURIComponent(item.title)}"
+               class="bg-gradient-to-r from-emerald-500 to-teal-500 active:scale-95 text-slate-950 font-black text-[11px] px-3 py-1.5 rounded-xl text-center transition shadow-md">
+              Pedir 📲
+            </a>
+          </div>
         </div>
       `;}).join('\n');
 
@@ -107,9 +114,12 @@ class BuilderEngine {
         .replace(/{{ADDRESS}}/g, lead.location?.address || 'Ubicación céntrica')
         .replace(/{{PHONE_CLEAN}}/g, phoneClean)
         .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml)
+        .replace(/{{TAGLINE}}/g, theme.tagline || 'Calidad y Atención Directa')
         .replace(/{{HERO_IMAGE}}/g, theme.hero_image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=85')
         .replace(/{{BG_PRIMARY}}/g, theme.bg_primary || '#090d16')
-        .replace(/{{ACCENT_PRIMARY}}/g, theme.accent_primary || '#f59e0b');
+        .replace(/{{ACCENT_PRIMARY}}/g, theme.accent_primary || '#f59e0b')
+        .replace(/{{ACCENT_SECONDARY}}/g, theme.accent_secondary || '#06b6d4')
+        .replace(/{{BORDER_CARD}}/g, theme.border_card || 'rgba(245, 158, 11, 0.25)');
     }
 
     const indexPath = path.join(siteFolder, 'index.html');
@@ -124,29 +134,6 @@ class BuilderEngine {
     const clean = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').slice(0, 30);
     const shortId = (id || '000').slice(0, 6);
     return `${clean}-${shortId}`;
-  }
-
-  _generateFallbackCatalog(lead) {
-    const cat = (lead.scout_metadata?.category || '').toLowerCase();
-    if (cat.includes('dental') || cat.includes('odonto') || cat.includes('salud')) {
-      return [
-        { title: 'Valoración y Diagnóstico Integral', description: 'Evaluación clínica completa con escaneo digital y presupuesto.', price_tag: 'Cita Prioritaria' },
-        { title: 'Limpieza y Profilaxis Profunda', description: 'Remoción de placa bacteriana y pulido de alta tecnología.', price_tag: 'Promoción del mes' },
-        { title: 'Diseño de Sonrisa & Estética', description: 'Carillas y aclaramiento dental con resultados garantizados.', price_tag: 'Cotización personalizada' }
-      ];
-    } else if (cat.includes('restaurante') || cat.includes('pizza') || cat.includes('comida') || cat.includes('sabor')) {
-      return [
-        { title: 'Especialidad de la Casa', description: 'Plato insignia preparado con ingredientes frescos del día.', price_tag: 'Más pedido' },
-        { title: 'Combo Familiar / Dúo', description: 'Incluye entrada, plato principal y bebidas artesanales.', price_tag: 'Ahorra 15%' },
-        { title: 'Menú Ejecutivo Diario', description: 'Sopa del día, proteína al gusto, acompañamientos y postre.', price_tag: 'De Lun a Vie' }
-      ];
-    } else {
-      return [
-        { title: 'Servicio Estándar Garantizado', description: 'Atención personalizada y cumplimiento en tiempos de entrega.', price_tag: 'Popular' },
-        { title: 'Paquete Integral Premium', description: 'Solución completa llave en mano con soporte directo.', price_tag: 'Recomendado' },
-        { title: 'Cotización Inmediata a Medida', description: 'Envíanos los detalles de tu requerimiento y te respondemos en minutos.', price_tag: 'Sin compromiso' }
-      ];
-    }
   }
 }
 

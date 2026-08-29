@@ -323,13 +323,58 @@ async function executeTestSuite() {
     assert(bModel.neighborhood_landscape.competitive_density_score > 0);
   });
 
-  console.log('\n🎨 [15/16] Testing Theme Engine Luxury Aesthetics...');
+  console.log('\n🎨 [15/17] Testing Theme Engine Luxury Aesthetics across 10 Sectors...');
   const themeEngine = require('../src/theme-engine');
-  runTest('Assigns Titanium Industrial palette for hardware stores', () => {
-    const th = themeEngine.resolveTheme('Ferretería');
-    assert.strictEqual(th.name, 'Titanium Industrial & Tools');
-    assert.strictEqual(th.accent_primary, '#f59e0b');
-    assert(th.hero_image.includes('unsplash.com'));
+  runTest('Assigns bespoke luxury themes for Industrial, Automotive, Bakery, Dental, Spa, and Tech', () => {
+    const thInd = themeEngine.resolveTheme('Ferretería');
+    assert.strictEqual(thInd.key, 'HARDWARE_INDUSTRIAL');
+    assert.strictEqual(thInd.accent_primary, '#f59e0b');
+
+    const thAuto = themeEngine.resolveTheme('Taller Mecánico Detailing');
+    assert.strictEqual(thAuto.key, 'AUTOMOTIVE_DETAILING');
+    assert.strictEqual(thAuto.accent_primary, '#ef4444');
+
+    const thBake = themeEngine.resolveTheme('Panadería Artesanal y Café');
+    assert.strictEqual(thBake.key, 'ARTISAN_BAKERY');
+    assert.strictEqual(thBake.accent_primary, '#d97706');
+
+    const thDent = themeEngine.resolveTheme('Clínica Odontológica');
+    assert.strictEqual(thDent.key, 'MEDICAL_DENTAL');
+    assert.strictEqual(thDent.accent_primary, '#38bdf8');
+
+    const thSpa = themeEngine.resolveTheme('Centro de Estética & Spa');
+    assert.strictEqual(thSpa.key, 'AESTHETIC_SPA');
+    assert.strictEqual(thSpa.accent_primary, '#f43f5e');
+
+    const thTech = themeEngine.resolveTheme('Agencia de Software e IA');
+    assert.strictEqual(thTech.key, 'TECH_AUTOMATION');
+    assert.strictEqual(thTech.accent_primary, '#6366f1');
+  });
+
+  await runAsyncTest('Builder Engine compiles interactive landing page with WhatsApp Cart & ROI Slider', async () => {
+    const builderEngine = require('../src/builder-engine');
+    const mockLead = {
+      lead_id: 'test-cart-lead-001',
+      company_name: 'Taller Mecánico Los Andes',
+      lead_route: 'RUTA_A',
+      location: { city: 'Pereira', address: 'Av 30 de Agosto #40-10' },
+      contact_channel: { phone_e164: '+573110000000' },
+      scout_metadata: {
+        category: 'Taller Mecánico',
+        rating: 4.9,
+        reviews_count: 35,
+        reviews_snippets: ['Excelente cambio de aceite y frenos']
+      }
+    };
+    const landingUrl = await builderEngine.buildLandingPage(mockLead);
+    assert(landingUrl.includes('/demo/'));
+
+    const fs = require('fs');
+    const path = require('path');
+    const generatedHtml = fs.readFileSync(path.join(__dirname, '..', 'generated_sites', 'taller-mecanico-los-andes-test-c', 'index.html'), 'utf8');
+    assert(generatedHtml.includes('addToCart'));
+    assert(generatedHtml.includes('orders-slider'));
+    assert(generatedHtml.includes('Taller Mecánico Los Andes'));
   });
 
   console.log('\n🧭 [16/16] Testing Subscout Specialized Swarm & Multi-Service Adapter...');
