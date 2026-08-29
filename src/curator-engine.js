@@ -72,12 +72,13 @@ class CuratorEngine {
 
       const aliases = {
         'panader': ['bäckerei', 'baeckerei', 'bakery', 'boulangerie', 'padaria', 'pan', 'pasteleria', 'konditorei', 'croissant'],
-        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie'],
+        'restauran': ['restaurant', 'gaststatte', 'bistro', 'comida', 'dining', 'brasserie', 'food'],
         'pizz': ['pizzeria', 'pizza'],
-        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire'],
-        'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique'],
-        'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne'],
-        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure']
+        'dental': ['zahnarzt', 'dentist', 'odontolog', 'dentaire', 'dentista'],
+        'clinic': ['klinik', 'praxis', 'salud', 'medical', 'clinique', 'hospital', 'doctor'],
+        'gastrobar': ['bar', 'pub', 'lounge', 'cocktail', 'kneipe', 'taverne', 'cerveceria'],
+        'estetic': ['kosmetik', 'spa', 'beauty', 'estetica', 'salon', 'coiffure', 'peluqueria', 'barber'],
+        'taller': ['auto', 'kfz', 'werkstatt', 'garage', 'mecanic', 'repuestos']
       };
 
       let aliasMatch = false;
