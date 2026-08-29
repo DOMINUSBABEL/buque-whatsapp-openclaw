@@ -175,3 +175,13 @@ class AssistantMode {
 }
 
 module.exports = new AssistantMode();
+
+AssistantMode.prototype.resetSession = function(senderJid) {
+  if (this.operatorStates.has(senderJid)) {
+    const st = this.operatorStates.get(senderJid);
+    st.step = 'IDLE';
+    st.pendingApprovalLeads = [];
+    return true;
+  }
+  return false;
+};
