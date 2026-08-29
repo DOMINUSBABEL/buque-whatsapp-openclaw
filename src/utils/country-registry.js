@@ -41,8 +41,8 @@ const COUNTRIES = [
   { name: 'Canadá', code: '1', iso: 'CA', aliases: ['canada', 'canadá', 'toronto', 'montreal', 'vancouver', 'calgary', 'ottawa', 'edmonton', 'quebec', 'winnipeg'], lang: 'en' },
 
   // Europa
-  { name: 'Alemania', code: '49', iso: 'DE', aliases: ['alemania', 'germany', 'deutschland', 'chemnitz', 'berlin', 'munich', 'münchen', 'hamburg', 'frankfurt', 'köln', 'cologne', 'stuttgart', 'düsseldorf', 'dresden', 'leipzig', 'dortmund', 'essen', 'bremen', 'hannover', 'nürnberg', 'bonn'], lang: 'de' },
-  { name: 'Francia', code: '33', iso: 'FR', aliases: ['francia', 'france', 'paris', 'parís', 'marseille', 'marcella', 'lyon', 'toulouse', 'nice', 'niza', 'nantes', 'strasbourg', 'montpellier', 'bordeaux', 'burdeos', 'lille', 'rennes'], lang: 'fr' },
+  { name: 'Alemania', code: '49', iso: 'DE', currency: 'EUR', capital: 'Berlin', aliases: ['alemania', 'germany', 'deutschland', 'chemnitz', 'berlin', 'munich', 'münchen', 'hamburg', 'frankfurt', 'köln', 'cologne', 'stuttgart', 'düsseldorf', 'dresden', 'leipzig', 'dortmund', 'essen', 'bremen', 'hannover', 'nürnberg', 'bonn'], lang: 'de' },
+  { name: 'Francia', code: '33', iso: 'FR', currency: 'EUR', capital: 'Paris', aliases: ['francia', 'france', 'paris', 'parís', 'marseille', 'marcella', 'lyon', 'toulouse', 'nice', 'niza', 'nantes', 'strasbourg', 'montpellier', 'bordeaux', 'burdeos', 'lille', 'rennes'], lang: 'fr' },
   { name: 'España', code: '34', iso: 'ES', aliases: ['españa', 'espana', 'spain', 'madrid', 'barcelona', 'valencia', 'sevilla', 'zaragoza', 'malaga', 'málaga', 'murcia', 'palma', 'las palmas', 'bilbao', 'alicante', 'cordoba', 'valladolid'], lang: 'es' },
   { name: 'Italia', code: '39', iso: 'IT', aliases: ['italia', 'italy', 'roma', 'rome', 'milan', 'milano', 'napoles', 'napoli', 'turin', 'torino', 'palermo', 'genova', 'bolonia', 'bologna', 'florencia', 'firenze', 'venecia', 'venezia'], lang: 'it' },
   { name: 'Reino Unido', code: '44', iso: 'GB', aliases: ['reino unido', 'united kingdom', 'uk', 'england', 'inglaterra', 'gran bretaña', 'london', 'londres', 'manchester', 'birmingham', 'glasgow', 'liverpool', 'edinburgh', 'bristol', 'leeds'], lang: 'en' },
@@ -66,7 +66,7 @@ const COUNTRIES = [
   { name: 'Ucrania', code: '380', iso: 'UA', aliases: ['ucrania', 'ukraine', 'kiev', 'kyiv', 'jarkov', 'kharkiv', 'odesa', 'dnipro', 'lviv'], lang: 'uk' },
 
   // Asia & Oceanía
-  { name: 'Japón', code: '81', iso: 'JP', aliases: ['japon', 'japón', 'japan', 'tokio', 'tokyo', 'osaka', 'kioto', 'kyoto', 'yokohama', 'nagoya', 'sapporo', 'kobe', 'fukuoka'], lang: 'ja' },
+  { name: 'Japón', code: '81', iso: 'JP', currency: 'JPY', capital: 'Tokyo', aliases: ['japon', 'japón', 'japan', 'tokio', 'tokyo', 'osaka', 'kioto', 'kyoto', 'yokohama', 'nagoya', 'sapporo', 'kobe', 'fukuoka'], lang: 'ja' },
   { name: 'Corea del Sur', code: '82', iso: 'KR', aliases: ['corea del sur', 'south korea', 'korea', 'seul', 'seúl', 'seoul', 'busan', 'incheon', 'daegu', 'daejeon'], lang: 'ko' },
   { name: 'China', code: '86', iso: 'CN', aliases: ['china', 'beijing', 'pekin', 'shanghai', 'canton', 'guangzhou', 'shenzhen', 'chengdu', 'wuhan'], lang: 'zh' },
   { name: 'India', code: '91', iso: 'IN', aliases: ['india', 'mumbai', 'bombay', 'nueva delhi', 'new delhi', 'bangalore', 'hyderabad', 'chennai', 'calcuta', 'kolkata'], lang: 'en' },
