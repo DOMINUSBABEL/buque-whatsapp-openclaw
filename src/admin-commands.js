@@ -171,6 +171,46 @@ class AdminCommands {
         }
         break;
 
+      case '!dossier':
+      case '!diagnostico':
+      case '!swot':
+        if (!args) {
+          await sock.sendMessage(senderJid, {
+            text: '⚠️ *Uso:* `!dossier [nicho] en [barrio/zona/ciudad]`\nEjemplo: `!dossier ferreterias en el barrio La Milagrosa de Medellin` o `!dossier panaderias en Chemnitz Alemania`'
+          });
+          return;
+        }
+
+        await sock.sendMessage(senderJid, {
+          text: `🔍 *Iniciando Investigación Estratégica Multi-Capa (Dossier & SWOT)*\n` +
+                `🎯 Analizando: *${args}*...\n` +
+                `• Inspección en Cámara de Comercio / Registro Mercantil\n` +
+                `• Auditoría Forense Web, SSL & Stack\n` +
+                `• Matriz SWOT / DAFO & Descomposición del Modelo de Negocio`
+        });
+
+        try {
+          const deepScout = require('./deep-scout');
+          const investigation = await deepScout.conductDeepInvestigation(args, { limit: 3 });
+
+          let respText = `📋 *INVESTIGACIÓN ESTRATÉGICA COMPLETADA (${investigation.total_businesses_analyzed} negocios)*\n` +
+                         `📍 Micro-Zona: ${investigation.micro_zone} (${investigation.city}, ${investigation.country})\n\n`;
+
+          for (const rep of investigation.reports) {
+            respText += `🏢 *${rep.business_name}* (${rep.category})\n` +
+                        `  🏛️ Registro: ${rep.registry_verification?.legal_data?.legal_status} (${rep.registry_verification?.registry_source})\n` +
+                        `  ⚡ Web: ${rep.web_forensics?.has_website ? 'Indexada (' + rep.web_forensics.cms + ')' : 'Vacancia Digital'}\n` +
+                        `  🎯 Postura: ${rep.swot_matrix?.strategic_posture}\n` +
+                        `  🔗 *Dossier Completo:* ${rep.dossier?.dossier_url}\n\n`;
+          }
+
+          respText += `💡 *Nota:* Estos diagnósticos son de inteligencia pura. No se ha despachado ningún mensaje a los prospectos.`;
+          await sock.sendMessage(senderJid, { text: respText });
+        } catch (dossierErr) {
+          await sock.sendMessage(senderJid, { text: `❌ Error generando dossier: ${dossierErr.message}` });
+        }
+        break;
+
       case '!ayuda':
       case '!help':
       default:
@@ -178,11 +218,13 @@ class AdminCommands {
                         `🤖 *MODOS DE DESPLIEGUE:*\n` +
                         `• \`!asistido\` (o \`!copiloto\`): Inicia diálogo guiado con revisión previa antes de enviar.\n` +
                         `• \`!auto\`: Modo 100% automático para comandos directos.\n\n` +
-                        `🔍 *PROSPECCIÓN Y CURADURÍA:*\n` +
+                        `🧠 *INTELIGENCIA Y DIAGNÓSTICO ESTRATÉGICO (Puro Scout):*\n` +
+                        `• \`!dossier [nicho] en [barrio/ciudad]\`: Genera dossiers SWOT y Cámara de Comercio sin enviar mensajes.\n` +
+                        `• \`!audit-social [handle]\`: Audita Instagram y Meta Ads de una cuenta.\n\n` +
+                        `🔍 *PROSPECCIÓN Y DISPARO COMERCIAL:*\n` +
                         `• \`!scan [nicho] en [ciudad]\`: Prospección para Web Directa (verificación de prefijo de país).\n` +
                         `• \`!scan-varego [nicho] en [ciudad]\`: Prospección VAREGO Social ($100 USD/mes).\n` +
-                        `• \`!mapa [ruta_imagen]\`: Analiza una captura de Google Maps y prospecta en esa zona.\n` +
-                        `• \`!audit-social [handle]\`: Audita Instagram y Meta Ads de una cuenta.\n\n` +
+                        `• \`!mapa [ruta_imagen]\`: Analiza una captura de Google Maps y prospecta en esa zona.\n\n` +
                         `⚙️ *CONTROL DE OPERACIONES:*\n` +
                         `• \`!estado\`: Consulta métricas y estadísticas del pipeline.\n` +
                         `• \`!pausar\` / \`!reanudar\`: Control de flujo de envíos.\n` +
