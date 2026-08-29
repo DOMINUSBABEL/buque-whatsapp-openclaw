@@ -92,3 +92,5 @@ class BusinessModelEngine {
 }
 
 module.exports = new BusinessModelEngine();
+
+// Step: feat(bizmodel): compute average ticket estimation and revenue mechanics
