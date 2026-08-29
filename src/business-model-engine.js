@@ -92,3 +92,5 @@ class BusinessModelEngine {
 }
 
 module.exports = new BusinessModelEngine();
+
+// Step: feat(bizmodel): add dental and medical clinic high-ticket archetype
