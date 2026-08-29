@@ -1,10 +1,10 @@
 {
-  "name": "buque-whatsapp-openclaw",
-  "version": "1.0.0",
-  "description": "Autonomous B2B Acquisition Swarm Harness on OpenClaw & Baileys Protocol",
-  "main": "src/buque-whatsapp-bot.js",
+  "name": "alaricus-b2b-swarm",
+  "version": "2.0.0",
+  "description": "ALARICUS: Autonomous Multi-Agent B2B Acquisition Swarm & VAREGO Social Engine on OpenClaw & Baileys",
+  "main": "src/alaricus-bot.js",
   "scripts": {
-    "start": "node src/buque-whatsapp-bot.js",
+    "start": "node src/alaricus-bot.js",
     "simulator": "node src/simulator-cli.js",
     "test": "node tests/run-tests.js"
   },
