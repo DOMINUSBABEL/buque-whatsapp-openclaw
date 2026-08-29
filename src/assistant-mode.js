@@ -134,39 +134,47 @@ class AssistantMode {
                 `🛡️ Verificando coherencia geográfica (+${state.campaign.targetCountry.code}) y categoría...`
         });
 
-        // Run batch without immediate auto-dispatch (Pre-Flight Review Gate)
-        const leads = await swarmOrchestrator.runScanBatch(fullQuery, {
-          limit: 3,
-          targetService: service
-        });
+        try {
+          // Run batch without immediate auto-dispatch (Pre-Flight Review Gate)
+          const leads = await swarmOrchestrator.runScanBatch(fullQuery, {
+            limit: 3,
+            targetService: service
+          });
 
-        state.pendingApprovalLeads = leads;
+          state.pendingApprovalLeads = leads;
 
-        if (leads.length === 0) {
+          if (leads.length === 0) {
+            state.step = 'IDLE';
+            await sock.sendMessage(senderJid, {
+              text: `⚠️ No se encontraron prospectos que superaran los filtros de curaduría para "${fullQuery}". Intenta con otra ciudad o nicho.`
+            });
+            return true;
+          }
+
+          const totalMrrPotential = leads.reduce((acc, l) => acc + (l.lead_route === 'RUTA_C_VAREGO' ? 100 : 0), 0);
+          let summary = `📋 *PROSPECTOS CURADOS LISTOS PARA REVISIÓN (${leads.length})* (MRR: $${totalMrrPotential} USD/mo):\n\n`;
+          leads.forEach((l, idx) => {
+            summary += `*${idx + 1}. ${l.company_name}*\n` +
+                       `📍 ${l.location?.city} (${l.scout_metadata?.category})\n` +
+                       `📞 Tel Verificado: ${l.contact_channel?.phone_e164}\n` +
+                       `🌐 Propuesta Generada: ${l.assets?.landing_page_url}\n` +
+                       `🎯 Ruta: ${l.lead_route} | Score: ${l.diagnostics?.lead_score}/100\n\n`;
+          });
+
+          summary += `👉 *Para autorizar el envío a estos prospectos, responde:*\n` +
+                     `• \`!aprobar-todos\` ➔ Despachar pitches por WhatsApp.\n` +
+                     `• \`!descartar\` ➔ Cancelar esta tanda.`;
+
+          await sock.sendMessage(senderJid, { text: summary });
+          state.step = 'AWAITING_APPROVAL';
+          return true;
+        } catch (err) {
           state.step = 'IDLE';
           await sock.sendMessage(senderJid, {
-            text: `⚠️ No se encontraron prospectos que superaran los filtros de curaduría para "${fullQuery}". Intenta con otra ciudad o nicho.`
+            text: `❌ Error procesando prospección: ${err.message}`
           });
           return true;
         }
-
-        const totalMrrPotential = leads.reduce((acc, l) => acc + (l.lead_route === 'RUTA_C_VAREGO' ? 100 : 0), 0);
-        let summary = `📋 *PROSPECTOS CURADOS LISTOS PARA REVISIÓN (${leads.length})* (MRR: $${totalMrrPotential} USD/mo):\n\n`;
-        leads.forEach((l, idx) => {
-          summary += `*${idx + 1}. ${l.company_name}*\n` +
-                     `📍 ${l.location?.city} (${l.scout_metadata?.category})\n` +
-                     `📞 Tel Verificado: ${l.contact_channel?.phone_e164}\n` +
-                     `🌐 Propuesta Generada: ${l.assets?.landing_page_url}\n` +
-                     `🎯 Ruta: ${l.lead_route} | Score: ${l.diagnostics?.lead_score}/100\n\n`;
-        });
-
-        summary += `👉 *Para autorizar el envío a estos prospectos, responde:*\n` +
-                   `• \`!aprobar-todos\` ➔ Despachar pitches por WhatsApp.\n` +
-                   `• \`!descartar\` ➔ Cancelar esta tanda.`;
-
-        await sock.sendMessage(senderJid, { text: summary });
-        state.step = 'AWAITING_APPROVAL';
-        return true;
       }
     }
 

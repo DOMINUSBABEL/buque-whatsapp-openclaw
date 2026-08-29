@@ -43,8 +43,19 @@ function extractMessageText(rawMsg) {
          '';
 }
 
+const SERVER_START_TIME = Date.now();
+
 async function handleIncomingMessage(sock, msg) {
   if (!msg.key) return;
+
+  // 0. REPLAY / HISTORY-SYNC FILTER
+  // Ignore historical messages synced upon socket startup (older than server launch time)
+  if (msg.messageTimestamp) {
+    const msgTimeMs = Number(msg.messageTimestamp) * 1000;
+    if (msgTimeMs < (SERVER_START_TIME - 3000)) {
+      return;
+    }
+  }
 
   const senderJid = msg.key.remoteJid;
   if (!senderJid || senderJid.endsWith('@g.us') || senderJid.endsWith('@broadcast') || senderJid.endsWith('@newsletter')) {
@@ -55,32 +66,36 @@ async function handleIncomingMessage(sock, msg) {
   const rawText = extractMessageText(msg);
   if (!rawText.trim()) return;
 
+  const myJid = sock.user ? sock.user.id.replace(/:.*@/, '@') : '';
+  const myCleanNumber = myJid ? myJid.replace(/[^0-9]/g, '') : '';
   const senderNumber = senderJid.replace(/[^0-9]/g, '');
+
   const isFromMe = !!msg.key.fromMe;
-  const isAdmin = isFromMe || configManager.isAdmin(senderNumber);
+  const isSelfChat = (senderJid === myJid) || (senderNumber === myCleanNumber);
+  const isRegisteredAdmin = configManager.isAdmin(senderNumber);
   const isBangCommand = rawText.trim().startsWith('!');
 
-  console.log(`\n📩 [WhatsApp Inbound] De: [${senderNumber}] | fromMe: ${isFromMe} | Admin: ${isAdmin} | Bang: ${isBangCommand}`);
-  console.log(`   Texto: "${rawText}"`);
-
-  // 1. COMMAND EXECUTION (Admin OR External Numbers with "!" prefix)
+  // 1. BANG (!) COMMANDS: Executable from ANY number (self, admin, or external authorized caller)
   if (isBangCommand) {
-    console.log(`⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Admin: ${isAdmin})...`);
+    console.log(`\n⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
     await adminCommands.handleCommand(sock, senderJid, rawText);
     return;
   }
 
-  // 2. ADMIN ASSISTED DIALOGUE (Natural text without "!" from Admin)
-  if (isAdmin) {
-    // Intercept natural conversation if in Assisted Copilot Mode
+  // 2. SELF-CHAT / DEDICATED ADMIN CHANNEL: Natural language assisted dialogue
+  // Only intercept natural conversation (without "!") IF the user is talking in the self-chat or an authorized admin chat
+  if (isSelfChat || (isRegisteredAdmin && !isFromMe)) {
     const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
     if (handledByAssistant) return;
   }
 
-  // If message was sent by the bot itself and is not a command, ignore
-  if (isFromMe) return;
+  // 3. OUTGOING MESSAGES TO THIRD PARTIES:
+  // If the message was sent by the user (fromMe) to a friend/contact (not self-chat) and has no "!", ignore (it's personal)
+  if (isFromMe) {
+    return;
+  }
 
-  // 3. PROSPECT ACQUISITION PIPELINE
+  // 4. PROSPECT ACQUISITION PIPELINE
   const session = sessionManager.getSession(senderJid);
   const isTrackedLead = session.isProspect ||
     leadDatabase.isDuplicate(`+${senderNumber}`) ||
