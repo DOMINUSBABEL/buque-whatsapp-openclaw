@@ -1,13 +1,15 @@
 /**
- * BUILDER ENGINE (v2.3.0)
+ * BUILDER ENGINE (v2.4.0)
  * Compiles hyper-personalized mobile-first landing pages and interactive web prototypes
- * with dynamic luxury theme tokens, interactive multi-item WhatsApp cart, and ROI simulator.
+ * driven by dynamic design.md profiles, business archetype mission/vision,
+ * real existing brand assets/services, and automated Puppeteer mobile screenshots.
  */
 const fs = require('fs');
 const path = require('path');
 const configManager = require('./config-manager');
 const catalogBuilder = require('./catalog-builder');
-const themeEngine = require('./theme-engine');
+const designSystemLoader = require('./design-system-loader');
+const screenshotEngine = require('./screenshot-engine');
 
 const TEMPLATE_WEB_FILE = path.join(__dirname, '..', 'templates', 'landing-base.html');
 const TEMPLATE_VAREGO_FILE = path.join(__dirname, '..', 'templates', 'varego-landing.html');
@@ -23,7 +25,7 @@ class BuilderEngine {
   }
 
   /**
-   * Generates a complete standalone landing page for the lead (Web Directa or VAREGO Proposal)
+   * Generates a complete standalone landing page & high-res mobile screenshot for the lead
    */
   async buildLandingPage(lead) {
     const slug = this._generateSlug(lead.company_name, lead.lead_id);
@@ -34,6 +36,11 @@ class BuilderEngine {
 
     const phoneClean = (lead.contact_channel?.phone_e164 || '').replace(/[^0-9]/g, '');
     const isVarego = lead.lead_route === 'RUTA_C_VAREGO';
+
+    // 1. Resolve Tailored Design Profile from design.md Specifications
+    const designProfile = designSystemLoader.resolveDesignProfile(lead);
+    lead.design_profile = designProfile;
+
     let template = '';
 
     if (isVarego && fs.existsSync(TEMPLATE_VAREGO_FILE)) {
@@ -72,7 +79,8 @@ class BuilderEngine {
       // Web Directa Page (Rutas A/B)
       template = fs.readFileSync(TEMPLATE_WEB_FILE, 'utf8');
 
-      const theme = themeEngine.resolveTheme(lead.scout_metadata?.category || '');
+      const palette = designProfile.palette;
+      const brand = designProfile.brand;
 
       const catalogItems = lead.assets?.catalog_items ||
         catalogBuilder.extractCatalog({
@@ -82,7 +90,9 @@ class BuilderEngine {
         });
 
       const catalogHtml = catalogItems.map((item, idx) => {
-        const itemImg = theme.catalog_images ? theme.catalog_images[idx % theme.catalog_images.length] : null;
+        const itemImg = (palette.catalog_images && palette.catalog_images.length > 0)
+          ? palette.catalog_images[idx % palette.catalog_images.length]
+          : null;
         const priceClean = item.price_tag || '$25 USD';
         return `
         <div class="glass-card catalog-card p-4 rounded-2xl flex items-center justify-between hover:border-amber-500/40 transition gap-3 border-slate-800/80">
@@ -108,18 +118,21 @@ class BuilderEngine {
       template = template
         .replace(/{{COMPANY_NAME}}/g, lead.company_name)
         .replace(/{{CATEGORY}}/g, lead.scout_metadata?.category || 'Negocio Local')
-        .replace(/{{CITY}}/g, lead.location?.city || 'Medellín')
+        .replace(/{{CITY}}/g, lead.location?.city || brand.city || 'Medellín')
         .replace(/{{RATING}}/g, (lead.scout_metadata?.rating || 4.8).toFixed(1))
         .replace(/{{REVIEWS_COUNT}}/g, String(lead.scout_metadata?.reviews_count || 12))
         .replace(/{{ADDRESS}}/g, lead.location?.address || 'Ubicación céntrica')
         .replace(/{{PHONE_CLEAN}}/g, phoneClean)
         .replace(/{{CATALOG_ITEMS_HTML}}/g, catalogHtml)
-        .replace(/{{TAGLINE}}/g, theme.tagline || 'Calidad y Atención Directa')
-        .replace(/{{HERO_IMAGE}}/g, theme.hero_image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=85')
-        .replace(/{{BG_PRIMARY}}/g, theme.bg_primary || '#090d16')
-        .replace(/{{ACCENT_PRIMARY}}/g, theme.accent_primary || '#f59e0b')
-        .replace(/{{ACCENT_SECONDARY}}/g, theme.accent_secondary || '#06b6d4')
-        .replace(/{{BORDER_CARD}}/g, theme.border_card || 'rgba(245, 158, 11, 0.25)');
+        .replace(/{{TAGLINE}}/g, brand.motto)
+        .replace(/{{BRAND_MISSION}}/g, brand.mission)
+        .replace(/{{BRAND_VISION}}/g, brand.vision)
+        .replace(/{{HERO_IMAGE}}/g, palette.hero_image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=85')
+        .replace(/{{BG_PRIMARY}}/g, palette.bg_primary || '#090d16')
+        .replace(/{{BG_CARD}}/g, palette.bg_card || 'rgba(15, 23, 42, 0.88)')
+        .replace(/{{ACCENT_PRIMARY}}/g, palette.accent_primary || '#f59e0b')
+        .replace(/{{ACCENT_SECONDARY}}/g, palette.accent_secondary || '#06b6d4')
+        .replace(/{{BORDER_CARD}}/g, palette.border_card || 'rgba(245, 158, 11, 0.25)');
     }
 
     const indexPath = path.join(siteFolder, 'index.html');
@@ -127,6 +140,18 @@ class BuilderEngine {
 
     const landingUrl = `${this.baseUrl}/demo/${slug}`;
     console.log(`[BUILDER_AGENT] Generated ${isVarego ? 'VAREGO Proposal' : 'Web Directa'} for ${lead.company_name} -> ${landingUrl}`);
+
+    // 2. Generate High-Fidelity Mobile Screenshot
+    try {
+      const screenshotPath = await screenshotEngine.captureLandingPage(indexPath, slug);
+      if (!lead.assets) lead.assets = {};
+      lead.assets.landing_page_url = landingUrl;
+      lead.assets.screenshot_local_path = screenshotPath;
+      lead.assets.screenshot_url = `${this.baseUrl}/screenshots/${slug}.png`;
+    } catch (scErr) {
+      console.warn(`[BUILDER_AGENT] Screenshot capture warning: ${scErr.message}`);
+    }
+
     return landingUrl;
   }
 
