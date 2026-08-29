@@ -92,10 +92,24 @@ class ConfigManager {
   isAdmin(phoneNumber) {
     if (!phoneNumber) return false;
     const cleanNumber = phoneNumber.replace(/[^0-9]/g, '');
-    return this.config.adminPhoneNumbers.some(admin => {
+    const list = this.config.adminPhoneNumbers || [];
+    return list.some(admin => {
       const cleanAdmin = admin.replace(/[^0-9]/g, '');
-      return cleanNumber === cleanAdmin || cleanNumber.endsWith(cleanAdmin);
+      return cleanNumber === cleanAdmin || cleanNumber.endsWith(cleanAdmin) || cleanAdmin.endsWith(cleanNumber);
     });
+  }
+
+  addAdmin(phoneNumber) {
+    if (!phoneNumber) return false;
+    const cleanNumber = phoneNumber.replace(/[^0-9]/g, '');
+    if (!this.config.adminPhoneNumbers) this.config.adminPhoneNumbers = [];
+    if (!this.isAdmin(cleanNumber)) {
+      this.config.adminPhoneNumbers.push(cleanNumber);
+      this.saveConfig({ adminPhoneNumbers: this.config.adminPhoneNumbers });
+      console.log(`🔑 [ConfigManager] Número [+${cleanNumber}] auto-autorizado como Administrador.`);
+      return true;
+    }
+    return false;
   }
 
   saveConfig(newConfig) {

@@ -55,7 +55,7 @@ class WhatsAppSocketManager {
     this.reconnectAttempts = 0;
   }
 
-  async initSocket(onMessageCallback, onQrCallback = null, onPairingCodeCallback = null, targetPhoneNumber = null) {
+  async initSocket(onMessageCallback, onQrCallback = null, onPairingCodeCallback = null, targetPhoneNumber = null, onOpenCallback = null) {
     const { state, saveCreds } = await useMultiFileAuthState(AUTH_FOLDER);
     const { version, isLatest } = await fetchLatestBaileysVersion();
 
@@ -106,7 +106,7 @@ class WhatsAppSocketManager {
           const delay = Math.min(5000 * Math.pow(1.5, this.reconnectAttempts), 60000);
           console.log(`[WhatsAppSocket] Reconnecting in ${Math.round(delay / 1000)}s (Attempt #${this.reconnectAttempts})...`);
           setTimeout(() => {
-            this.initSocket(onMessageCallback, onQrCallback, onPairingCodeCallback, targetPhoneNumber);
+            this.initSocket(onMessageCallback, onQrCallback, onPairingCodeCallback, targetPhoneNumber, onOpenCallback);
           }, delay);
         } else {
           console.error(`[WhatsAppSocket] Logged out. Manual re-authentication required.`);
@@ -114,6 +114,9 @@ class WhatsAppSocketManager {
       } else if (connection === 'open') {
         console.log(`[WhatsAppSocket] ✅ Connection established successfully! Socket active.`);
         this.reconnectAttempts = 0;
+        if (onOpenCallback) {
+          onOpenCallback(this.sock);
+        }
       }
     });
 
