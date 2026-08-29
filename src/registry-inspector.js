@@ -4,7 +4,6 @@
  * activity codes, and physical establishment addresses across global jurisdictions.
  */
 
-const /* JURISDICTION DEFINITIONS */
 const JURISDICTIONS = {
   'CO': {
     name: 'Cámara de Comercio / RUES (Colombia)',
