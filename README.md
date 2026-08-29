@@ -136,3 +136,6 @@ http://localhost:3000/dashboard
 
 - **Autor:** Dominus Babel / BABYLON.IA (Juan Esteban Gómez Bernal)
 - **Licencia:** [MIT License](LICENSE)
+
+## 📜 Registro de Cambios
+Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
