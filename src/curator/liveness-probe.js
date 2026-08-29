@@ -81,3 +81,5 @@ class LivenessProbe {
 }
 
 module.exports = new LivenessProbe();
+
+// Curation Engine Step: feat(curator): add Baileys onWhatsApp socket probe for real-time mobile line validation
