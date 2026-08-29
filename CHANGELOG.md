@@ -23,3 +23,5 @@
 - Rebranded to ALARICUS B2B Swarm.
 - Integrated VAREGO Social & Meta Ads pipeline ($100 USD/month base fee).
 - Built interactive proposal landing pages and 10s synthetic vertical micro-videos.
+
+// Step: docs(changelog): document v2.2.0 deep commercial intelligence and luxury design system
