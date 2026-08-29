@@ -141,6 +141,6 @@ http://localhost:3000/dashboard
 Consulte el archivo [CHANGELOG.md](CHANGELOG.md) para ver el historial detallado de versiones y mejoras de ALARICUS v2.0.0.
 
 
-## 💼 Servicio VAREGO Social & Meta Ads ($100 USD/mes)
+## 🌐 Generación de Copys Multilingüe (DE, FR, EN, ES, PT)
 
-Especializado para negocios con clientes activos pero baja captación digital o redes dormantes. Incluye 12 posts/reels mensuales, gestión de copys y optimización de campañas de anuncios pagados directamente por el cliente.
+Los mensajes de aproximación y propuestas se redactan en el idioma correspondiente a la ubicación del prospecto (Alemán, Francés, Inglés, Español, Portugués).
