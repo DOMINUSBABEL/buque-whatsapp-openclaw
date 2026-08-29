@@ -150,7 +150,8 @@ class AssistantMode {
           return true;
         }
 
-        let summary = `📋 *PROSPECTOS CURADOS LISTOS PARA REVISIÓN (${leads.length}):*\n\n`;
+        const totalMrrPotential = leads.reduce((acc, l) => acc + (l.lead_route === 'RUTA_C_VAREGO' ? 100 : 0), 0);
+        let summary = `📋 *PROSPECTOS CURADOS LISTOS PARA REVISIÓN (${leads.length})* (MRR: $${totalMrrPotential} USD/mo):\n\n`;
         leads.forEach((l, idx) => {
           summary += `*${idx + 1}. ${l.company_name}*\n` +
                      `📍 ${l.location?.city} (${l.scout_metadata?.category})\n` +
