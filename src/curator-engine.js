@@ -5,6 +5,15 @@ class CuratorEngine {
     return countryRegistry.findCountry(queryText);
   }
 
+  validateAddressFormat(address, countryCode) {
+    if (!address || address.length < 5) return false;
+    const clean = address.toLowerCase();
+    if (countryCode === '49') return clean.includes('straße') || clean.includes('str.') || clean.includes('platz') || clean.includes('weg') || /\d+/.test(clean);
+    if (countryCode === '33') return clean.includes('rue') || clean.includes('avenue') || clean.includes('boulevard') || /\d+/.test(clean);
+    if (countryCode === '57') return clean.includes('calle') || clean.includes('carrera') || clean.includes('diagonal') || clean.includes('transversal') || clean.includes('av') || /\d+/.test(clean);
+    return clean.length >= 8;
+  }
+
   curatePlace(place, searchContext = {}) {
     const query = searchContext.query || '';
     const targetCountry = searchContext.targetCountry || this.detectTargetCountry(query);
@@ -37,11 +46,10 @@ class CuratorEngine {
       issues.push('Sin teléfono disponible para verificación');
     }
 
-    const address = (place.formatted_address || '').toLowerCase();
-    if (address.length > 5) {
+    if (this.validateAddressFormat(place.formatted_address, targetCountry.code)) {
       checks.has_verifiable_address = true;
     } else {
-      issues.push('Dirección física no verificable');
+      issues.push('Dirección física no verificable o incompleta');
     }
 
     const cleanQuery = query.toLowerCase()
