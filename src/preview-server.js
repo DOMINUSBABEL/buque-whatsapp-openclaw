@@ -14,6 +14,7 @@ class PreviewServer {
     this.port = configManager.get('serverPort', 3000);
     this.sitesDir = path.join(__dirname, '..', 'generated_sites');
     this.videosDir = path.join(__dirname, '..', 'generated_videos');
+    this.screenshotsDir = path.join(__dirname, '..', 'generated_screenshots');
     this.serverInstance = null;
 
     this.setupRoutes();
@@ -22,9 +23,12 @@ class PreviewServer {
   setupRoutes() {
     this.app.use(express.json());
 
-    // Serve static video assets
+    // Serve static video & screenshot assets
     if (!fs.existsSync(this.videosDir)) fs.mkdirSync(this.videosDir, { recursive: true });
     this.app.use('/videos', express.static(this.videosDir));
+
+    if (!fs.existsSync(this.screenshotsDir)) fs.mkdirSync(this.screenshotsDir, { recursive: true });
+    this.app.use('/screenshots', express.static(this.screenshotsDir));
 
     // Health check endpoint
     this.app.get('/health', (req, res) => {
