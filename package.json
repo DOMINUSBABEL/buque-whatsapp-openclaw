@@ -5,7 +5,10 @@
   "main": "src/alaricus-bot.js",
   "scripts": {
     "start": "node src/alaricus-bot.js",
+    "gateway": "node src/alaricus-bot.js",
+    "onboard": "node src/alaricus-bot.js",
     "simulator": "node src/simulator-cli.js",
+    "help": "node src/help-cli.js",
     "test": "node tests/run-tests.js"
   },
   "keywords": [
