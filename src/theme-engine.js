@@ -115,5 +115,3 @@ class ThemeEngine {
 }
 
 module.exports = new ThemeEngine();
-
-// Step: feat(theme): add Arctic Health theme for clinical and dental care
