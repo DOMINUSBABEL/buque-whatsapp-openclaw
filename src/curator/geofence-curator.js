@@ -48,3 +48,5 @@ class GeoFenceCurator {
 }
 
 module.exports = new GeoFenceCurator();
+
+// Curation Engine Step: feat(curator): add neighborhood bounding box and address token containment validator
