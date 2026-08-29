@@ -11,6 +11,9 @@ const adminCommands = require('./admin-commands');
 const stateMachine = require('./state-machine');
 const signalHealer = require('./signal-healer');
 
+const leadDatabase = require('./lead-database');
+const sessionManager = require('./session-manager');
+
 function extractMessageText(msg) {
   if (!msg || !msg.message) return '';
   const m = msg.message;
@@ -37,13 +40,22 @@ async function handleIncomingMessage(sock, msg) {
   const isAdmin = configManager.isAdmin(senderNumber);
 
   if (isAdmin && rawText.trim().startsWith('!')) {
-    // Direct Admin Execution
+    // Direct Admin Execution across authorized administrator channels
     await adminCommands.handleCommand(sock, senderJid, rawText);
   } else {
-    // Prospect Message Debounced & Routed to Conversational State Machine
-    signalHealer.debounceMessage(senderJid, rawText, async (aggregatedText) => {
-      await stateMachine.handleMessage(sock, senderJid, aggregatedText);
-    });
+    // Channel Protection: Ensure sender is an active prospect in the acquisition pipeline
+    const session = sessionManager.getSession(senderJid);
+    const isTrackedLead = session.isProspect ||
+      leadDatabase.isDuplicate(`+${senderNumber}`) ||
+      leadDatabase.isDuplicate(senderNumber);
+
+    if (isTrackedLead) {
+      // Prospect Message Debounced & Routed to Conversational State Machine
+      signalHealer.debounceMessage(senderJid, rawText, async (aggregatedText) => {
+        await stateMachine.handleMessage(sock, senderJid, aggregatedText);
+      });
+    }
+    // Non-prospect conversations are preserved and left untouched
   }
 }
 
