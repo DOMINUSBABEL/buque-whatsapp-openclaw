@@ -92,3 +92,5 @@ class BusinessModelEngine {
 }
 
 module.exports = new BusinessModelEngine();
+
+// Step: feat(bizmodel): add hardware and tool retail business model archetype
