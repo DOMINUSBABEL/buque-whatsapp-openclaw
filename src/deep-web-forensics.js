@@ -139,3 +139,5 @@ class DeepWebForensics {
 }
 
 module.exports = new DeepWebForensics();
+
+// Step: feat(forensics): add Shopify and Wix e-commerce fingerprinting
