@@ -471,7 +471,7 @@ async function executeTestSuite() {
   console.log('\n📱 [18/18] Testing Multi-Number Inbound Routing with Bang (!) Commands...');
   const { handleIncomingMessage } = require('../src/alaricus-bot');
 
-  await runAsyncTest('Executes ! command when sent by an external non-admin number', async () => {
+  await runAsyncTest('Executes command when sent with !alaricus prefix by any number', async () => {
     let sentMessage = null;
     const mockSock = {
       sendMessage: async (jid, payload) => {
@@ -485,7 +485,7 @@ async function executeTestSuite() {
         fromMe: false
       },
       message: {
-        conversation: '!ayuda'
+        conversation: '!alaricus ayuda'
       }
     };
 
@@ -495,7 +495,22 @@ async function executeTestSuite() {
     assert(sentMessage.payload.text.includes('COMANDOS DE ADMINISTRACIÓN ALARICUS'));
   });
 
-  await runAsyncTest('Runs 3-step assisted copilot wizard end-to-end without help message interference and detects Colombia +57', async () => {
+  await runAsyncTest('Stays completely silent for messages without !alaricus outside established flow', async () => {
+    let sentMessage = null;
+    const mockSock = {
+      sendMessage: async (jid, payload) => {
+        sentMessage = { jid, payload };
+      }
+    };
+
+    await handleIncomingMessage(mockSock, {
+      key: { remoteJid: '573009998877@s.whatsapp.net', fromMe: false },
+      message: { conversation: 'Hola que tal' }
+    });
+    assert.strictEqual(sentMessage, null);
+  });
+
+  await runAsyncTest('Runs 3-step assisted copilot wizard end-to-end when activated via !alaricus asistido', async () => {
     let sentMessages = [];
     const mockSock = {
       sendMessage: async (jid, payload) => {
@@ -504,10 +519,10 @@ async function executeTestSuite() {
     };
     const testJid = '573123456789@s.whatsapp.net';
 
-    // 1. !asistido
+    // 1. !alaricus asistido
     await handleIncomingMessage(mockSock, {
       key: { remoteJid: testJid, fromMe: false },
-      message: { conversation: '!asistido' }
+      message: { conversation: '!alaricus asistido' }
     });
     assert(sentMessages[sentMessages.length - 1].includes('Paso 1/3'));
 

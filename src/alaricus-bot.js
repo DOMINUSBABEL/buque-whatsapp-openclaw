@@ -103,34 +103,14 @@ async function handleIncomingMessage(sock, msg) {
     return;
   }
 
-  // 1. ACTIVE ASSISTED SESSION INTERCEPTOR
-  // If this sender is currently in an active step-by-step wizard, process directly with or without "!"
+  // 1. ACTIVE ASSISTED SESSION INTERCEPTOR (Established Conversational Flow)
+  // If this sender is currently in an active step-by-step wizard, process directly
   if (assistantMode.isInActiveSession(senderJid)) {
     const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
     if (handledByAssistant) return;
   }
 
-  // 2. BANG (!) COMMANDS: Executable from ANY number (self, admin, or external authorized caller)
-  if (isBangCommand) {
-    console.log(`⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
-    await adminCommands.handleCommand(sock, senderJid, rawText);
-    return;
-  }
-
-  // 3. SELF-CHAT / DEDICATED ADMIN CHANNEL: Natural language assisted dialogue
-  // Only intercept natural conversation (without "!") IF the user is talking in the self-chat or an authorized admin chat
-  if (isSelfChat || (isRegisteredAdmin && !isFromMe)) {
-    const handledByAssistant = await assistantMode.handleAssistedConversation(sock, senderJid, rawText);
-    if (handledByAssistant) return;
-  }
-
-  // 4. OUTGOING MESSAGES TO THIRD PARTIES:
-  // If the message was sent by the user (fromMe) to a friend/contact (not self-chat) and has no "!", ignore (it's personal)
-  if (isFromMe) {
-    return;
-  }
-
-  // 5. PROSPECT ACQUISITION PIPELINE
+  // 2. PROSPECT ACQUISITION PIPELINE (Established Conversational Flow)
   const session = sessionManager.getSession(senderJid);
   const isTrackedLead = session.isProspect ||
     leadDatabase.isDuplicate(`+${senderNumber}`) ||
@@ -141,10 +121,36 @@ async function handleIncomingMessage(sock, msg) {
     signalHealer.debounceMessage(senderJid, rawText, async (aggregatedText) => {
       await stateMachine.handleMessage(sock, senderJid, aggregatedText);
     });
-  } else {
-    // BABYLON.IA Rule: Non-prospect conversations on personal device are preserved untouched
-    console.log(`🔒 [BABYLON.IA Rule] Chat personal no-prospecto [${senderNumber}] preservado y no intervenido.`);
+    return;
   }
+
+  // 3. OUTSIDE ESTABLISHED FLOW: ONLY RESPOND IF MESSAGE CONTAINS !alaricus
+  const isAlaricusCommand = rawText.toLowerCase().includes('!alaricus');
+  if (!isAlaricusCommand) {
+    // Completely ignore messages without !alaricus outside established conversational flows
+    return;
+  }
+
+  // Parse subcommand after !alaricus (e.g. "!alaricus asistido" -> "!asistido", "!alaricus scan ..." -> "!scan ...", "!alaricus" -> "!ayuda")
+  const alaricusMatch = rawText.match(/!alaricus\s*(.*)/i);
+  let innerCommand = alaricusMatch ? alaricusMatch[1].trim() : '';
+
+  if (!innerCommand) {
+    innerCommand = '!ayuda';
+  } else if (!innerCommand.startsWith('!')) {
+    innerCommand = `!${innerCommand}`;
+  }
+
+  console.log(`\n⚙️ [AlaricusActivator] 🚀 Ejecutando "${innerCommand}" activado por !alaricus desde [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
+
+  // If command starts assistant copilot mode
+  if (innerCommand.toLowerCase().startsWith('!asistido') || innerCommand.toLowerCase().startsWith('!copiloto')) {
+    await assistantMode.handleAssistedConversation(sock, senderJid, innerCommand);
+    return;
+  }
+
+  // Otherwise route to standard admin commands dispatcher
+  await adminCommands.handleCommand(sock, senderJid, innerCommand);
 }
 
 const readline = require('readline');
