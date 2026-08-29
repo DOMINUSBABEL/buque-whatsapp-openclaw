@@ -94,6 +94,22 @@ class AdminCommands {
         await sock.sendMessage(senderJid, { text: '▶️ *Pipeline de escaneo y envíos reanudado.*' });
         break;
 
+      case '!audit-social':
+        if (!args) {
+          await sock.sendMessage(senderJid, { text: '⚠️ *Uso:* `!audit-social [nombre o handle]`' });
+          return;
+        }
+        const socialAuditor = require('./social-auditor');
+        const auditRes = await socialAuditor.auditBusiness({ name: args, user_ratings_total: 25 });
+        await sock.sendMessage(senderJid, {
+          text: `📊 *Auditoría Social para ${args}:*\n` +
+                `• Instagram: ${auditRes.instagram_handle}\n` +
+                `• Último Post: Hace ${auditRes.last_post_days_ago} días\n` +
+                `• Estado: ${auditRes.social_dormant ? '🔴 Dormante/Inactivo' : '🟢 Activo'}\n` +
+                `• Recomendación: ${auditRes.audit_summary}`
+        });
+        break;
+
       case '!lead':
         const leadId = args.trim();
         const lead = leadDatabase.getLeadById(leadId);
