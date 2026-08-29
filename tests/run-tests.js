@@ -133,6 +133,7 @@ async function executeTestSuite() {
     const diag = diagnoserEngine.diagnoseLead(lead);
     assert(diag.lead_score >= 80, 'Expected score >= 80, got ' + diag.lead_score);
     assert.strictEqual(diag.service_offer, 'VAREGO_SOCIAL_ADS');
+    assert(diag.mrr_potential_usd >= 100);
   });
 
   // 5. Catalog & Ideas Builder Tests
