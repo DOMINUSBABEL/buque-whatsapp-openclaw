@@ -1,0 +1,23 @@
+{
+  "botName": "Buque B2B Swarm",
+  "version": "1.0.0",
+  "adminPhoneNumbers": [
+    "573001234567"
+  ],
+  "commandPrefix": "!",
+  "serverPort": 3000,
+  "publicBaseUrl": "http://localhost:3000",
+  "scanSettings": {
+    "defaultQuotaPerBatch": 20,
+    "maxDailyInspections": 220,
+    "minReviewsForRouteA": 5,
+    "maxRatingForRouteB": 3.9,
+    "pacingDelayMinSeconds": 45,
+    "pacingDelayMaxSeconds": 120
+  },
+  "qaSettings": {
+    "maxHttpLatencyMs": 1500,
+    "requireMxValidation": false,
+    "strictE164Validation": true
+  }
+}
