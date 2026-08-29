@@ -49,10 +49,10 @@ async function handleIncomingMessage(sock, msg) {
   if (!msg.key) return;
 
   // 0. REPLAY / HISTORY-SYNC FILTER
-  // Ignore historical messages synced upon socket startup (older than server launch time)
+  // Ignore historical messages synced upon socket startup (older than 2 minutes before launch)
   if (msg.messageTimestamp) {
     const msgTimeMs = Number(msg.messageTimestamp) * 1000;
-    if (msgTimeMs < (SERVER_START_TIME - 3000)) {
+    if (msgTimeMs < (SERVER_START_TIME - 120000)) {
       return;
     }
   }
@@ -74,6 +74,9 @@ async function handleIncomingMessage(sock, msg) {
   const isSelfChat = (senderJid === myJid) || (senderNumber === myCleanNumber);
   const isRegisteredAdmin = configManager.isAdmin(senderNumber);
   const isBangCommand = rawText.trim().startsWith('!');
+
+  console.log(`\n📩 [WhatsApp Inbound] De: [${senderNumber}] | fromMe: ${isFromMe} | Self: ${isSelfChat} | Admin: ${isRegisteredAdmin} | Bang: ${isBangCommand}`);
+  console.log(`   Texto: "${rawText}"`);
 
   // Anti-Self-Echo Guard: If message comes from me and matches bot output signatures, ignore
   const isBotSignature = (
@@ -109,7 +112,7 @@ async function handleIncomingMessage(sock, msg) {
 
   // 2. BANG (!) COMMANDS: Executable from ANY number (self, admin, or external authorized caller)
   if (isBangCommand) {
-    console.log(`\n⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
+    console.log(`⚙️ [BangCommand] 🚀 Ejecutando comando "${rawText.trim()}" recibido de [${senderNumber}] (Self: ${isSelfChat}, Admin: ${isRegisteredAdmin})...`);
     await adminCommands.handleCommand(sock, senderJid, rawText);
     return;
   }
@@ -355,8 +358,31 @@ async function startServer() {
   // 1. Start Live Preview / Dashboard Server
   await previewServer.start();
 
-  // 2. Run Onboarding Choice
-  const { method, phoneNumber } = await onboardingWizard.askPairingChoice();
+  // 2. Detect existing paired session to avoid blocking prompt
+  const path = require('path');
+  const fs = require('fs');
+  const authCredsPath = path.join(__dirname, '..', 'whatsapp_auth_info', 'creds.json');
+  let hasExistingAuth = false;
+  try {
+    if (fs.existsSync(authCredsPath)) {
+      const credsRaw = fs.readFileSync(authCredsPath, 'utf8');
+      const credsData = JSON.parse(credsRaw);
+      if (credsData && (credsData.me || credsData.signedIdentityKey)) {
+        hasExistingAuth = true;
+      }
+    }
+  } catch (e) {}
+
+  let method = 'QR';
+  let phoneNumber = null;
+
+  if (!hasExistingAuth) {
+    const choice = await onboardingWizard.askPairingChoice();
+    method = choice.method;
+    phoneNumber = choice.phoneNumber;
+  } else {
+    console.log('🔑 Sesión previa detectada en whatsapp_auth_info. Conectando automáticamente...');
+  }
 
   // 3. Connect WhatsApp Socket
   await whatsappSocket.initSocket(
