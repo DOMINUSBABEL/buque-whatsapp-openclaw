@@ -92,3 +92,5 @@ class BusinessModelEngine {
 }
 
 module.exports = new BusinessModelEngine();
+
+// Step: feat(bizmodel): calculate localized competitive density index (Herfindahl simulation)
