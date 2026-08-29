@@ -202,6 +202,12 @@ async function executeTestSuite() {
     const infoFR = curatorEngine.detectTargetCountry('Boulangeries en Paris - Francia');
     assert.strictEqual(infoFR.code, '33');
     assert.strictEqual(infoFR.name, 'Francia');
+
+    const infoGF = curatorEngine.detectTargetCountry('Boulangerie en Cayenne - Guayana Francesa');
+    assert.strictEqual(infoGF.code, '594');
+
+    const infoSR = curatorEngine.detectTargetCountry('Bakeries in Paramaribo - Surinam');
+    assert.strictEqual(infoSR.code, '597');
   });
 
   runTest('Rejects place with Colombian phone for Germany search query (Anti-Hallucination Gate)', () => {
