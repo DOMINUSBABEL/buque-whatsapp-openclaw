@@ -187,13 +187,21 @@ async function executeTestSuite() {
   // 9. Curator Truth Engine Tests
   console.log('\n🛡️ [9/11] Testing Curator & Data Integrity Engine...');
   const curatorEngine = require('../src/curator-engine');
-  runTest('Detects target country and dialing code from query', () => {
+  runTest('Detects target country and dialing code from query (Germany, Colombia, Guyana, France)', () => {
     const infoDE = curatorEngine.detectTargetCountry('Panaderías en Chemnitz - Alemania');
     assert.strictEqual(infoDE.code, '49');
     assert.strictEqual(infoDE.name, 'Alemania');
 
     const infoCO = curatorEngine.detectTargetCountry('Restaurantes en Medellín');
     assert.strictEqual(infoCO.code, '57');
+
+    const infoGY = curatorEngine.detectTargetCountry('Bakeries in Georgetown - Guyana');
+    assert.strictEqual(infoGY.code, '592');
+    assert.strictEqual(infoGY.name, 'Guyana');
+
+    const infoFR = curatorEngine.detectTargetCountry('Boulangeries en Paris - Francia');
+    assert.strictEqual(infoFR.code, '33');
+    assert.strictEqual(infoFR.name, 'Francia');
   });
 
   runTest('Rejects place with Colombian phone for Germany search query (Anti-Hallucination Gate)', () => {
@@ -207,6 +215,20 @@ async function executeTestSuite() {
     const curation = curatorEngine.curatePlace(invalidPlace, { query: 'Panaderías en Chemnitz - Alemania' });
     assert.strictEqual(curation.passed, false);
     assert(curation.rejection_reasons.some(r => r.includes('Incongruencia geográfica')));
+  });
+
+  runTest('Accepts verified Guyana business with +592 phone for Guyana query', () => {
+    const validGuyanaPlace = {
+      name: 'Georgetown Artisan Bakery',
+      category: 'Bakery',
+      formatted_phone_number: '+5922251234',
+      formatted_address: 'Water Street, Georgetown, Guyana',
+      reviews_snippets: ['Fresh bread daily']
+    };
+    const curation = curatorEngine.curatePlace(validGuyanaPlace, { query: 'Bakeries in Georgetown - Guyana' });
+    assert.strictEqual(curation.passed, true);
+    assert.strictEqual(curation.checks.phone_prefix_valid, true);
+    assert.strictEqual(curation.expected_dialing_code, '+592');
   });
 
   runTest('Accepts verified German bakery with +49 phone for Germany query', () => {

@@ -1,35 +1,11 @@
-/**
- * CURATOR ENGINE (Truth & Data Integrity Verification Agent)
- * Verifies the veracity, geographic coherence, phone country prefix,
- * and niche relevance of discovered places before asset generation or outreach.
- */
-
-const COUNTRY_DIALING_CODES = {
-  'alemania': { code: '49', name: 'Alemania', iso: 'DE', keywords: ['chemnitz', 'berlin', 'munich', 'hamburg', 'frankfurt', 'germany', 'deutschland'] },
-  'colombia': { code: '57', name: 'Colombia', iso: 'CO', keywords: ['medellin', 'bogota', 'cali', 'barranquilla', 'cartagena', 'bucaramanga', 'pereira'] },
-  'estados unidos': { code: '1', name: 'Estados Unidos', iso: 'US', keywords: ['usa', 'united states', 'miami', 'new york', 'orlando', 'houston', 'los angeles'] },
-  'españa': { code: '34', name: 'España', iso: 'ES', keywords: ['madrid', 'barcelona', 'valencia', 'sevilla', 'spain'] },
-  'mexico': { code: '52', name: 'México', iso: 'MX', keywords: ['cdmx', 'guadalajara', 'monterrey', 'cancun', 'puebla'] },
-  'peru': { code: '51', name: 'Perú', iso: 'PE', keywords: ['lima', 'arequipa', 'cusco', 'trujillo'] },
-  'chile': { code: '56', name: 'Chile', iso: 'CL', keywords: ['santiago', 'valparaiso', 'concepcion'] },
-  'argentina': { code: '54', name: 'Argentina', iso: 'AR', keywords: ['buenos aires', 'cordoba', 'rosario', 'mendoza'] }
-};
+const countryRegistry = require('./utils/country-registry');
 
 class CuratorEngine {
   /**
-   * Detects the target country and dialing code from a query or location text
+   * Detects the target country and dialing code from a query or location text (universal 200+ countries)
    */
   detectTargetCountry(queryText) {
-    const text = (queryText || '').toLowerCase();
-
-    for (const [countryKey, info] of Object.entries(COUNTRY_DIALING_CODES)) {
-      if (text.includes(countryKey)) return info;
-      for (const kw of info.keywords) {
-        if (text.includes(kw)) return info;
-      }
-    }
-
-    return COUNTRY_DIALING_CODES['colombia']; // Default fallback if no country specified
+    return countryRegistry.findCountry(queryText);
   }
 
   /**

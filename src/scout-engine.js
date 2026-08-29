@@ -71,22 +71,34 @@ class ScoutEngine {
       .replace(/(alemania|colombia|españa|mexico|estados unidos|usa|germany)/gi, '')
       .trim() || 'Comercio Local';
 
-    const isGerman = targetCountry.code === '49';
-    const isEnglish = targetCountry.code === '1';
+    const isGerman = targetCountry.lang === 'de';
+    const isFrench = targetCountry.lang === 'fr';
+    const isEnglish = targetCountry.lang === 'en';
+    const isPortuguese = targetCountry.lang === 'pt';
 
     // Generate authentic local names based on country language and requested niche
     let sampleNames = [];
-    if (cleanNiche.toLowerCase().includes('panader') || cleanNiche.toLowerCase().includes('bäckerei') || cleanNiche.toLowerCase().includes('bakery')) {
+    if (cleanNiche.toLowerCase().includes('panader') || cleanNiche.toLowerCase().includes('bäckerei') || cleanNiche.toLowerCase().includes('bakery') || cleanNiche.toLowerCase().includes('boulangerie')) {
       if (isGerman) {
         sampleNames = [
           { name: `Bäckerei & Konditorei Schmidt ${city}`, cat: 'Bäckerei & Konditorei', snip: ['Sehr leckeres Brot und frische Brötchen', 'Online-Bestellung leider nicht möglich'] },
           { name: `Landbäckerei ${city} Zentrum`, cat: 'Bäckerei', snip: ['Traditionelles Handwerk, beste Qualität', 'Keine Webseite vorhanden'] },
           { name: `Brotmanufaktur Sachsen`, cat: 'Bäckerei & Café', snip: ['Frische Backwaren täglich'] }
         ];
+      } else if (isFrench) {
+        sampleNames = [
+          { name: `Boulangerie & Pâtisserie Artisanale ${city}`, cat: 'Boulangerie', snip: ['Excellentes baguettes et viennoiseries fraîches', 'Pas de site web disponible'] },
+          { name: `Le Fournil de ${city}`, cat: 'Boulangerie & Pâtisserie', snip: ['Très bons produits artisanaux'] }
+        ];
       } else if (isEnglish) {
         sampleNames = [
           { name: `Artisan Bakery & Cafe ${city}`, cat: 'Bakery & Cafe', snip: ['Best sourdough in town, no online menu'] },
           { name: `The Daily Bread ${city}`, cat: 'Bakery', snip: ['Fresh croissants every morning'] }
+        ];
+      } else if (isPortuguese) {
+        sampleNames = [
+          { name: `Padaria & Confeitaria Central ${city}`, cat: 'Padaria', snip: ['Pão quentinho e ótimo atendimento'] },
+          { name: `Panificadora Imperial ${city}`, cat: 'Padaria & Lanchonete', snip: ['Excelente café da manhã'] }
         ];
       } else {
         sampleNames = [
@@ -107,7 +119,16 @@ class ScoutEngine {
       const sample = sampleNames[i % sampleNames.length];
       const name = `${sample.name} ${i > 2 ? (i + 1) : ''}`.trim();
       const phonePrefix = `+${targetCountry.code}`;
-      const localPhone = isGerman ? `371${400000 + i * 111}` : `300${100000 + i * 111}`;
+      
+      let localPhone = '';
+      if (targetCountry.code === '49') localPhone = `371${400000 + i * 111}`;
+      else if (targetCountry.code === '592') localPhone = `225${1000 + i * 111}`; // Guyana (Georgetown)
+      else if (targetCountry.code === '33') localPhone = `142${60000 + i * 111}`; // France (Paris)
+      else if (targetCountry.code === '1') localPhone = `305${555000 + i * 111}`; // USA
+      else if (targetCountry.code === '34') localPhone = `612${345000 + i * 111}`; // Spain
+      else if (targetCountry.code === '55') localPhone = `119876${5000 + i * 111}`; // Brazil
+      else localPhone = `300${100000 + i * 111}`;
+
       const fullPhone = `${phonePrefix}${localPhone}`;
 
       results.push({
@@ -116,7 +137,7 @@ class ScoutEngine {
         category: sample.cat,
         rating: 4.5 + (i * 0.1 > 0.4 ? 0.2 : i * 0.1),
         user_ratings_total: 18 + (i * 7),
-        formatted_address: isGerman ? `Hauptstraße ${10 + i}, ${city}, Deutschland` : `Calle ${10 + i} #45-${20 + i}, ${city}, ${targetCountry.name}`,
+        formatted_address: isGerman ? `Hauptstraße ${10 + i}, ${city}, Deutschland` : (isFrench ? `Rue Principale ${10 + i}, ${city}, France` : `Calle ${10 + i} #45-${20 + i}, ${city}, ${targetCountry.name}`),
         city,
         country: targetCountry.name,
         has_website: i % 2 === 0 ? false : true,
@@ -129,7 +150,8 @@ class ScoutEngine {
     return results;
   }
 
-  _formatPlaceResult(place) {
+  _formatPlaceResult(place, query) {
+    const targetCountry = curatorEngine.detectTargetCountry(query);
     return {
       place_id: place.place_id,
       name: place.name,
@@ -137,11 +159,11 @@ class ScoutEngine {
       rating: place.rating || 4.0,
       user_ratings_total: place.user_ratings_total || 0,
       formatted_address: place.formatted_address || '',
-      city: 'Medellín',
-      country: 'Colombia',
+      city: place.formatted_address ? (place.formatted_address.split(',')[1]?.trim() || 'Ciudad') : 'Ciudad',
+      country: targetCountry.name,
       has_website: !!place.website,
       website: place.website || null,
-      formatted_phone_number: place.formatted_phone_number || null,
+      formatted_phone_number: place.formatted_phone_number || place.international_phone_number || null,
       reviews_snippets: []
     };
   }
