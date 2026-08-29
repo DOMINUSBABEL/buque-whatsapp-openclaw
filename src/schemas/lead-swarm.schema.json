@@ -59,8 +59,8 @@
     },
     "lead_route": {
       "type": "string",
-      "enum": ["RUTA_A", "RUTA_B"],
-      "description": "RUTA_A (No website), RUTA_B (Has website with friction)"
+      "enum": ["RUTA_A", "RUTA_B", "RUTA_C_VAREGO"],
+      "description": "RUTA_A (No web), RUTA_B (Friction web), RUTA_C_VAREGO (Social & Meta Ads CM)"
     },
     "scout_metadata": {
       "type": "object",
@@ -81,6 +81,17 @@
         },
         "friction_snippet": {
           "type": ["string", "null"]
+        },
+        "social_audit": {
+          "type": "object",
+          "properties": {
+            "instagram_handle": { "type": ["string", "null"] },
+            "facebook_url": { "type": ["string", "null"] },
+            "last_post_days_ago": { "type": ["integer", "null"] },
+            "social_dormant": { "type": "boolean" },
+            "active_meta_ads": { "type": "boolean" },
+            "estimated_mrr_fit": { "type": "boolean" }
+          }
         }
       }
     },
