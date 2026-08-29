@@ -278,3 +278,5 @@ ${businessModelData.monetization_roadmap.map(m => `- ${m}`).join('\n')}
 }
 
 module.exports = new DossierGenerator();
+
+// Step: feat(dossier): export structured markdown dossier alongside HTML asset
