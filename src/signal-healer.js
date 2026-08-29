@@ -7,7 +7,8 @@ const fs = require('fs');
 const path = require('path');
 
 const AUTH_FOLDER = path.join(__dirname, '..', 'whatsapp_auth_info');
-const DEBOUNCE_WINDOW_MS = 2800; // 2.8s burst window
+const DEBOUNCE_WINDOW_MS = 2800;
+const MAX_BUFFER_ITEMS = 50; // 2.8s burst window
 
 class SignalHealer {
   constructor() {
