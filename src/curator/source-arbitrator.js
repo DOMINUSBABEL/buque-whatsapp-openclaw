@@ -63,3 +63,5 @@ class SourceArbitrator {
 }
 
 module.exports = new SourceArbitrator();
+
+// Curation Engine Step: feat(curator): add conflict resolution heuristics between chamber registries and social channels
