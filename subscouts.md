@@ -80,3 +80,11 @@ El enjambre de Subscouts evalúa y diagnostica a los prospectos de acuerdo con e
 5. **Despliegue de `WebFootprintSubscout`:** Realiza análisis forense del dominio y determina la madurez digital.
 6. **Despliegue de `CommercialServiceAdapter`:** Formula el dolor exacto según el servicio seleccionado y calcula el ROI proyectado.
 7. **Generación del Dossier Consolidado:** Emite el diagnóstico estructurado listo para consulta humana o despacho autónomo.
+
+
+## 🛡️ 6. Los 5 Motores de Curaduría y Arbitraje de Verdad
+1. **EntityDeduplicator:** Desduplicación difusa y agrupación de variantes comerciales.
+2. **SourceArbitrator:** Jerarquía ponderada de fuentes.
+3. **GeoFenceCurator:** Geocercado estricto de barrio.
+4. **LivenessProbe:** Sonda en vivo de WhatsApp y recency decay.
+5. **DataProvenanceLedger:** Trazabilidad de procedencia y sello criptográfico de verdad.
