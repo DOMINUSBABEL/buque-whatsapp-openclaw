@@ -142,5 +142,3 @@ class RegistryInspector {
 }
 
 module.exports = new RegistryInspector();
-
-// Step: feat(registry): add establishment seniority and registration date calculator
