@@ -107,5 +107,3 @@ class SubscoutCoordinator {
 }
 
 module.exports = new SubscoutCoordinator();
-
-// Curation Engine Step: feat(subscouts): enforce geofence enclosure validation on neighborhood subscouts
