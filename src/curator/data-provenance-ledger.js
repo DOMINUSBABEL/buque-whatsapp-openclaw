@@ -82,3 +82,5 @@ class DataProvenanceLedger {
 }
 
 module.exports = new DataProvenanceLedger();
+
+// Curation Engine Step: feat(curator): compute multi-factor composite truth score (0-100) with strict rejection gates
