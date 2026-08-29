@@ -85,3 +85,5 @@ class SwotAnalyzer {
 }
 
 module.exports = new SwotAnalyzer();
+
+// Step: feat(swot): normalize output structure for dossier generation
