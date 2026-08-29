@@ -94,6 +94,7 @@ class LeadDatabase {
       totalLeads: this.data.leads.length,
       routeACount: this.data.leads.filter(l => l.lead_route === 'RUTA_A').length,
       routeBCount: this.data.leads.filter(l => l.lead_route === 'RUTA_B').length,
+      routeCCount: this.data.leads.filter(l => l.lead_route === 'RUTA_C_VAREGO').length,
       highPriorityCount: this.data.leads.filter(l => l.diagnostics?.high_priority).length,
       dispatchedCount: this.data.leads.filter(l => l.pipeline_status === 'IN_OUTREACH' || l.pipeline_status === 'CONVERTED').length
     };
