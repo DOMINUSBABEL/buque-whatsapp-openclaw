@@ -1,5 +1,276 @@
 {
-  "leads": [],
-  "indexedPhones": {},
-  "indexedPlaceIds": {}
+  "leads": [
+    {
+      "lead_id": "lead_maps_place_4",
+      "company_name": "Clínica Dental Sonrisas",
+      "location": {
+        "address": "Calle 11 #45-21, Medellin, Colombia",
+        "city": "Medellin",
+        "country": "Colombia",
+        "maps_place_id": "maps_place_436cc3ad6e696361"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573159876543",
+        "email": null,
+        "instagram_handle": null
+      },
+      "lead_route": "RUTA_B",
+      "scout_metadata": {
+        "has_website": true,
+        "website_url": "http://sonrisas-error404.com",
+        "reviews_count": 45,
+        "rating": 3.8,
+        "category": "restaurantes",
+        "friction_keywords_found": [
+          "web",
+          "no funciona",
+          "menú online"
+        ],
+        "friction_snippet": "El enlace para pedir cita en la web no funciona"
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T13:17:57.535Z",
+      "updated_at": "2026-08-29T13:17:57.535Z",
+      "diagnostics": {
+        "lead_score": 95,
+        "high_priority": true,
+        "core_pain_hook": "Clientes de Clínica Dental Sonrisas reportan fricciones directas en su canal web (El enlace para pedir cita en la web no funciona).",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Clínica Dental Sonrisas* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (El enlace para pedir cita en la web no funciona).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/clinica-dental-sonrisas-lead_m\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "email": {
+            "subject": "Optimización de canal web y pedidos para Clínica Dental Sonrisas",
+            "body": "Hola equipo de Clínica Dental Sonrisas,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/clinica-dental-sonrisas-lead_m\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo Buque B2B"
+          },
+          "instagram_dm": "Hola @Clínica Dental Sonrisas 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/clinica-dental-sonrisas-lead_m ¿La revisamos?",
+          "sms": "Clínica Dental Sonrisas: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/clinica-dental-sonrisas-lead_m ¿Agendamos demo?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/clinica-dental-sonrisas-lead_m",
+        "video_asset_url": "http://localhost:3000/videos/demo_cl-nica-dental-sonrisas_lead_m.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_cl-nica-dental-sonrisas_lead_m.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T13:18:01.260Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_maps_place_5",
+      "company_name": "Sabor & Tradición",
+      "location": {
+        "address": "Calle 10 #45-20, Medellin, Colombia",
+        "city": "Medellin",
+        "country": "Colombia",
+        "maps_place_id": "maps_place_5361626f72202620"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573114567890",
+        "email": null,
+        "instagram_handle": null
+      },
+      "lead_route": "RUTA_A",
+      "scout_metadata": {
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 28,
+        "rating": 4.6,
+        "category": "restaurantes",
+        "friction_keywords_found": [],
+        "friction_snippet": "El negocio carece de presencia digital directa, dependiendo de terceros."
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T13:17:57.534Z",
+      "updated_at": "2026-08-29T13:17:57.535Z",
+      "diagnostics": {
+        "lead_score": 90,
+        "high_priority": true,
+        "core_pain_hook": "Actualmente Sabor & Tradición tiene 28 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Sabor & Tradición* 👋\n\nNotamos que son un referente en Medellin con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/sabor-tradicion-lead_m\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
+          "email": {
+            "subject": "Propuesta digital directa para Sabor & Tradición (Medellin)",
+            "body": "Estimado equipo de Sabor & Tradición,\n\nRevisando las reseñas de sus clientes en Medellin, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/sabor-tradicion-lead_m\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo Buque B2B"
+          },
+          "instagram_dm": "Hola @Sabor & Tradición ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios. Échenle un ojo aquí: http://localhost:3000/demo/sabor-tradicion-lead_m",
+          "sms": "Sabor & Tradición: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/sabor-tradicion-lead_m ¿La activamos esta semana?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/sabor-tradicion-lead_m",
+        "video_asset_url": "http://localhost:3000/videos/demo_sabor---tradici-n_lead_m.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_sabor---tradici-n_lead_m.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T13:18:04.568Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_maps_place_4",
+      "company_name": "Ferretería El Tornillo Maestro",
+      "location": {
+        "address": "Calle 12 #45-22, Medellin, Colombia",
+        "city": "Medellin",
+        "country": "Colombia",
+        "maps_place_id": "maps_place_4665727265746572"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573201122334",
+        "email": null,
+        "instagram_handle": "@ferreteraeltornillomaestro"
+      },
+      "lead_route": "RUTA_C_VAREGO",
+      "scout_metadata": {
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 21,
+        "rating": 4.8,
+        "category": "gastrobares",
+        "friction_keywords_found": [],
+        "friction_snippet": "Cuenta @ferreteraeltornillomaestro inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja.",
+        "social_audit": {
+          "instagram_handle": "@ferreteraeltornillomaestro",
+          "facebook_url": "https://facebook.com/ferreteraeltornillomaestro",
+          "last_post_days_ago": 28,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @ferreteraeltornillomaestro inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T13:34:27.138Z",
+      "updated_at": "2026-08-29T13:34:27.138Z",
+      "diagnostics": {
+        "lead_score": 100,
+        "high_priority": true,
+        "core_pain_hook": "Alta demanda comprobada (21 opiniones) pero sus redes sociales llevan 28 días sin publicaciones estratégicas ni campañas de pauta Meta Ads activas.",
+        "service_offer": "VAREGO_SOCIAL_ADS",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Ferretería El Tornillo Maestro* 👋\n\nRevisamos su presencia comercial en Medellin y tienen excelentes calificaciones de clientes, pero notamos que su cuenta de redes (@ferreteraeltornillomaestro) no está aprovechando todo su potencial de atracción con pauta de Meta Ads ni reels continuos.\n\nDesde *VAREGO* manejamos la gestión profesional de sus redes sociales por solo *$100 USD al mes* (creación de contenido, diseño y optimización de anuncios; la inversión en pauta publicitaria es administrada directamente por ustedes a su medida).\n\nLes preparamos este plan visual de crecimiento:\n🔗 *Ver propuesta VAREGO:* http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m\n\n¿Les gustaría que coordinemos una breve llamada de 10 minutos para mostrarles la estrategia para este mes?",
+          "email": {
+            "subject": "Estrategia de crecimiento en Redes Sociales & Meta Ads para Ferretería El Tornillo Maestro - VAREGO",
+            "body": "Estimado equipo de Ferretería El Tornillo Maestro,\n\nAnalizando el mercado local en Medellin, vemos que su negocio cuenta con una reputación sobresaliente. Sin embargo, existe una gran oportunidad desaprovechada en la captación de clientes a través de Instagram y Meta Ads.\n\nEn VAREGO ofrecemos un servicio de Community Management y administración de pauta de alto impacto con un costo base accesible de $100 USD mensuales (con presupuesto publicitario cubierto directamente por su empresa de forma flexible).\n\nPueden revisar la propuesta estratégica interactiva aquí:\nhttp://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m\n\nQuedamos a su disposición para agendar una sesión estratégica.\n\nCordialmente,\nEquipo VAREGO / ALARICUS"
+          },
+          "instagram_dm": "Hola @ferreteraeltornillomaestro 🚀 Vemos un gran potencial en su marca y les armamos un plan de contenidos y Meta Ads por $100 USD/mes. Mírenlo aquí: http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m",
+          "sms": "Ferretería El Tornillo Maestro: Activamos sus redes y Meta Ads por $100 USD/mes con VAREGO. Vea su propuesta: http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/ferreteria-el-tornillo-maestro-lead_m",
+        "video_asset_url": "http://localhost:3000/videos/demo_ferreter-a-el-tornillo-ma_lead_m.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_ferreter-a-el-tornillo-ma_lead_m.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T13:34:35.149Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_maps_place_4",
+      "company_name": "Estética & Spa Bella Piel",
+      "location": {
+        "address": "Calle 13 #45-23, Medellin, Colombia",
+        "city": "Medellin",
+        "country": "Colombia",
+        "maps_place_id": "maps_place_457374c3a9746963"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573007788990",
+        "email": null,
+        "instagram_handle": "@estticaspabellapiel"
+      },
+      "lead_route": "RUTA_C_VAREGO",
+      "scout_metadata": {
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 43,
+        "rating": 4.9,
+        "category": "gastrobares",
+        "friction_keywords_found": [],
+        "friction_snippet": "Cuenta @estticaspabellapiel inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja.",
+        "social_audit": {
+          "instagram_handle": "@estticaspabellapiel",
+          "facebook_url": "https://facebook.com/estticaspabellapiel",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @estticaspabellapiel inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T13:34:27.138Z",
+      "updated_at": "2026-08-29T13:34:27.138Z",
+      "diagnostics": {
+        "lead_score": 100,
+        "high_priority": true,
+        "core_pain_hook": "Alta demanda comprobada (43 opiniones) pero sus redes sociales llevan 34 días sin publicaciones estratégicas ni campañas de pauta Meta Ads activas.",
+        "service_offer": "VAREGO_SOCIAL_ADS",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Estética & Spa Bella Piel* 👋\n\nRevisamos su presencia comercial en Medellin y tienen excelentes calificaciones de clientes, pero notamos que su cuenta de redes (@estticaspabellapiel) no está aprovechando todo su potencial de atracción con pauta de Meta Ads ni reels continuos.\n\nDesde *VAREGO* manejamos la gestión profesional de sus redes sociales por solo *$100 USD al mes* (creación de contenido, diseño y optimización de anuncios; la inversión en pauta publicitaria es administrada directamente por ustedes a su medida).\n\nLes preparamos este plan visual de crecimiento:\n🔗 *Ver propuesta VAREGO:* http://localhost:3000/demo/estetica-spa-bella-piel-lead_m\n\n¿Les gustaría que coordinemos una breve llamada de 10 minutos para mostrarles la estrategia para este mes?",
+          "email": {
+            "subject": "Estrategia de crecimiento en Redes Sociales & Meta Ads para Estética & Spa Bella Piel - VAREGO",
+            "body": "Estimado equipo de Estética & Spa Bella Piel,\n\nAnalizando el mercado local en Medellin, vemos que su negocio cuenta con una reputación sobresaliente. Sin embargo, existe una gran oportunidad desaprovechada en la captación de clientes a través de Instagram y Meta Ads.\n\nEn VAREGO ofrecemos un servicio de Community Management y administración de pauta de alto impacto con un costo base accesible de $100 USD mensuales (con presupuesto publicitario cubierto directamente por su empresa de forma flexible).\n\nPueden revisar la propuesta estratégica interactiva aquí:\nhttp://localhost:3000/demo/estetica-spa-bella-piel-lead_m\n\nQuedamos a su disposición para agendar una sesión estratégica.\n\nCordialmente,\nEquipo VAREGO / ALARICUS"
+          },
+          "instagram_dm": "Hola @estticaspabellapiel 🚀 Vemos un gran potencial en su marca y les armamos un plan de contenidos y Meta Ads por $100 USD/mes. Mírenlo aquí: http://localhost:3000/demo/estetica-spa-bella-piel-lead_m",
+          "sms": "Estética & Spa Bella Piel: Activamos sus redes y Meta Ads por $100 USD/mes con VAREGO. Vea su propuesta: http://localhost:3000/demo/estetica-spa-bella-piel-lead_m"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/estetica-spa-bella-piel-lead_m",
+        "video_asset_url": "http://localhost:3000/videos/demo_est-tica---spa-bella-piel_lead_m.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_est-tica---spa-bella-piel_lead_m.mp4"
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T13:34:42.634Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    }
+  ],
+  "indexedPhones": {
+    "+573159876543": "lead_maps_place_4",
+    "+573114567890": "lead_maps_place_5",
+    "+573201122334": "lead_maps_place_4",
+    "+573007788990": "lead_maps_place_4"
+  },
+  "indexedPlaceIds": {
+    "maps_place_436cc3ad6e696361": "lead_maps_place_4",
+    "maps_place_5361626f72202620": "lead_maps_place_5",
+    "maps_place_4665727265746572": "lead_maps_place_4",
+    "maps_place_457374c3a9746963": "lead_maps_place_4"
+  }
 }
