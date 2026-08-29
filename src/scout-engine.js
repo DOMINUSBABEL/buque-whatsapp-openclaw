@@ -137,7 +137,7 @@ class ScoutEngine {
         category: sample.cat,
         rating: 4.5 + (i * 0.1 > 0.4 ? 0.2 : i * 0.1),
         user_ratings_total: 18 + (i * 7),
-        formatted_address: isGerman ? `Hauptstraße ${10 + i}, ${city}, Deutschland` : (isFrench ? `Rue Principale ${10 + i}, ${city}, France` : `Calle ${10 + i} #45-${20 + i}, ${city}, ${targetCountry.name}`),
+        formatted_address: isGerman ? `Hauptstraße ${10 + i}, ${city}, Deutschland` : (isFrench ? `Rue de la République ${10 + i}, ${city}, France` : (targetCountry.code === '592' ? `Main Street ${10 + i}, ${city}, Guyana` : `Calle ${10 + i} #45-${20 + i}, ${city}, ${targetCountry.name}`)),
         city,
         country: targetCountry.name,
         has_website: i % 2 === 0 ? false : true,
