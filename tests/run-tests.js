@@ -282,6 +282,56 @@ async function executeTestSuite() {
     assert.strictEqual(st.mode, 'AUTO');
   });
 
+  // 12. Multi-Layer Intelligence Tests
+  console.log('\n🏛️ [12/13] Testing Registry Inspector & Commercial Entity Verification...');
+  const registryInspector = require('../src/registry-inspector');
+  await runAsyncTest('Verifies legal entity and activity code for hardware store in Medellin', async () => {
+    const reg = await registryInspector.inspectBusiness('Ferretería El Tornillo de Oro', {
+      city: 'Medellín',
+      neighborhood: 'La Milagrosa',
+      country_iso: 'CO'
+    }, 'Ferretería');
+    assert.strictEqual(reg.verified, true);
+    assert.strictEqual(reg.legal_data.activity_code, '4752');
+    assert(reg.registry_source.includes('Cámara de Comercio'));
+    assert(reg.establishment_data.neighborhood.includes('La Milagrosa'));
+  });
+
+  console.log('\n⚡ [13/14] Testing Deep Web Forensics & Digital Vacancy Diagnostic...');
+  const deepWebForensics = require('../src/deep-web-forensics');
+  await runAsyncTest('Detects digital vacancy when business lacks official website', async () => {
+    const forensics = await deepWebForensics.analyzeWebsite(null);
+    assert.strictEqual(forensics.has_website, false);
+    assert.strictEqual(forensics.status, 'DIGITAL_VACANCY');
+    assert.strictEqual(forensics.conversion_friction_index, 95);
+  });
+
+  console.log('\n🎯 [14/15] Testing SWOT Matrix & Business Model Engine...');
+  const swotAnalyzer = require('../src/swot-analyzer');
+  const businessModelEngine = require('../src/business-model-engine');
+  runTest('Generates comprehensive 4-quadrant SWOT matrix and localized density score', () => {
+    const biz = { name: 'Ferretería La Milagrosa', city: 'Medellín', neighborhood: 'La Milagrosa', category: 'Ferretería', user_ratings_total: 28, rating: 4.6 };
+    const reg = { verified: true, registry_source: 'Cámara de Comercio de Medellín', legal_data: { years_in_business: 8 } };
+    const forensics = { has_website: false, status: 'DIGITAL_VACANCY', conversion_friction_index: 95 };
+    const swot = swotAnalyzer.generateSwot(biz, reg, forensics, {});
+    assert.strictEqual(swot.matrix.strengths.length >= 3, true);
+    assert.strictEqual(swot.matrix.weaknesses.length >= 1, true);
+    assert.strictEqual(swot.matrix.opportunities.length >= 2, true);
+
+    const bModel = businessModelEngine.decomposeBusinessModel(biz, swot, reg);
+    assert.strictEqual(bModel.archetype.includes('Suministros y Herramientas'), true);
+    assert(bModel.neighborhood_landscape.competitive_density_score > 0);
+  });
+
+  console.log('\n🎨 [15/15] Testing Theme Engine Luxury Aesthetics...');
+  const themeEngine = require('../src/theme-engine');
+  runTest('Assigns Titanium Industrial palette for hardware stores', () => {
+    const th = themeEngine.resolveTheme('Ferretería');
+    assert.strictEqual(th.name, 'Titanium Industrial & Tools');
+    assert.strictEqual(th.accent_primary, '#f59e0b');
+    assert(th.hero_image.includes('unsplash.com'));
+  });
+
   // Summary
   console.log('\n======================================================');
   console.log(`📊 TEST RESULTS: ${passedTests} Passed, ${failedTests} Failed`);
