@@ -217,10 +217,36 @@ function setupTerminalRepl() {
         process.exit(0);
         break;
 
+      case 'dossier':
+      case 'diagnostico':
+      case 'swot':
+        if (!args) {
+          console.log('⚠️ Uso: dossier <nicho> en <barrio/zona/ciudad> (Ej: dossier ferreterias en el barrio La Milagrosa de Medellin)');
+        } else {
+          console.log(`\n🔍 [Terminal] Iniciando investigación profunda (Cámara de Comercio + SWOT) para: "${args}"...`);
+          try {
+            const deepScout = require('./deep-scout');
+            const investigation = await deepScout.conductDeepInvestigation(args, { limit: 3 });
+            console.log(`\n📋 INVESTIGACIÓN COMPLETADA (${investigation.total_businesses_analyzed} negocios en ${investigation.micro_zone}):`);
+            investigation.reports.forEach((r, idx) => {
+              console.log(`\n[${idx + 1}] ${r.business_name} (${r.category})`);
+              console.log(`    🏛️ Registro: ${r.registry_verification?.legal_data?.legal_status} (${r.registry_verification?.registry_source})`);
+              console.log(`    ⚡ Web: ${r.web_forensics?.has_website ? 'Indexada (' + r.web_forensics.cms + ')' : 'Vacancia Digital'}`);
+              console.log(`    🎯 Postura: ${r.swot_matrix?.strategic_posture}`);
+              console.log(`    🔗 Dossier: ${r.dossier?.dossier_url}`);
+            });
+            console.log('');
+          } catch (e) {
+            console.error(`❌ Error generando dossier: ${e.message}`);
+          }
+        }
+        break;
+
       case 'help':
       case 'ayuda':
       default:
         console.log('\n⌨️  COMANDOS DISPONIBLES EN ESTA TERMINAL:');
+        console.log(' • dossier <nicho> en <barrio>     -> Diagnóstico profundo (SWOT, Cámara de Comercio)');
         console.log(' • scan <nicho> en <ciudad>        -> Iniciar escaneo para Web Directa');
         console.log(' • scan-varego <nicho> en <ciudad> -> Iniciar escaneo para VAREGO ($100/mo)');
         console.log(' • mapa <ruta_imagen>              -> Analizar captura de Google Maps');
