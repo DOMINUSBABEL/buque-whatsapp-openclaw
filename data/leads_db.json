@@ -1,276 +1,126 @@
 {
   "leads": [
     {
-      "lead_id": "lead_osm_node_d20",
-      "company_name": "Montallantas",
+      "lead_id": "lead_osm_node_709",
+      "company_name": "Taller de mantenimiento y almacenaje Metro de Medellín",
       "location": {
-        "address": "Calle 43 #45-23, Medellín, Colombia",
+        "address": "Calle 44 #52-10, Medellín, Colombia",
         "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "osm_node_d2040a5c5cffe802"
+        "maps_place_id": "osm_node_70987f5f1c34674b"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573005065993",
+        "phone_e164": "+573004375565",
         "email": null,
-        "instagram_handle": "@montallantas"
+        "instagram_handle": "@tallerdemantenimientoyalmacenajemetrodemedelln"
       },
       "lead_route": "RUTA_A",
       "scout_metadata": {
         "has_website": false,
         "website_url": null,
-        "reviews_count": 43,
-        "rating": 4.8,
-        "category": "tyres",
-        "friction_keywords_found": [],
-        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
-        "social_audit": {
-          "instagram_handle": "@montallantas",
-          "facebook_url": "https://facebook.com/montallantas",
-          "last_post_days_ago": 34,
-          "social_dormant": true,
-          "active_meta_ads": false,
-          "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @montallantas inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
-        }
-      },
-      "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T17:46:35.469Z",
-      "updated_at": "2026-08-29T17:46:35.469Z",
-      "diagnostics": {
-        "mrr_potential_usd": 100,
-        "lead_score": 90,
-        "high_priority": true,
-        "core_pain_hook": "Actualmente Montallantas tiene 43 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
-        "service_offer": "DIRECT_WEB",
-        "channel_copies": {
-          "whatsapp": "Hola equipo de *Montallantas* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/montallantas-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
-          "email": {
-            "subject": "Propuesta digital directa para Montallantas (Medellín)",
-            "body": "Estimado equipo de Montallantas,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/montallantas-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
-          },
-          "instagram_dm": "Hola @Montallantas ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/montallantas-lead_o",
-          "sms": "Montallantas: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/montallantas-lead_o ¿La activamos esta semana?"
-        }
-      },
-      "assets": {
-        "landing_page_url": "http://localhost:3000/demo/montallantas-lead_o",
-        "video_asset_url": "http://localhost:3000/videos/demo_montallantas_lead_o.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_montallantas_lead_o.mp4"
-      },
-      "qa_verification": {
-        "passed": true,
-        "checked_at": "2026-08-29T17:46:44.007Z",
-        "inspections": {
-          "syntax_and_placeholders_valid": true,
-          "urls_http_200_under_1500ms": true,
-          "recipient_identity_valid": true,
-          "route_copy_coherence": true
-        },
-        "rejection_log": null
-      }
-    },
-    {
-      "lead_id": "lead_osm_node_3a3",
-      "company_name": "Taller",
-      "location": {
-        "address": "Calle 48 #45-48, Medellín, Colombia",
-        "city": "Medellín",
-        "country": "Colombia",
-        "maps_place_id": "osm_node_3a3dbb81e6b2d66a"
-      },
-      "contact_channel": {
-        "primary_type": "WHATSAPP",
-        "phone_e164": "+573003424198",
-        "email": null,
-        "instagram_handle": "@taller"
-      },
-      "lead_route": "RUTA_A",
-      "scout_metadata": {
-        "has_website": false,
-        "website_url": null,
-        "reviews_count": 28,
+        "reviews_count": 35,
         "rating": 4.8,
         "category": "car_repair",
         "friction_keywords_found": [],
         "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
         "social_audit": {
-          "instagram_handle": "@taller",
-          "facebook_url": "https://facebook.com/taller",
-          "last_post_days_ago": 28,
-          "social_dormant": true,
-          "active_meta_ads": false,
-          "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @taller inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
-        }
-      },
-      "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T17:46:35.469Z",
-      "updated_at": "2026-08-29T17:46:35.469Z",
-      "diagnostics": {
-        "mrr_potential_usd": 100,
-        "lead_score": 90,
-        "high_priority": true,
-        "core_pain_hook": "Actualmente Taller tiene 28 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
-        "service_offer": "DIRECT_WEB",
-        "channel_copies": {
-          "whatsapp": "Hola equipo de *Taller* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/taller-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
-          "email": {
-            "subject": "Propuesta digital directa para Taller (Medellín)",
-            "body": "Estimado equipo de Taller,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/taller-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
-          },
-          "instagram_dm": "Hola @Taller ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/taller-lead_o",
-          "sms": "Taller: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/taller-lead_o ¿La activamos esta semana?"
-        }
-      },
-      "assets": {
-        "landing_page_url": "http://localhost:3000/demo/taller-lead_o",
-        "video_asset_url": "http://localhost:3000/videos/demo_taller_lead_o.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_taller_lead_o.mp4"
-      },
-      "qa_verification": {
-        "passed": true,
-        "checked_at": "2026-08-29T17:46:52.577Z",
-        "inspections": {
-          "syntax_and_placeholders_valid": true,
-          "urls_http_200_under_1500ms": true,
-          "recipient_identity_valid": true,
-          "route_copy_coherence": true
-        },
-        "rejection_log": null
-      }
-    },
-    {
-      "lead_id": "lead_osm_node_a1e",
-      "company_name": "Honda",
-      "location": {
-        "address": "Calle 17 #45-37, Medellín, Colombia",
-        "city": "Medellín",
-        "country": "Colombia",
-        "maps_place_id": "osm_node_a1e985c3fe5a7393"
-      },
-      "contact_channel": {
-        "primary_type": "WHATSAPP",
-        "phone_e164": "+573002087247",
-        "email": null,
-        "instagram_handle": "@honda"
-      },
-      "lead_route": "RUTA_A",
-      "scout_metadata": {
-        "has_website": false,
-        "website_url": null,
-        "reviews_count": 22,
-        "rating": 4.7,
-        "category": "car",
-        "friction_keywords_found": [],
-        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
-        "social_audit": {
-          "instagram_handle": "@honda",
-          "facebook_url": "https://facebook.com/honda",
-          "last_post_days_ago": 28,
-          "social_dormant": true,
-          "active_meta_ads": false,
-          "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @honda inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
-        }
-      },
-      "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T17:46:35.469Z",
-      "updated_at": "2026-08-29T17:46:35.469Z",
-      "diagnostics": {
-        "mrr_potential_usd": 100,
-        "lead_score": 90,
-        "high_priority": true,
-        "core_pain_hook": "Actualmente Honda tiene 22 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
-        "service_offer": "DIRECT_WEB",
-        "channel_copies": {
-          "whatsapp": "Hola equipo de *Honda* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/honda-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
-          "email": {
-            "subject": "Propuesta digital directa para Honda (Medellín)",
-            "body": "Estimado equipo de Honda,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/honda-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
-          },
-          "instagram_dm": "Hola @Honda ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/honda-lead_o",
-          "sms": "Honda: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/honda-lead_o ¿La activamos esta semana?"
-        }
-      },
-      "assets": {
-        "landing_page_url": "http://localhost:3000/demo/honda-lead_o",
-        "video_asset_url": "http://localhost:3000/videos/demo_honda_lead_o.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_honda_lead_o.mp4"
-      },
-      "qa_verification": {
-        "passed": true,
-        "checked_at": "2026-08-29T17:47:01.103Z",
-        "inspections": {
-          "syntax_and_placeholders_valid": true,
-          "urls_http_200_under_1500ms": true,
-          "recipient_identity_valid": true,
-          "route_copy_coherence": true
-        },
-        "rejection_log": null
-      }
-    },
-    {
-      "lead_id": "lead_osm_node_05f",
-      "company_name": "Presto",
-      "location": {
-        "address": "Calle 19 #45-39, Medellín, Colombia",
-        "city": "Medellín",
-        "country": "Colombia",
-        "maps_place_id": "osm_node_05fe6ac73a1a0c08"
-      },
-      "contact_channel": {
-        "primary_type": "WHATSAPP",
-        "phone_e164": "+573003172289",
-        "email": null,
-        "instagram_handle": "@presto"
-      },
-      "lead_route": "RUTA_A",
-      "scout_metadata": {
-        "has_website": false,
-        "website_url": null,
-        "reviews_count": 59,
-        "rating": 4.9,
-        "category": "fast_food",
-        "friction_keywords_found": [],
-        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
-        "social_audit": {
-          "instagram_handle": "@presto",
-          "facebook_url": "https://facebook.com/presto",
+          "instagram_handle": "@tallerdemantenimientoyalmacenajemetrodemedelln",
+          "facebook_url": "https://facebook.com/tallerdemantenimientoyalmacenajemetrodemedelln",
           "last_post_days_ago": 34,
           "social_dormant": true,
           "active_meta_ads": false,
           "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @presto inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+          "audit_summary": "Cuenta @tallerdemantenimientoyalmacenajemetrodemedelln inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
         }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T17:49:12.116Z",
-      "updated_at": "2026-08-29T17:49:12.116Z",
+      "created_at": "2026-08-29T17:59:58.605Z",
+      "updated_at": "2026-08-29T17:59:58.605Z",
       "diagnostics": {
         "mrr_potential_usd": 100,
-        "lead_score": 95,
+        "lead_score": 90,
         "high_priority": true,
-        "core_pain_hook": "Actualmente Presto tiene 59 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "core_pain_hook": "Actualmente Taller de mantenimiento y almacenaje Metro de Medellín tiene 35 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
         "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *Presto* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/presto-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
+          "whatsapp": "Hola equipo de *Taller de mantenimiento y almacenaje Metro de Medellín* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/taller-de-mantenimiento-y-alma-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Propuesta digital directa para Presto (Medellín)",
-            "body": "Estimado equipo de Presto,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/presto-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
+            "subject": "Propuesta digital directa para Taller de mantenimiento y almacenaje Metro de Medellín (Medellín)",
+            "body": "Estimado equipo de Taller de mantenimiento y almacenaje Metro de Medellín,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/taller-de-mantenimiento-y-alma-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @Presto ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/presto-lead_o",
-          "sms": "Presto: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/presto-lead_o ¿La activamos esta semana?"
+          "instagram_dm": "Hola @Taller de mantenimiento y almacenaje Metro de Medellín ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/taller-de-mantenimiento-y-alma-lead_o",
+          "sms": "Taller de mantenimiento y almacenaje Metro de Medellín: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/taller-de-mantenimiento-y-alma-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/presto-lead_o",
-        "video_asset_url": "http://localhost:3000/videos/demo_presto_lead_o.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_presto_lead_o.mp4"
+        "landing_page_url": "http://localhost:3000/demo/taller-de-mantenimiento-y-alma-lead_o",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\taller-de-mantenimiento-y-alma-lead_o.png",
+        "screenshot_url": "http://localhost:3000/screenshots/taller-de-mantenimiento-y-alma-lead_o.png",
+        "video_asset_url": "http://localhost:3000/videos/demo_taller-de-mantenimiento-y_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_taller-de-mantenimiento-y_lead_o.mp4"
+      },
+      "design_profile": {
+        "archetypeKey": "b2c_gastronomy_hospitality",
+        "designDoc": {
+          "key": "b2c_gastronomy_hospitality",
+          "filename": "b2c_gastronomy_hospitality.design.md",
+          "content": "# DESIGN SYSTEM: B2C Gastronomy, Dining & Artisan Food\n\n## 1. Business Archetype & Model\n- **Sector:** Restaurantes Gourmet, Pizzerías de Autor, Hamburgueserías Craft, Bistrós, Panaderías Artesanales y Cafés Especiales.\n- **Business Model:** B2C Direct-to-Consumer Food & Beverage, Direct WhatsApp Delivery, Dine-in Table Reservations.\n- **Conversion Objective:** Pedidos directos sin comisiones del 30% a plataformas (Rappi/iFood), reservas de mesa inmediatas y fidelización con catálogo visual.\n\n## 2. Brand Identity, Mission & Vision Alignment\n- **Brand Essence:** Arte culinario, frescura de ingredientes locales, deleite sensorial, hospitalidad y rapidez en entrega.\n- **Mission Statement:** \"Ofrecer una experiencia gastronómica memorable elaborada con ingredientes seleccionados de primera calidad, servida con calidez humana y disponible directo a tu mesa o domicilio.\"\n- **Vision Statement:** \"Ser el referente culinario preferido de la ciudad, reconocido por la excelencia en sabor, autenticidad artesanal y servicio impecable.\"\n- **Core Value Proposition / Taglines:**\n  - \"Sabores de Autor, Ingredientes Frescos y Tradición Culinaria\"\n  - \"Pide Directo a Nuestra Cocina Sin Intermediarios ni Comisiones\"\n  - \"Masa Madre, Café de Origen y Repostería de Autor\"\n\n## 3. Color Palettes & Visual Tokens\n### Palette A: Obsidian Flame & Gold (Gourmet Dining & Grill)\n- **Background Primary (`bg_primary`):** `#09090b` (Charcoal Obsidian)\n- **Card Surface (`bg_card`):** `rgba(24, 24, 27, 0.88)`\n- **Card Border (`border_card`):** `rgba(225, 29, 72, 0.28)` (Flame Rose Glow)\n- **Primary Accent (`accent_primary`):** `#e11d48` (Flame Crimson Rose)\n- **Secondary Accent (`accent_secondary`):** `#eab308` (Culinary Gold)\n- **Text Primary (`text_primary`):** `#fafafa`\n- **Text Muted (`text_muted`):** `#a1a1aa`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(225, 29, 72, 0.28) 0%, rgba(9, 9, 11, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85`\n\n### Palette B: Warm Terracotta & Espresso (Artisan Bakery & Specialty Coffee)\n- **Background Primary (`bg_primary`):** `#0f0c0a` (Warm Roast Espresso)\n- **Card Surface (`bg_card`):** `rgba(30, 24, 20, 0.88)`\n- **Card Border (`border_card`):** `rgba(217, 119, 6, 0.30)` (Baked Crust Amber)\n- **Primary Accent (`accent_primary`):** `#d97706` (Warm Sourdough Amber)\n- **Secondary Accent (`accent_secondary`):** `#fbbf24` (Butter Cream Gold)\n- **Text Primary (`text_primary`):** `#fef3c7`\n- **Text Muted (`text_muted`):** `#d4b996`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(217, 119, 6, 0.28) 0%, rgba(15, 12, 10, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85`\n\n## 4. Typography Hierarchy\n- **Headings & Menu Categories:** `Outfit, sans-serif` (Bold 700 / ExtraBold 800)\n- **Dish Descriptions & Modifiers:** `Plus Jakarta Sans, sans-serif` (Regular 400 / Medium 500)\n- **Price Tags & Combos:** `JetBrains Mono, monospace` (Bold 700)\n\n## 5. UI Components & Micro-Interactions\n- **Visual Food Cart:** Carrito interactivo multi-ítem con cálculo dinámico de total y despacho estructurado a WhatsApp.\n- **Commission Savings Calculator:** Comparativa de ahorro directo vs apps de delivery para concientizar al comensal.\n- **Real Dish Cards:** Fotografías de alta resolución de las especialidades reales del negocio.\n"
+        },
+        "theme": {
+          "key": "TECH_AUTOMATION",
+          "name": "Cyber Matrix Neon Cyan & Indigo",
+          "tagline": "Software, Automatización con Inteligencia Artificial y Cloud",
+          "bg_primary": "#060814",
+          "bg_card": "rgba(10, 16, 38, 0.85)",
+          "border_card": "rgba(99, 102, 241, 0.3)",
+          "accent_primary": "#6366f1",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#eef2ff",
+          "text_muted": "#a5b4fc",
+          "font_heading": "Outfit, sans-serif",
+          "font_body": "Plus Jakarta Sans, sans-serif",
+          "hero_gradient": "linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(6, 8, 20, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "brand": {
+          "name": "Taller de mantenimiento y almacenaje Metro de Medellín",
+          "category": "car_repair",
+          "city": "Medellín",
+          "motto": "Sabores de Autor y Tradición Culinaria en Medellín",
+          "mission": "Ofrecer una experiencia gastronómica memorable en Taller de mantenimiento y almacenaje Metro de Medellín, con ingredientes frescos y preparación artesanal directa a tu mesa.",
+          "vision": "Ser la propuesta culinaria preferida de Medellín, distinguida por la autenticidad, frescura y calidez en cada servicio."
+        },
+        "palette": {
+          "bg_primary": "#060814",
+          "bg_card": "rgba(10, 16, 38, 0.85)",
+          "border_card": "rgba(99, 102, 241, 0.3)",
+          "accent_primary": "#6366f1",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#eef2ff",
+          "text_muted": "#a5b4fc",
+          "hero_gradient": "linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(6, 8, 20, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "typography": {
+          "heading": "Outfit, sans-serif",
+          "body": "Plus Jakarta Sans, sans-serif",
+          "mono": "JetBrains Mono, monospace"
+        }
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T17:49:20.554Z",
+        "checked_at": "2026-08-29T18:00:09.315Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -281,66 +131,128 @@
       }
     },
     {
-      "lead_id": "lead_osm_node_5e6",
-      "company_name": "El Corral",
+      "lead_id": "lead_osm_node_42a",
+      "company_name": "Montallantas La 33",
       "location": {
-        "address": "Avenida Nutibara 74-09, Medellín, Colombia",
+        "address": "Avenida 33 #65-20, Medellín, Colombia",
         "city": "Medellín",
         "country": "Colombia",
-        "maps_place_id": "osm_node_5e66f5a3b5a9aa5d"
+        "maps_place_id": "osm_node_42ad337716214b36"
       },
       "contact_channel": {
         "primary_type": "WHATSAPP",
-        "phone_e164": "+573001816384",
+        "phone_e164": "+573005065993",
         "email": null,
-        "instagram_handle": "@elcorral"
+        "instagram_handle": "@montallantasla33"
       },
       "lead_route": "RUTA_A",
       "scout_metadata": {
         "has_website": false,
         "website_url": null,
-        "reviews_count": 24,
-        "rating": 4.9,
-        "category": "fast_food",
+        "reviews_count": 35,
+        "rating": 4.8,
+        "category": "tyres",
         "friction_keywords_found": [],
         "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
         "social_audit": {
-          "instagram_handle": "@elcorral",
-          "facebook_url": "https://facebook.com/elcorral",
-          "last_post_days_ago": 28,
+          "instagram_handle": "@montallantasla33",
+          "facebook_url": "https://facebook.com/montallantasla33",
+          "last_post_days_ago": 34,
           "social_dormant": true,
           "active_meta_ads": false,
           "estimated_mrr_fit": true,
-          "audit_summary": "Cuenta @elcorral inactiva hace 28 días. Gran potencial de reactivación comercial y flujo de caja."
+          "audit_summary": "Cuenta @montallantasla33 inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
         }
       },
       "pipeline_status": "QUEUED_FOR_PITCH",
-      "created_at": "2026-08-29T17:49:12.116Z",
-      "updated_at": "2026-08-29T17:49:12.116Z",
+      "created_at": "2026-08-29T17:59:58.606Z",
+      "updated_at": "2026-08-29T17:59:58.606Z",
       "diagnostics": {
         "mrr_potential_usd": 100,
         "lead_score": 90,
         "high_priority": true,
-        "core_pain_hook": "Actualmente El Corral tiene 24 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "core_pain_hook": "Actualmente Montallantas La 33 tiene 35 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
         "service_offer": "DIRECT_WEB",
         "channel_copies": {
-          "whatsapp": "Hola equipo de *El Corral* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/el-corral-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
+          "whatsapp": "Hola equipo de *Montallantas La 33* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/montallantas-la-33-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
           "email": {
-            "subject": "Propuesta digital directa para El Corral (Medellín)",
-            "body": "Estimado equipo de El Corral,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/el-corral-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
+            "subject": "Propuesta digital directa para Montallantas La 33 (Medellín)",
+            "body": "Estimado equipo de Montallantas La 33,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/montallantas-la-33-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
           },
-          "instagram_dm": "Hola @El Corral ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/el-corral-lead_o",
-          "sms": "El Corral: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/el-corral-lead_o ¿La activamos esta semana?"
+          "instagram_dm": "Hola @Montallantas La 33 ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/montallantas-la-33-lead_o",
+          "sms": "Montallantas La 33: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/montallantas-la-33-lead_o ¿La activamos esta semana?"
         }
       },
       "assets": {
-        "landing_page_url": "http://localhost:3000/demo/el-corral-lead_o",
-        "video_asset_url": "http://localhost:3000/videos/demo_el-corral_lead_o.mp4",
-        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_el-corral_lead_o.mp4"
+        "landing_page_url": "http://localhost:3000/demo/montallantas-la-33-lead_o",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\montallantas-la-33-lead_o.png",
+        "screenshot_url": "http://localhost:3000/screenshots/montallantas-la-33-lead_o.png",
+        "video_asset_url": "http://localhost:3000/videos/demo_montallantas-la-33_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_montallantas-la-33_lead_o.mp4"
+      },
+      "design_profile": {
+        "archetypeKey": "b2c_gastronomy_hospitality",
+        "designDoc": {
+          "key": "b2c_gastronomy_hospitality",
+          "filename": "b2c_gastronomy_hospitality.design.md",
+          "content": "# DESIGN SYSTEM: B2C Gastronomy, Dining & Artisan Food\n\n## 1. Business Archetype & Model\n- **Sector:** Restaurantes Gourmet, Pizzerías de Autor, Hamburgueserías Craft, Bistrós, Panaderías Artesanales y Cafés Especiales.\n- **Business Model:** B2C Direct-to-Consumer Food & Beverage, Direct WhatsApp Delivery, Dine-in Table Reservations.\n- **Conversion Objective:** Pedidos directos sin comisiones del 30% a plataformas (Rappi/iFood), reservas de mesa inmediatas y fidelización con catálogo visual.\n\n## 2. Brand Identity, Mission & Vision Alignment\n- **Brand Essence:** Arte culinario, frescura de ingredientes locales, deleite sensorial, hospitalidad y rapidez en entrega.\n- **Mission Statement:** \"Ofrecer una experiencia gastronómica memorable elaborada con ingredientes seleccionados de primera calidad, servida con calidez humana y disponible directo a tu mesa o domicilio.\"\n- **Vision Statement:** \"Ser el referente culinario preferido de la ciudad, reconocido por la excelencia en sabor, autenticidad artesanal y servicio impecable.\"\n- **Core Value Proposition / Taglines:**\n  - \"Sabores de Autor, Ingredientes Frescos y Tradición Culinaria\"\n  - \"Pide Directo a Nuestra Cocina Sin Intermediarios ni Comisiones\"\n  - \"Masa Madre, Café de Origen y Repostería de Autor\"\n\n## 3. Color Palettes & Visual Tokens\n### Palette A: Obsidian Flame & Gold (Gourmet Dining & Grill)\n- **Background Primary (`bg_primary`):** `#09090b` (Charcoal Obsidian)\n- **Card Surface (`bg_card`):** `rgba(24, 24, 27, 0.88)`\n- **Card Border (`border_card`):** `rgba(225, 29, 72, 0.28)` (Flame Rose Glow)\n- **Primary Accent (`accent_primary`):** `#e11d48` (Flame Crimson Rose)\n- **Secondary Accent (`accent_secondary`):** `#eab308` (Culinary Gold)\n- **Text Primary (`text_primary`):** `#fafafa`\n- **Text Muted (`text_muted`):** `#a1a1aa`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(225, 29, 72, 0.28) 0%, rgba(9, 9, 11, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85`\n\n### Palette B: Warm Terracotta & Espresso (Artisan Bakery & Specialty Coffee)\n- **Background Primary (`bg_primary`):** `#0f0c0a` (Warm Roast Espresso)\n- **Card Surface (`bg_card`):** `rgba(30, 24, 20, 0.88)`\n- **Card Border (`border_card`):** `rgba(217, 119, 6, 0.30)` (Baked Crust Amber)\n- **Primary Accent (`accent_primary`):** `#d97706` (Warm Sourdough Amber)\n- **Secondary Accent (`accent_secondary`):** `#fbbf24` (Butter Cream Gold)\n- **Text Primary (`text_primary`):** `#fef3c7`\n- **Text Muted (`text_muted`):** `#d4b996`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(217, 119, 6, 0.28) 0%, rgba(15, 12, 10, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85`\n\n## 4. Typography Hierarchy\n- **Headings & Menu Categories:** `Outfit, sans-serif` (Bold 700 / ExtraBold 800)\n- **Dish Descriptions & Modifiers:** `Plus Jakarta Sans, sans-serif` (Regular 400 / Medium 500)\n- **Price Tags & Combos:** `JetBrains Mono, monospace` (Bold 700)\n\n## 5. UI Components & Micro-Interactions\n- **Visual Food Cart:** Carrito interactivo multi-ítem con cálculo dinámico de total y despacho estructurado a WhatsApp.\n- **Commission Savings Calculator:** Comparativa de ahorro directo vs apps de delivery para concientizar al comensal.\n- **Real Dish Cards:** Fotografías de alta resolución de las especialidades reales del negocio.\n"
+        },
+        "theme": {
+          "key": "HARDWARE_INDUSTRIAL",
+          "name": "Titanium Industrial & Heavy Tools",
+          "tagline": "Solidez, Precisión y Rendimiento Técnico",
+          "bg_primary": "#070a12",
+          "bg_card": "rgba(15, 23, 42, 0.85)",
+          "border_card": "rgba(245, 158, 11, 0.25)",
+          "accent_primary": "#f59e0b",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#f8fafc",
+          "text_muted": "#94a3b8",
+          "font_heading": "Outfit, sans-serif",
+          "font_body": "Plus Jakarta Sans, sans-serif",
+          "hero_gradient": "linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1581147036324-c17ac41dfa6c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "brand": {
+          "name": "Montallantas La 33",
+          "category": "tyres",
+          "city": "Medellín",
+          "motto": "Sabores de Autor y Tradición Culinaria en Medellín",
+          "mission": "Ofrecer una experiencia gastronómica memorable en Montallantas La 33, con ingredientes frescos y preparación artesanal directa a tu mesa.",
+          "vision": "Ser la propuesta culinaria preferida de Medellín, distinguida por la autenticidad, frescura y calidez en cada servicio."
+        },
+        "palette": {
+          "bg_primary": "#070a12",
+          "bg_card": "rgba(15, 23, 42, 0.85)",
+          "border_card": "rgba(245, 158, 11, 0.25)",
+          "accent_primary": "#f59e0b",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#f8fafc",
+          "text_muted": "#94a3b8",
+          "hero_gradient": "linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1581147036324-c17ac41dfa6c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "typography": {
+          "heading": "Outfit, sans-serif",
+          "body": "Plus Jakarta Sans, sans-serif",
+          "mono": "JetBrains Mono, monospace"
+        }
       },
       "qa_verification": {
         "passed": true,
-        "checked_at": "2026-08-29T17:49:28.881Z",
+        "checked_at": "2026-08-29T18:00:19.699Z",
         "inspections": {
           "syntax_and_placeholders_valid": true,
           "urls_http_200_under_1500ms": true,
@@ -349,20 +261,426 @@
         },
         "rejection_log": null
       }
+    },
+    {
+      "lead_id": "lead_osm_node_283",
+      "company_name": "Taller Mecánico Central",
+      "location": {
+        "address": "Carrera 50 #38-15, Medellín, Colombia",
+        "city": "Medellín",
+        "country": "Colombia",
+        "maps_place_id": "osm_node_283fff420f23dc56"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573003424198",
+        "email": null,
+        "instagram_handle": "@tallermecnicocentral"
+      },
+      "lead_route": "RUTA_A",
+      "scout_metadata": {
+        "has_website": false,
+        "website_url": null,
+        "reviews_count": 35,
+        "rating": 4.8,
+        "category": "car_repair",
+        "friction_keywords_found": [],
+        "friction_snippet": "El negocio carece de presencia digital directa para captar clientes.",
+        "social_audit": {
+          "instagram_handle": "@tallermecnicocentral",
+          "facebook_url": "https://facebook.com/tallermecnicocentral",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @tallermecnicocentral inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T17:59:58.606Z",
+      "updated_at": "2026-08-29T17:59:58.606Z",
+      "diagnostics": {
+        "mrr_potential_usd": 100,
+        "lead_score": 90,
+        "high_priority": true,
+        "core_pain_hook": "Actualmente Taller Mecánico Central tiene 35 reseñas en Google pero carece de un canal web directo para captar pedidos y clientes móviles sin intermediarios.",
+        "service_offer": "DIRECT_WEB",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Taller Mecánico Central* 👋\n\nNotamos que son un referente en Medellín con excelentes opiniones en Google Maps, pero sus clientes no encuentran una página web oficial con su menú/servicios para ordenar directamente.\n\nLes preparamos este prototipo móvil funcional con sus productos reales y botón de pedidos a WhatsApp:\n🔗 *Ver propuesta:* http://localhost:3000/demo/taller-mecanico-central-lead_o\n\n¿Les gustaría que lo dejemos activo con su propio dominio esta semana?",
+          "email": {
+            "subject": "Propuesta digital directa para Taller Mecánico Central (Medellín)",
+            "body": "Estimado equipo de Taller Mecánico Central,\n\nRevisando las reseñas de sus clientes en Medellín, vemos una alta demanda de sus servicios. Sin embargo, actualmente no cuentan con un sitio web directo para convertir esas búsquedas en clientes sin pagar comisiones a plataformas intermediarias.\n\nHemos desarrollado un prototipo optimizado para dispositivos móviles:\nhttp://localhost:3000/demo/taller-mecanico-central-lead_o\n\nPodemos ponerlo en marcha en menos de 48 horas con su propio dominio.\n\nQuedo atento a sus comentarios.\nEquipo ALARICUS B2B"
+          },
+          "instagram_dm": "Hola @Taller Mecánico Central ✨ Les armamos una propuesta de sitio web interactivo para que sus clientes pidan directo a su WhatsApp sin intermediarios: http://localhost:3000/demo/taller-mecanico-central-lead_o",
+          "sms": "Taller Mecánico Central: Diseñamos su nueva web con pedidos a WhatsApp. Mírela aquí: http://localhost:3000/demo/taller-mecanico-central-lead_o ¿La activamos esta semana?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/taller-mecanico-central-lead_o",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\taller-mecanico-central-lead_o.png",
+        "screenshot_url": "http://localhost:3000/screenshots/taller-mecanico-central-lead_o.png",
+        "video_asset_url": "http://localhost:3000/videos/demo_taller-mec-nico-central_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_taller-mec-nico-central_lead_o.mp4"
+      },
+      "design_profile": {
+        "archetypeKey": "b2c_gastronomy_hospitality",
+        "designDoc": {
+          "key": "b2c_gastronomy_hospitality",
+          "filename": "b2c_gastronomy_hospitality.design.md",
+          "content": "# DESIGN SYSTEM: B2C Gastronomy, Dining & Artisan Food\n\n## 1. Business Archetype & Model\n- **Sector:** Restaurantes Gourmet, Pizzerías de Autor, Hamburgueserías Craft, Bistrós, Panaderías Artesanales y Cafés Especiales.\n- **Business Model:** B2C Direct-to-Consumer Food & Beverage, Direct WhatsApp Delivery, Dine-in Table Reservations.\n- **Conversion Objective:** Pedidos directos sin comisiones del 30% a plataformas (Rappi/iFood), reservas de mesa inmediatas y fidelización con catálogo visual.\n\n## 2. Brand Identity, Mission & Vision Alignment\n- **Brand Essence:** Arte culinario, frescura de ingredientes locales, deleite sensorial, hospitalidad y rapidez en entrega.\n- **Mission Statement:** \"Ofrecer una experiencia gastronómica memorable elaborada con ingredientes seleccionados de primera calidad, servida con calidez humana y disponible directo a tu mesa o domicilio.\"\n- **Vision Statement:** \"Ser el referente culinario preferido de la ciudad, reconocido por la excelencia en sabor, autenticidad artesanal y servicio impecable.\"\n- **Core Value Proposition / Taglines:**\n  - \"Sabores de Autor, Ingredientes Frescos y Tradición Culinaria\"\n  - \"Pide Directo a Nuestra Cocina Sin Intermediarios ni Comisiones\"\n  - \"Masa Madre, Café de Origen y Repostería de Autor\"\n\n## 3. Color Palettes & Visual Tokens\n### Palette A: Obsidian Flame & Gold (Gourmet Dining & Grill)\n- **Background Primary (`bg_primary`):** `#09090b` (Charcoal Obsidian)\n- **Card Surface (`bg_card`):** `rgba(24, 24, 27, 0.88)`\n- **Card Border (`border_card`):** `rgba(225, 29, 72, 0.28)` (Flame Rose Glow)\n- **Primary Accent (`accent_primary`):** `#e11d48` (Flame Crimson Rose)\n- **Secondary Accent (`accent_secondary`):** `#eab308` (Culinary Gold)\n- **Text Primary (`text_primary`):** `#fafafa`\n- **Text Muted (`text_muted`):** `#a1a1aa`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(225, 29, 72, 0.28) 0%, rgba(9, 9, 11, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85`\n\n### Palette B: Warm Terracotta & Espresso (Artisan Bakery & Specialty Coffee)\n- **Background Primary (`bg_primary`):** `#0f0c0a` (Warm Roast Espresso)\n- **Card Surface (`bg_card`):** `rgba(30, 24, 20, 0.88)`\n- **Card Border (`border_card`):** `rgba(217, 119, 6, 0.30)` (Baked Crust Amber)\n- **Primary Accent (`accent_primary`):** `#d97706` (Warm Sourdough Amber)\n- **Secondary Accent (`accent_secondary`):** `#fbbf24` (Butter Cream Gold)\n- **Text Primary (`text_primary`):** `#fef3c7`\n- **Text Muted (`text_muted`):** `#d4b996`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(217, 119, 6, 0.28) 0%, rgba(15, 12, 10, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85`\n\n## 4. Typography Hierarchy\n- **Headings & Menu Categories:** `Outfit, sans-serif` (Bold 700 / ExtraBold 800)\n- **Dish Descriptions & Modifiers:** `Plus Jakarta Sans, sans-serif` (Regular 400 / Medium 500)\n- **Price Tags & Combos:** `JetBrains Mono, monospace` (Bold 700)\n\n## 5. UI Components & Micro-Interactions\n- **Visual Food Cart:** Carrito interactivo multi-ítem con cálculo dinámico de total y despacho estructurado a WhatsApp.\n- **Commission Savings Calculator:** Comparativa de ahorro directo vs apps de delivery para concientizar al comensal.\n- **Real Dish Cards:** Fotografías de alta resolución de las especialidades reales del negocio.\n"
+        },
+        "theme": {
+          "key": "TECH_AUTOMATION",
+          "name": "Cyber Matrix Neon Cyan & Indigo",
+          "tagline": "Software, Automatización con Inteligencia Artificial y Cloud",
+          "bg_primary": "#060814",
+          "bg_card": "rgba(10, 16, 38, 0.85)",
+          "border_card": "rgba(99, 102, 241, 0.3)",
+          "accent_primary": "#6366f1",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#eef2ff",
+          "text_muted": "#a5b4fc",
+          "font_heading": "Outfit, sans-serif",
+          "font_body": "Plus Jakarta Sans, sans-serif",
+          "hero_gradient": "linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(6, 8, 20, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "brand": {
+          "name": "Taller Mecánico Central",
+          "category": "car_repair",
+          "city": "Medellín",
+          "motto": "Sabores de Autor y Tradición Culinaria en Medellín",
+          "mission": "Ofrecer una experiencia gastronómica memorable en Taller Mecánico Central, con ingredientes frescos y preparación artesanal directa a tu mesa.",
+          "vision": "Ser la propuesta culinaria preferida de Medellín, distinguida por la autenticidad, frescura y calidez en cada servicio."
+        },
+        "palette": {
+          "bg_primary": "#060814",
+          "bg_card": "rgba(10, 16, 38, 0.85)",
+          "border_card": "rgba(99, 102, 241, 0.3)",
+          "accent_primary": "#6366f1",
+          "accent_secondary": "#06b6d4",
+          "text_primary": "#eef2ff",
+          "text_muted": "#a5b4fc",
+          "hero_gradient": "linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(6, 8, 20, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "typography": {
+          "heading": "Outfit, sans-serif",
+          "body": "Plus Jakarta Sans, sans-serif",
+          "mono": "JetBrains Mono, monospace"
+        }
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T18:00:30.082Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_osm_node_024",
+      "company_name": "Restaurante El Corral",
+      "location": {
+        "address": "Carrera 43A #5A-113, Medellín, Colombia",
+        "city": "Medellín",
+        "country": "Colombia",
+        "maps_place_id": "osm_node_02468d9a03776997"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573005479772",
+        "email": null,
+        "instagram_handle": "@restauranteelcorral"
+      },
+      "lead_route": "RUTA_B",
+      "scout_metadata": {
+        "has_website": true,
+        "website_url": "https://elcorral.com",
+        "reviews_count": 35,
+        "rating": 4.8,
+        "category": "restaurant",
+        "friction_keywords_found": [],
+        "friction_snippet": "Oportunidad de optimización de canal web y modernización digital (4.8⭐).",
+        "social_audit": {
+          "instagram_handle": "@restauranteelcorral",
+          "facebook_url": "https://facebook.com/restauranteelcorral",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @restauranteelcorral inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T18:00:36.351Z",
+      "updated_at": "2026-08-29T18:00:36.351Z",
+      "diagnostics": {
+        "mrr_potential_usd": 100,
+        "lead_score": 75,
+        "high_priority": true,
+        "core_pain_hook": "Clientes de Restaurante El Corral reportan fricciones directas en su canal web (Oportunidad de optimización de canal web y modernización digital (4.8⭐).).",
+        "service_offer": "DIRECT_WEB",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Restaurante El Corral* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (Oportunidad de optimización de canal web y modernización digital (4.8⭐).).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/restaurante-el-corral-lead_o\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "email": {
+            "subject": "Optimización de canal web y pedidos para Restaurante El Corral",
+            "body": "Hola equipo de Restaurante El Corral,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/restaurante-el-corral-lead_o\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo ALARICUS B2B"
+          },
+          "instagram_dm": "Hola @Restaurante El Corral 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/restaurante-el-corral-lead_o ¿La revisamos?",
+          "sms": "Restaurante El Corral: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/restaurante-el-corral-lead_o ¿Agendamos demo?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/restaurante-el-corral-lead_o",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\restaurante-el-corral-lead_o.png",
+        "screenshot_url": "http://localhost:3000/screenshots/restaurante-el-corral-lead_o.png",
+        "video_asset_url": "http://localhost:3000/videos/demo_restaurante-el-corral_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_restaurante-el-corral_lead_o.mp4"
+      },
+      "design_profile": {
+        "archetypeKey": "b2c_gastronomy_hospitality",
+        "designDoc": {
+          "key": "b2c_gastronomy_hospitality",
+          "filename": "b2c_gastronomy_hospitality.design.md",
+          "content": "# DESIGN SYSTEM: B2C Gastronomy, Dining & Artisan Food\n\n## 1. Business Archetype & Model\n- **Sector:** Restaurantes Gourmet, Pizzerías de Autor, Hamburgueserías Craft, Bistrós, Panaderías Artesanales y Cafés Especiales.\n- **Business Model:** B2C Direct-to-Consumer Food & Beverage, Direct WhatsApp Delivery, Dine-in Table Reservations.\n- **Conversion Objective:** Pedidos directos sin comisiones del 30% a plataformas (Rappi/iFood), reservas de mesa inmediatas y fidelización con catálogo visual.\n\n## 2. Brand Identity, Mission & Vision Alignment\n- **Brand Essence:** Arte culinario, frescura de ingredientes locales, deleite sensorial, hospitalidad y rapidez en entrega.\n- **Mission Statement:** \"Ofrecer una experiencia gastronómica memorable elaborada con ingredientes seleccionados de primera calidad, servida con calidez humana y disponible directo a tu mesa o domicilio.\"\n- **Vision Statement:** \"Ser el referente culinario preferido de la ciudad, reconocido por la excelencia en sabor, autenticidad artesanal y servicio impecable.\"\n- **Core Value Proposition / Taglines:**\n  - \"Sabores de Autor, Ingredientes Frescos y Tradición Culinaria\"\n  - \"Pide Directo a Nuestra Cocina Sin Intermediarios ni Comisiones\"\n  - \"Masa Madre, Café de Origen y Repostería de Autor\"\n\n## 3. Color Palettes & Visual Tokens\n### Palette A: Obsidian Flame & Gold (Gourmet Dining & Grill)\n- **Background Primary (`bg_primary`):** `#09090b` (Charcoal Obsidian)\n- **Card Surface (`bg_card`):** `rgba(24, 24, 27, 0.88)`\n- **Card Border (`border_card`):** `rgba(225, 29, 72, 0.28)` (Flame Rose Glow)\n- **Primary Accent (`accent_primary`):** `#e11d48` (Flame Crimson Rose)\n- **Secondary Accent (`accent_secondary`):** `#eab308` (Culinary Gold)\n- **Text Primary (`text_primary`):** `#fafafa`\n- **Text Muted (`text_muted`):** `#a1a1aa`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(225, 29, 72, 0.28) 0%, rgba(9, 9, 11, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85`\n\n### Palette B: Warm Terracotta & Espresso (Artisan Bakery & Specialty Coffee)\n- **Background Primary (`bg_primary`):** `#0f0c0a` (Warm Roast Espresso)\n- **Card Surface (`bg_card`):** `rgba(30, 24, 20, 0.88)`\n- **Card Border (`border_card`):** `rgba(217, 119, 6, 0.30)` (Baked Crust Amber)\n- **Primary Accent (`accent_primary`):** `#d97706` (Warm Sourdough Amber)\n- **Secondary Accent (`accent_secondary`):** `#fbbf24` (Butter Cream Gold)\n- **Text Primary (`text_primary`):** `#fef3c7`\n- **Text Muted (`text_muted`):** `#d4b996`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(217, 119, 6, 0.28) 0%, rgba(15, 12, 10, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85`\n\n## 4. Typography Hierarchy\n- **Headings & Menu Categories:** `Outfit, sans-serif` (Bold 700 / ExtraBold 800)\n- **Dish Descriptions & Modifiers:** `Plus Jakarta Sans, sans-serif` (Regular 400 / Medium 500)\n- **Price Tags & Combos:** `JetBrains Mono, monospace` (Bold 700)\n\n## 5. UI Components & Micro-Interactions\n- **Visual Food Cart:** Carrito interactivo multi-ítem con cálculo dinámico de total y despacho estructurado a WhatsApp.\n- **Commission Savings Calculator:** Comparativa de ahorro directo vs apps de delivery para concientizar al comensal.\n- **Real Dish Cards:** Fotografías de alta resolución de las especialidades reales del negocio.\n"
+        },
+        "theme": {
+          "key": "GOURMET_GASTRONOMY",
+          "name": "Obsidian Culinary & Wine",
+          "tagline": "Experiencia Gastronómica de Autor",
+          "bg_primary": "#09090b",
+          "bg_card": "rgba(24, 24, 27, 0.85)",
+          "border_card": "rgba(225, 29, 72, 0.25)",
+          "accent_primary": "#e11d48",
+          "accent_secondary": "#eab308",
+          "text_primary": "#fafafa",
+          "text_muted": "#a1a1aa",
+          "font_heading": "Outfit, sans-serif",
+          "font_body": "Plus Jakarta Sans, sans-serif",
+          "hero_gradient": "linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(9, 9, 11, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "brand": {
+          "name": "Restaurante El Corral",
+          "category": "restaurant",
+          "city": "Medellín",
+          "motto": "Sabores de Autor y Tradición Culinaria en Medellín",
+          "mission": "Ofrecer una experiencia gastronómica memorable en Restaurante El Corral, con ingredientes frescos y preparación artesanal directa a tu mesa.",
+          "vision": "Ser la propuesta culinaria preferida de Medellín, distinguida por la autenticidad, frescura y calidez en cada servicio."
+        },
+        "palette": {
+          "bg_primary": "#09090b",
+          "bg_card": "rgba(24, 24, 27, 0.85)",
+          "border_card": "rgba(225, 29, 72, 0.25)",
+          "accent_primary": "#e11d48",
+          "accent_secondary": "#eab308",
+          "text_primary": "#fafafa",
+          "text_muted": "#a1a1aa",
+          "hero_gradient": "linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(9, 9, 11, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "typography": {
+          "heading": "Outfit, sans-serif",
+          "body": "Plus Jakarta Sans, sans-serif",
+          "mono": "JetBrains Mono, monospace"
+        }
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T18:00:46.918Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead_osm_node_995",
+      "company_name": "Restaurante Presto",
+      "location": {
+        "address": "Calle 10 #40-25, Medellín, Colombia",
+        "city": "Medellín",
+        "country": "Colombia",
+        "maps_place_id": "osm_node_9950d7e95813b9d4"
+      },
+      "contact_channel": {
+        "primary_type": "WHATSAPP",
+        "phone_e164": "+573006718290",
+        "email": null,
+        "instagram_handle": "@restaurantepresto"
+      },
+      "lead_route": "RUTA_B",
+      "scout_metadata": {
+        "has_website": true,
+        "website_url": "https://presto.com.co",
+        "reviews_count": 35,
+        "rating": 4.8,
+        "category": "restaurant",
+        "friction_keywords_found": [],
+        "friction_snippet": "Oportunidad de optimización de canal web y modernización digital (4.8⭐).",
+        "social_audit": {
+          "instagram_handle": "@restaurantepresto",
+          "facebook_url": "https://facebook.com/restaurantepresto",
+          "last_post_days_ago": 34,
+          "social_dormant": true,
+          "active_meta_ads": false,
+          "estimated_mrr_fit": true,
+          "audit_summary": "Cuenta @restaurantepresto inactiva hace 34 días. Gran potencial de reactivación comercial y flujo de caja."
+        }
+      },
+      "pipeline_status": "QUEUED_FOR_PITCH",
+      "created_at": "2026-08-29T18:00:36.351Z",
+      "updated_at": "2026-08-29T18:00:36.351Z",
+      "diagnostics": {
+        "mrr_potential_usd": 100,
+        "lead_score": 75,
+        "high_priority": true,
+        "core_pain_hook": "Clientes de Restaurante Presto reportan fricciones directas en su canal web (Oportunidad de optimización de canal web y modernización digital (4.8⭐).).",
+        "service_offer": "DIRECT_WEB",
+        "channel_copies": {
+          "whatsapp": "Hola equipo de *Restaurante Presto* 👋\n\nVimos en sus reseñas de Google que varios clientes han tenido dificultades con su página web (Oportunidad de optimización de canal web y modernización digital (4.8⭐).).\n\nPara solucionarlo, diseñamos una versión modernizada, ultrarrápida y con pedidos directos a su WhatsApp:\n🔗 *Ver solución:* http://localhost:3000/demo/restaurante-presto-lead_o\n\n¿Les parece si agendamos una llamada de 10 minutos para mostrársela?",
+          "email": {
+            "subject": "Optimización de canal web y pedidos para Restaurante Presto",
+            "body": "Hola equipo de Restaurante Presto,\n\nDetectamos que algunos usuarios reportaron fallas recientes al navegar o pedir en su plataforma actual. Para evitar fugas de clientes, estructuramos una alternativa optimizada y de carga instantánea:\n\nhttp://localhost:3000/demo/restaurante-presto-lead_o\n\nEsta solución resuelve de raíz los problemas reportados y agiliza la atención.\n\nSaludos cordiales,\nEquipo ALARICUS B2B"
+          },
+          "instagram_dm": "Hola @Restaurante Presto 🚀 Notamos fallas en su web actual y les rediseñamos una versión rápida con catálogo directo: http://localhost:3000/demo/restaurante-presto-lead_o ¿La revisamos?",
+          "sms": "Restaurante Presto: Rediseñamos su web resolviendo fallas de pedidos. Mírela: http://localhost:3000/demo/restaurante-presto-lead_o ¿Agendamos demo?"
+        }
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/restaurante-presto-lead_o",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\restaurante-presto-lead_o.png",
+        "screenshot_url": "http://localhost:3000/screenshots/restaurante-presto-lead_o.png",
+        "video_asset_url": "http://localhost:3000/videos/demo_restaurante-presto_lead_o.mp4",
+        "video_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_videos\\demo_restaurante-presto_lead_o.mp4"
+      },
+      "design_profile": {
+        "archetypeKey": "b2c_gastronomy_hospitality",
+        "designDoc": {
+          "key": "b2c_gastronomy_hospitality",
+          "filename": "b2c_gastronomy_hospitality.design.md",
+          "content": "# DESIGN SYSTEM: B2C Gastronomy, Dining & Artisan Food\n\n## 1. Business Archetype & Model\n- **Sector:** Restaurantes Gourmet, Pizzerías de Autor, Hamburgueserías Craft, Bistrós, Panaderías Artesanales y Cafés Especiales.\n- **Business Model:** B2C Direct-to-Consumer Food & Beverage, Direct WhatsApp Delivery, Dine-in Table Reservations.\n- **Conversion Objective:** Pedidos directos sin comisiones del 30% a plataformas (Rappi/iFood), reservas de mesa inmediatas y fidelización con catálogo visual.\n\n## 2. Brand Identity, Mission & Vision Alignment\n- **Brand Essence:** Arte culinario, frescura de ingredientes locales, deleite sensorial, hospitalidad y rapidez en entrega.\n- **Mission Statement:** \"Ofrecer una experiencia gastronómica memorable elaborada con ingredientes seleccionados de primera calidad, servida con calidez humana y disponible directo a tu mesa o domicilio.\"\n- **Vision Statement:** \"Ser el referente culinario preferido de la ciudad, reconocido por la excelencia en sabor, autenticidad artesanal y servicio impecable.\"\n- **Core Value Proposition / Taglines:**\n  - \"Sabores de Autor, Ingredientes Frescos y Tradición Culinaria\"\n  - \"Pide Directo a Nuestra Cocina Sin Intermediarios ni Comisiones\"\n  - \"Masa Madre, Café de Origen y Repostería de Autor\"\n\n## 3. Color Palettes & Visual Tokens\n### Palette A: Obsidian Flame & Gold (Gourmet Dining & Grill)\n- **Background Primary (`bg_primary`):** `#09090b` (Charcoal Obsidian)\n- **Card Surface (`bg_card`):** `rgba(24, 24, 27, 0.88)`\n- **Card Border (`border_card`):** `rgba(225, 29, 72, 0.28)` (Flame Rose Glow)\n- **Primary Accent (`accent_primary`):** `#e11d48` (Flame Crimson Rose)\n- **Secondary Accent (`accent_secondary`):** `#eab308` (Culinary Gold)\n- **Text Primary (`text_primary`):** `#fafafa`\n- **Text Muted (`text_muted`):** `#a1a1aa`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(225, 29, 72, 0.28) 0%, rgba(9, 9, 11, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85`\n\n### Palette B: Warm Terracotta & Espresso (Artisan Bakery & Specialty Coffee)\n- **Background Primary (`bg_primary`):** `#0f0c0a` (Warm Roast Espresso)\n- **Card Surface (`bg_card`):** `rgba(30, 24, 20, 0.88)`\n- **Card Border (`border_card`):** `rgba(217, 119, 6, 0.30)` (Baked Crust Amber)\n- **Primary Accent (`accent_primary`):** `#d97706` (Warm Sourdough Amber)\n- **Secondary Accent (`accent_secondary`):** `#fbbf24` (Butter Cream Gold)\n- **Text Primary (`text_primary`):** `#fef3c7`\n- **Text Muted (`text_muted`):** `#d4b996`\n- **Hero Gradient:** `linear-gradient(135deg, rgba(217, 119, 6, 0.28) 0%, rgba(15, 12, 10, 0.95) 100%)`\n- **Hero Photography:** `https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85`\n\n## 4. Typography Hierarchy\n- **Headings & Menu Categories:** `Outfit, sans-serif` (Bold 700 / ExtraBold 800)\n- **Dish Descriptions & Modifiers:** `Plus Jakarta Sans, sans-serif` (Regular 400 / Medium 500)\n- **Price Tags & Combos:** `JetBrains Mono, monospace` (Bold 700)\n\n## 5. UI Components & Micro-Interactions\n- **Visual Food Cart:** Carrito interactivo multi-ítem con cálculo dinámico de total y despacho estructurado a WhatsApp.\n- **Commission Savings Calculator:** Comparativa de ahorro directo vs apps de delivery para concientizar al comensal.\n- **Real Dish Cards:** Fotografías de alta resolución de las especialidades reales del negocio.\n"
+        },
+        "theme": {
+          "key": "GOURMET_GASTRONOMY",
+          "name": "Obsidian Culinary & Wine",
+          "tagline": "Experiencia Gastronómica de Autor",
+          "bg_primary": "#09090b",
+          "bg_card": "rgba(24, 24, 27, 0.85)",
+          "border_card": "rgba(225, 29, 72, 0.25)",
+          "accent_primary": "#e11d48",
+          "accent_secondary": "#eab308",
+          "text_primary": "#fafafa",
+          "text_muted": "#a1a1aa",
+          "font_heading": "Outfit, sans-serif",
+          "font_body": "Plus Jakarta Sans, sans-serif",
+          "hero_gradient": "linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(9, 9, 11, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "brand": {
+          "name": "Restaurante Presto",
+          "category": "restaurant",
+          "city": "Medellín",
+          "motto": "Sabores de Autor y Tradición Culinaria en Medellín",
+          "mission": "Ofrecer una experiencia gastronómica memorable en Restaurante Presto, con ingredientes frescos y preparación artesanal directa a tu mesa.",
+          "vision": "Ser la propuesta culinaria preferida de Medellín, distinguida por la autenticidad, frescura y calidez en cada servicio."
+        },
+        "palette": {
+          "bg_primary": "#09090b",
+          "bg_card": "rgba(24, 24, 27, 0.85)",
+          "border_card": "rgba(225, 29, 72, 0.25)",
+          "accent_primary": "#e11d48",
+          "accent_secondary": "#eab308",
+          "text_primary": "#fafafa",
+          "text_muted": "#a1a1aa",
+          "hero_gradient": "linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(9, 9, 11, 0.95) 100%)",
+          "hero_image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85",
+          "catalog_images": [
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        "typography": {
+          "heading": "Outfit, sans-serif",
+          "body": "Plus Jakarta Sans, sans-serif",
+          "mono": "JetBrains Mono, monospace"
+        }
+      },
+      "qa_verification": {
+        "passed": true,
+        "checked_at": "2026-08-29T18:00:57.518Z",
+        "inspections": {
+          "syntax_and_placeholders_valid": true,
+          "urls_http_200_under_1500ms": true,
+          "recipient_identity_valid": true,
+          "route_copy_coherence": true
+        },
+        "rejection_log": null
+      }
+    },
+    {
+      "lead_id": "lead-test-pantallazo-123",
+      "company_name": "Auto Taller Racing",
+      "lead_route": "RUTA_A",
+      "contact_channel": {
+        "phone_e164": "+573119998877"
+      },
+      "location": {
+        "city": "Pereira"
+      },
+      "assets": {
+        "landing_page_url": "http://localhost:3000/demo/auto-taller-racing-123",
+        "screenshot_local_path": "C:\\Users\\jegom\\buque-whatsapp-openclaw\\generated_screenshots\\auto-taller-racing-123.png"
+      }
     }
   ],
   "indexedPhones": {
-    "+573005065993": "lead_osm_node_d20",
-    "+573003424198": "lead_osm_node_3a3",
-    "+573002087247": "lead_osm_node_a1e",
-    "+573003172289": "lead_osm_node_05f",
-    "+573001816384": "lead_osm_node_5e6"
+    "+573004375565": "lead_osm_node_709",
+    "+573005065993": "lead_osm_node_42a",
+    "+573003424198": "lead_osm_node_283",
+    "+573005479772": "lead_osm_node_024",
+    "+573006718290": "lead_osm_node_995",
+    "+573119998877": "lead-test-pantallazo-123"
   },
   "indexedPlaceIds": {
-    "osm_node_d2040a5c5cffe802": "lead_osm_node_d20",
-    "osm_node_3a3dbb81e6b2d66a": "lead_osm_node_3a3",
-    "osm_node_a1e985c3fe5a7393": "lead_osm_node_a1e",
-    "osm_node_05fe6ac73a1a0c08": "lead_osm_node_05f",
-    "osm_node_5e66f5a3b5a9aa5d": "lead_osm_node_5e6"
+    "osm_node_70987f5f1c34674b": "lead_osm_node_709",
+    "osm_node_42ad337716214b36": "lead_osm_node_42a",
+    "osm_node_283fff420f23dc56": "lead_osm_node_283",
+    "osm_node_02468d9a03776997": "lead_osm_node_024",
+    "osm_node_9950d7e95813b9d4": "lead_osm_node_995"
   }
 }

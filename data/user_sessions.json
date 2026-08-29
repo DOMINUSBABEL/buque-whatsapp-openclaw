@@ -208,5 +208,19 @@
     "notes": [],
     "createdAt": 1788024889398,
     "lastInteraction": 1788024889398
+  },
+  "573117272822@s.whatsapp.net": {
+    "jid": "573117272822@s.whatsapp.net",
+    "isProspect": false,
+    "isAdmin": false,
+    "businessName": "",
+    "pipelineState": "IDLE",
+    "leadId": null,
+    "landingPageUrl": null,
+    "videoAssetUrl": null,
+    "messagesCount": 0,
+    "notes": [],
+    "createdAt": 1788026381217,
+    "lastInteraction": 1788026381217
   }
 }
